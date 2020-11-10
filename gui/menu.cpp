@@ -4,6 +4,7 @@ using namespace app;
 
 namespace Menu {
 	const std::vector<const char*> KILL_DISTANCE = { "Short", "Medium", "Long" };
+	const std::vector<const char*> TASKPROGRESSVISIBILITY = { "Always", "Meetings", "Never" };
 
 	bool SteppedSliderFloat(const char* label, float* v, float v_min, float v_max, float v_step, const char* format = "%.3f", ImGuiSliderFlags flags = 0) {
 		char text_buf[64] = {};
@@ -33,9 +34,7 @@ namespace Menu {
 
 		if (ImGui::BeginTabItem("Game")) {
 			ImGui::Checkbox("Max Vision", &State.MaxVision);
-			if (SteppedSliderFloat("Player Speed", &State.PlayerSpeed, 0.5f, 3.f, 0.25f, "%.2fx", ImGuiSliderFlags_Logarithmic | ImGuiSliderFlags_NoInput)) {
-				State.PlayerSpeed_Enabled = true;
-			}
+			if (SteppedSliderFloat("Player Speed", &State.PlayerSpeed, 0.5f, 3.f, 0.25f, "%.2fx", ImGuiSliderFlags_Logarithmic | ImGuiSliderFlags_NoInput));
 			ImGuiStyle& style = ImGui::GetStyle();
 			float w = ImGui::CalcItemWidth();
 			float spacing = style.ItemInnerSpacing.x;
@@ -64,6 +63,32 @@ namespace Menu {
 			}
 			ImGui::SameLine(0, style.ItemInnerSpacing.x);
 			ImGui::Text("Kill Distance");
+
+			ImGui::PushItemWidth(w - spacing * 2.0f - button_sz * 2.0f);
+			if (ImGui::BeginCombo("##taskprogressvisibility", TASKPROGRESSVISIBILITY.at(State.TaskProgressVisibility), ImGuiComboFlags_NoArrowButton)) {
+				for (int i = 0; i < TASKPROGRESSVISIBILITY.size(); i++) {
+					bool is_selected = (State.TaskProgressVisibility == i);
+					if (ImGui::Selectable(TASKPROGRESSVISIBILITY.at(i), is_selected))
+						State.TaskProgressVisibility = i;
+					if (is_selected)
+						ImGui::SetItemDefaultFocus();
+				}
+				ImGui::EndCombo();
+			}
+			ImGui::PopItemWidth();
+			ImGui::SameLine(0, spacing);
+			if (ImGui::ArrowButton("##taskProgressVisibilityLeft", ImGuiDir_Left)) {
+				State.TaskProgressVisibility--;
+				if (State.TaskProgressVisibility < 0) State.TaskProgressVisibility = 0;
+			}
+			ImGui::SameLine(0, spacing);
+			if (ImGui::ArrowButton("##taskProgressVisibilityRight", ImGuiDir_Right)) {
+				State.TaskProgressVisibility++;
+				if (State.TaskProgressVisibility > (TASKPROGRESSVISIBILITY.size() - 1)) State.TaskProgressVisibility = (TASKPROGRESSVISIBILITY.size() - 1);
+			}
+			ImGui::SameLine(0, style.ItemInnerSpacing.x);
+			ImGui::Text("Task Bar Updates");
+			
 			ImGui::Checkbox("No Kill Timer", &State.NoKillTimer);
 			if (ImGui::Checkbox("NoClip", &State.NoClip)) {
 				if (!State.NoClip && IsInGame())
@@ -247,8 +272,9 @@ namespace Menu {
 	}
 
 	void UpdateModifiers() {
-		if (State.PlayerSpeed_Enabled) (*Game::pGameOptionsData)->fields.PlayerSpeedMod = State.PlayerSpeed;
-		if (State.KillDistance_Enabled) (*Game::pGameOptionsData)->fields.KillDistance = State.KillDistance;
+		(*Game::pGameOptionsData)->fields.PlayerSpeedMod = State.PlayerSpeed;
+		(*Game::pGameOptionsData)->fields.KillDistance = State.KillDistance;
+		(*Game::pGameOptionsData)->fields.TaskProgressVisibility = (TaskProgressVisibility__Enum)State.TaskProgressVisibility;
 		if (State.NoKillTimer && (*Game::pGameOptionsData)->fields.KillCooldown > 0.1F)
 			(*Game::pGameOptionsData)->fields.KillCooldown = 0.1F;
 		if (State.NoClip)
@@ -256,12 +282,10 @@ namespace Menu {
 	}
 
 	void ResetModifiers() {
-		State.PlayerSpeed_Enabled = false;
-		State.KillDistance_Enabled = false;
-
 		State.selectedPlayerId = 255;
 
 		State.PlayerSpeed = (*Game::pGameOptionsData)->fields.PlayerSpeedMod;
 		State.KillDistance = (*Game::pGameOptionsData)->fields.KillDistance;
+		State.TaskProgressVisibility = (*Game::pGameOptionsData)->fields.TaskProgressVisibility;
 	}
 }

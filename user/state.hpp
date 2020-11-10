@@ -27,14 +27,13 @@ public:
     std::string CurrentScene;
 
     bool MaxVision = false;
-    bool PlayerSpeed_Enabled = false;
     float PlayerSpeed = 1.f;
     bool UnlockVents = false;
 
     bool RevealImpostors = false;
     bool NoKillTimer = false;
-    bool KillDistance_Enabled = false;
     int KillDistance = 0;
+    int TaskProgressVisibility = 0;
 
     bool NoClip = false;
 
