@@ -28,6 +28,8 @@ DWORD WINAPI Load(LPVOID lpParam) {
 
 	std::this_thread::sleep_for(std::chrono::milliseconds(10000));
 	Run();
+
+	return 0;
 }
 
 extern "C" __declspec(dllexport) void XInputEnable() {
