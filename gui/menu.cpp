@@ -32,7 +32,7 @@ namespace Menu {
 		strcat_s(arrowLeft, sizeof arrowLeft, label);
 		strcat_s(arrowLeft, sizeof arrowLeft, "Left");
 		if (ImGui::ArrowButton(arrowLeft, ImGuiDir_Left)) {
-			*value += 1;
+			*value -= 1;
 			if (*value < 0) *value = 0;
 		}
 		ImGui::SameLine(0, spacing);
@@ -40,7 +40,7 @@ namespace Menu {
 		strcat_s(arrowRight, sizeof arrowRight,	label);
 		strcat_s(arrowRight, sizeof arrowRight, "Right");
 		if (ImGui::ArrowButton(arrowRight, ImGuiDir_Right)) {
-			*value -= 1;
+			*value += 1;
 			if (*value > (list.size() - 1)) *value = (list.size() - 1);
 		}
 		ImGui::SameLine(0, style.ItemInnerSpacing.x);
@@ -80,6 +80,7 @@ namespace Menu {
 			SteppedSliderFloat("Player Speed", &State.PlayerSpeed, 0.5f, 3.f, 0.25f, "%.2fx", ImGuiSliderFlags_Logarithmic | ImGuiSliderFlags_NoInput);
 			CustomListBoxInt("Kill Distance", &State.KillDistance, KILL_DISTANCE, ImGuiComboFlags_NoArrowButton);
 			CustomListBoxInt("Task Bar Updates", &State.TaskProgressVisibility, TASKPROGRESSVISIBILITY, ImGuiComboFlags_NoArrowButton);
+			ImGui::Checkbox("Show Vote Identities", &State.ShowVoteIdentities);
 			ImGui::Checkbox("No Kill Timer", &State.NoKillTimer);
 			if (ImGui::Checkbox("NoClip", &State.NoClip)) {
 				if (!State.NoClip && IsInGame())
@@ -266,6 +267,8 @@ namespace Menu {
 		(*Game::pGameOptionsData)->fields.PlayerSpeedMod = State.PlayerSpeed;
 		(*Game::pGameOptionsData)->fields.KillDistance = State.KillDistance;
 		(*Game::pGameOptionsData)->fields.TaskProgressVisibility = (TaskProgressVisibility__Enum)State.TaskProgressVisibility;
+		(*Game::pGameOptionsData)->fields.AnonymousVotes = !State.ShowVoteIdentities;
+
 		if (State.NoKillTimer && (*Game::pGameOptionsData)->fields.KillCooldown > 0.1F)
 			(*Game::pGameOptionsData)->fields.KillCooldown = 0.1F;
 		if (State.NoClip)
@@ -278,5 +281,6 @@ namespace Menu {
 		State.PlayerSpeed = (*Game::pGameOptionsData)->fields.PlayerSpeedMod;
 		State.KillDistance = (*Game::pGameOptionsData)->fields.KillDistance;
 		State.TaskProgressVisibility = (*Game::pGameOptionsData)->fields.TaskProgressVisibility;
+		State.ShowVoteIdentities = !(*Game::pGameOptionsData)->fields.AnonymousVotes;
 	}
 }
