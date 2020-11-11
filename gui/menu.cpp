@@ -80,7 +80,6 @@ namespace Menu {
 			SteppedSliderFloat("Player Speed", &State.PlayerSpeed, 0.5f, 3.f, 0.25f, "%.2fx", ImGuiSliderFlags_Logarithmic | ImGuiSliderFlags_NoInput);
 			CustomListBoxInt("Kill Distance", &State.KillDistance, KILL_DISTANCE, ImGuiComboFlags_NoArrowButton);
 			CustomListBoxInt("Task Bar Updates", &State.TaskProgressVisibility, TASKPROGRESSVISIBILITY, ImGuiComboFlags_NoArrowButton);
-			ImGui::Checkbox("Show Vote Identities", &State.ShowVoteIdentities);
 			ImGui::Checkbox("No Kill Timer", &State.NoKillTimer);
 			if (ImGui::Checkbox("NoClip", &State.NoClip)) {
 				if (!State.NoClip && IsInGame())
@@ -267,7 +266,6 @@ namespace Menu {
 		(*Game::pGameOptionsData)->fields.PlayerSpeedMod = State.PlayerSpeed;
 		(*Game::pGameOptionsData)->fields.KillDistance = State.KillDistance;
 		(*Game::pGameOptionsData)->fields.TaskProgressVisibility = (TaskProgressVisibility__Enum)State.TaskProgressVisibility;
-		(*Game::pGameOptionsData)->fields.AnonymousVotes = !State.ShowVoteIdentities;
 
 		if (State.NoKillTimer && (*Game::pGameOptionsData)->fields.KillCooldown > 0.1F)
 			(*Game::pGameOptionsData)->fields.KillCooldown = 0.1F;
@@ -281,6 +279,5 @@ namespace Menu {
 		State.PlayerSpeed = (*Game::pGameOptionsData)->fields.PlayerSpeedMod;
 		State.KillDistance = (*Game::pGameOptionsData)->fields.KillDistance;
 		State.TaskProgressVisibility = (*Game::pGameOptionsData)->fields.TaskProgressVisibility;
-		State.ShowVoteIdentities = !(*Game::pGameOptionsData)->fields.AnonymousVotes;
 	}
 }
