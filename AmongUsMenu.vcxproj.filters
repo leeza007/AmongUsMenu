@@ -52,9 +52,6 @@
     <ClCompile Include="hooks\Chat.cpp">
       <Filter>hooks</Filter>
     </ClCompile>
-    <ClCompile Include="hooks\Door.cpp">
-      <Filter>hooks</Filter>
-    </ClCompile>
     <ClCompile Include="includes\kiero\kiero.cpp">
       <Filter>includes\kiero</Filter>
     </ClCompile>
@@ -99,6 +96,9 @@
     </ClCompile>
     <ClCompile Include="framework\x_input.cpp">
       <Filter>framework</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks\Doors.cpp">
+      <Filter>hooks</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

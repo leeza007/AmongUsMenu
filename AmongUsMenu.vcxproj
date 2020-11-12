@@ -49,7 +49,7 @@
     </ClCompile>
     <ClCompile Include="hooks\AmongUsClient.cpp" />
     <ClCompile Include="hooks\Chat.cpp" />
-    <ClCompile Include="hooks\Door.cpp" />
+    <ClCompile Include="hooks\Doors.cpp" />
     <ClCompile Include="hooks\HatManager.cpp" />
     <ClCompile Include="hooks\KeyboardJoystick.cpp" />
     <ClCompile Include="hooks\MeetingHud.cpp" />
@@ -269,7 +269,8 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <DisableSpecificWarnings>E1542;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings>
+      </DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -299,7 +300,8 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <DisableSpecificWarnings>E1542;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings>
+      </DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -333,7 +335,8 @@
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <Optimization>Full</Optimization>
       <UseFullPaths>false</UseFullPaths>
-      <DisableSpecificWarnings>E1542;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings>
+      </DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -367,7 +370,8 @@
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <Optimization>Full</Optimization>
       <UseFullPaths>false</UseFullPaths>
-      <DisableSpecificWarnings>E1542;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings>
+      </DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
