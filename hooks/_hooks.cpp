@@ -166,6 +166,9 @@ void DetourInitilization() {
 	if (DetourAttach(&(PVOID&)HatManager_GetUnlockedSkins, dHatManager_GetUnlockedSkins) != 0)
 		return;
 
+	if (DetourAttach(&(PVOID&)PlayerControl_FixedUpdate, dPlayerControl_FixedUpdate) != 0)
+		return;
+
 	//if (DetourAttach(&(PVOID&)StatsManager_get_BanMinutesLeft, dStatsManager_get_BanMinutesLeft) != 0)
 		//return;
 
@@ -221,9 +224,6 @@ void DetourInitilization() {
 		//return;
 
 	//if (DetourAttach(&(PVOID&)PlainDoor_SetDoorway, dPlainDoor_SetDoorway) != 0)
-		//return;
-
-	//if (DetourAttach(&(PVOID&)PlayerControl_FixedUpdate, dPlayerControl_FixedUpdate) != 0)
 		//return;
 
 	//if (DetourAttach(&(PVOID&)ReactorTask_FixedUpdate, dReactorTask_FixedUpdate) != 0)

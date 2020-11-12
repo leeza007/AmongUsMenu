@@ -8,6 +8,8 @@ DO_APP_FUNC(HatBehaviour__Array*, HatManager_GetUnlockedHats, (HatManager* __thi
 DO_APP_FUNC(PetBehaviour__Array*, HatManager_GetUnlockedPets, (HatManager* __this, MethodInfo* method), "Assembly-CSharp, PetBehaviour[] HatManager::GetUnlockedPets()");
 DO_APP_FUNC(SkinData__Array*, HatManager_GetUnlockedSkins, (HatManager* __this, MethodInfo* method), "Assembly-CSharp, SkinData[] HatManager::GetUnlockedSkins()");
 
+DO_APP_FUNC(void, PlayerControl_FixedUpdate, (PlayerControl* __this, MethodInfo* method), "Assembly-CSharp, System.Void PlayerControl::FixedUpdate()");
+
 //DO_APP_FUNC(float, StatsManager_get_BanPoints, (StatsManager* __this, MethodInfo* method), "Assembly-CSharp, System.Single StatsManager::get_BanPoints()");
 //DO_APP_FUNC(int32_t, StatsManager_get_BanMinutesLeft, (StatsManager* __this, MethodInfo* method), "Assembly-CSharp, System.Int32 StatsManager::get_BanMinutesLeft()");
 //DO_APP_FUNC(bool, StatsManager_get_AmBanned, (StatsManager* __this, MethodInfo* method), "Assembly-CSharp, System.Boolean StatsManager::get_AmBanned()");
@@ -16,7 +18,6 @@ DO_APP_FUNC(SkinData__Array*, HatManager_GetUnlockedSkins, (HatManager* __this, 
 //DO_APP_FUNC(void, KeyboardJoystick_Update, (KeyboardJoystick* __this, MethodInfo* method), "Assembly-CSharp, System.Void KeyboardJoystick::Update()");
 //DO_APP_FUNC(Vector2, PlayerControl_GetTruePosition, (PlayerControl* __this, MethodInfo* method), "Assembly-CSharp, UnityEngine.Vector2 PlayerControl::GetTruePosition()");
 //DO_APP_FUNC(GameData_PlayerInfo*, PlayerControl_get_Data, (PlayerControl* __this, MethodInfo* method), "Assembly-CSharp, GameData.PlayerInfo PlayerControl::get_Data()");
-//DO_APP_FUNC(void, PlayerControl_FixedUpdate, (PlayerControl* __this, MethodInfo* method), "Assembly-CSharp, System.Void PlayerControl::FixedUpdate()");
 //DO_APP_FUNC(void, PlayerControl_RpcCompleteTask, (PlayerControl* __this, uint32_t JBKKJKELILN, MethodInfo* method), "Assembly-CSharp, System.Void PlayerControl::RpcCompleteTask(System.UInt32)");
 //DO_APP_FUNC(void, MeetingHud_Update, (MeetingHud* __this, MethodInfo* method), "Assembly-CSharp, System.Void MeetingHud::Update()");
 //DO_APP_FUNC(Vector2, DeadBody_get_TruePosition, (DeadBody* __this, MethodInfo* method), "Assembly-CSharp, UnityEngine.Vector2 DeadBody::get_TruePosition()");

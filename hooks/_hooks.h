@@ -32,6 +32,7 @@ void DetourInitilization();
 HatBehaviour__Array* dHatManager_GetUnlockedHats(HatManager* __this, MethodInfo* method);
 PetBehaviour__Array* dHatManager_GetUnlockedPets(HatManager* __this, MethodInfo* method);
 SkinData__Array* dHatManager_GetUnlockedSkins(HatManager* __this, MethodInfo* method);
+void dPlayerControl_FixedUpdate(PlayerControl* __this, MethodInfo* method);
 
 /*bool dAutoOpenDoor_DoUpdate(AutoOpenDoor* __this, float dt, MethodInfo* method);
 bool dStatsManager_get_AmBanned(StatsManager* __this, MethodInfo* method);
@@ -51,7 +52,6 @@ void dKeyboardJoystick_Update(KeyboardJoystick* __this, MethodInfo* method);
 void dMeetingHud_Update(MeetingHud* __this, MethodInfo* method);
 void dNoOxyTask_FixedUpdate(NoOxyTask* __this, MethodInfo* method);
 void dPlainDoor_SetDoorway(PlainDoor* __this, bool open, MethodInfo* method);
-void dPlayerControl_FixedUpdate(PlayerControl* __this, MethodInfo* method);
 void dReactorTask_FixedUpdate(ReactorTask* __this, MethodInfo* method);
 void dSceneManager_Internal_ActiveSceneChanged(Scene previousActiveScene, Scene newActiveScene, MethodInfo* method);
 void dShipStatus_OnEnable(ShipStatus* __this, MethodInfo* method);*/
