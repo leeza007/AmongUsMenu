@@ -157,6 +157,9 @@ void DetourInitilization() {
 	DetourTransactionBegin();
 	DetourUpdateThread(GetCurrentThread());
 
+	if (DetourAttach(&(PVOID&)SceneManager_Internal_ActiveSceneChanged, dSceneManager_Internal_ActiveSceneChanged) != 0)
+		return;
+
 	if (DetourAttach(&(PVOID&)HatManager_GetUnlockedHats, dHatManager_GetUnlockedHats) != 0)
 		return;
 
@@ -167,6 +170,15 @@ void DetourInitilization() {
 		return;
 
 	if (DetourAttach(&(PVOID&)PlayerControl_FixedUpdate, dPlayerControl_FixedUpdate) != 0)
+		return;
+
+	if (DetourAttach(&(PVOID&)MeetingHud_Update, dMeetingHud_Update) != 0)
+		return;
+
+	if (DetourAttach(&(PVOID&)ShipStatus_CalculateLightRadius, dShipStatus_CalculateLightRadius) != 0)
+		return;
+
+	if (DetourAttach(&(PVOID&)Vent_CanUse, dVent_CanUse) != 0)
 		return;
 
 	//if (DetourAttach(&(PVOID&)StatsManager_get_BanMinutesLeft, dStatsManager_get_BanMinutesLeft) != 0)
@@ -181,13 +193,7 @@ void DetourInitilization() {
 	//if (DetourAttach(&(PVOID&)StatsManager_get_AmBanned, dStatsManager_get_AmBanned) != 0)
 		//return;
 
-	//if (DetourAttach(&(PVOID&)ShipStatus_CalculateLightRadius, dShipStatus_CalculateLightRadius) != 0)
-		//return;
-
 	//if (DetourAttach(&(PVOID&)StatsManager_get_BanPoints, dStatsManager_get_BanPoints) != 0)
-		//return;
-
-	//if (DetourAttach(&(PVOID&)Vent_CanUse, dVent_CanUse) != 0)
 		//return;
 
 	//if (DetourAttach(&(PVOID&)AmongUsClient_OnStartGame, dAmongUsClient_OnStartGame) != 0)
@@ -217,9 +223,6 @@ void DetourInitilization() {
 	//if (DetourAttach(&(PVOID&)KeyboardJoystick_Update, dKeyboardJoystick_Update) != 0)
 		//return;
 
-	//if (DetourAttach(&(PVOID&)MeetingHud_Update, dMeetingHud_Update) != 0)
-		//return;
-
 	//if (DetourAttach(&(PVOID&)NoOxyTask_FixedUpdate, dNoOxyTask_FixedUpdate) != 0)
 		//return;
 
@@ -227,9 +230,6 @@ void DetourInitilization() {
 		//return;
 
 	//if (DetourAttach(&(PVOID&)ReactorTask_FixedUpdate, dReactorTask_FixedUpdate) != 0)
-		//return;
-
-	//if (DetourAttach(&(PVOID&)SceneManager_Internal_ActiveSceneChanged, dSceneManager_Internal_ActiveSceneChanged) != 0)
 		//return;
 
 	//if (DetourAttach(&(PVOID&)ShipStatus_OnEnable, dShipStatus_OnEnable) != 0)

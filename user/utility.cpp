@@ -19,16 +19,15 @@ ImVec4 AmongUsColorToImVec4(CorrectedColor32 color) {
 	return ImVec4(color.r / 255.0F, color.g / 255.0F, color.b / 255.0F, color.a / 255.0F);
 }
 
-//#define LocalInGame (((*Game::pAmongUsClient)->fields.GameMode == GameModes__Enum_LocalGame) && ((*Game::pAmongUsClient)->fields._.GameState == InnerNetClient_GameStates__Enum_Started))
-//#define OnlineInGame (((*Game::pAmongUsClient)->fields.GameMode == GameModes__Enum_OnlineGame) && ((*Game::pAmongUsClient)->fields._.GameState == InnerNetClient_GameStates__Enum_Started))
-//#define TutorialScene (State.CurrentScene.compare("Tutorial") == 0)
+#define LocalInGame (((*Game::pAmongUsClient)->fields.GameMode == GameModes__Enum_LocalGame) && ((*Game::pAmongUsClient)->fields._.GameState == InnerNetClient_GameStates__Enum_Started))
+#define OnlineInGame (((*Game::pAmongUsClient)->fields.GameMode == GameModes__Enum_OnlineGame) && ((*Game::pAmongUsClient)->fields._.GameState == InnerNetClient_GameStates__Enum_Started))
+#define TutorialScene (State.CurrentScene.compare("Tutorial") == 0)
 
 bool IsInGame() {
-	return true;
-	//return (LocalInGame || OnlineInGame || TutorialScene) && (*Game::pShipStatus) && (*Game::pLocalPlayer);
+	return (LocalInGame || OnlineInGame || TutorialScene) && (*Game::pShipStatus) && (*Game::pLocalPlayer);
 }
 
-/*GameData_PlayerInfo* GetPlayerData(PlayerControl* player) {
+GameData_PlayerInfo* GetPlayerData(PlayerControl* player) {
 	if (player) return app::PlayerControl_get_Data(player, NULL);
 	return NULL;
 }
@@ -77,7 +76,7 @@ std::vector<GameData_PlayerInfo*> GetAllPlayerData() {
 	return players;
 }
 
-std::vector<DeadBody*> GetAllDeadBodies() {
+/*std::vector<DeadBody*> GetAllDeadBodies() {
 	std::vector<DeadBody*> deadBodies = std::vector<DeadBody*>();
 
 	Type* deadBody_Type = app::Type_GetType(convert_to_string(translate_type_name("DeadBody, Assembly-CSharp")), NULL);

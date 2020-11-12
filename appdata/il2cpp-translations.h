@@ -32,7 +32,11 @@ const std::vector<KLASS_PAIR> KLASS_TRANSLATIONS = {
 	{ {"", "PlayerControl"}, {"", "GLHCHLEDNBA"} },
 	{ {"", "PlayerTask"}, {"", "LOBBAHDOFGE"} },
 	{ {"", "HatManager"}, {"", "JCEGHLBFDKF"} },
-	{ {"", "Palette"}, {"", "KPNJLIGHOEI"} }
+	{ {"", "Palette"}, {"", "KPNJLIGHOEI"} },
+	{ {"", "MeetingHud"}, {"", "GPOHFPAIEMA"} },
+	{ {"", "ShipStatus"}, {"", "DAFPFFMKPJJ"} },
+	{ {"", "GameOptionsData"}, {"", "OEFJGMAEENB"} },
+	{ {"", "Vent"}, {"", "FBDDMHFBCPD"} },
 };
 
 const std::vector<std::pair<std::string, std::string>> METHOD_TRANSLATIONS = {

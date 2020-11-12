@@ -15,12 +15,12 @@ void Run() {
 	#undef DO_APP_FUNC
 #endif
 
-	/*Game::pAmongUsClient = &(app::AmongUsClient__TypeInfo->static_fields->Instance);
+	Game::pAmongUsClient = &(app::AmongUsClient__TypeInfo->static_fields->Instance);
 	Game::pGameData = &(app::GameData__TypeInfo->static_fields->Instance);
 	Game::pGameOptionsData = &(app::PlayerControl__TypeInfo->static_fields->GameOptions);
 	Game::pAllPlayerControls = &(app::PlayerControl__TypeInfo->static_fields->AllPlayerControls);
 	Game::pLocalPlayer = &(app::PlayerControl__TypeInfo->static_fields->LocalPlayer);
-	Game::pShipStatus = &(app::ShipStatus__TypeInfo->static_fields->Instance);*/
+	Game::pShipStatus = &(app::ShipStatus__TypeInfo->static_fields->Instance);
 
 	DetourInitilization();
 }
