@@ -269,6 +269,7 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <WholeProgramOptimization>false</WholeProgramOptimization>
+      <DisableSpecificWarnings>E1542;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -298,6 +299,7 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <WholeProgramOptimization>false</WholeProgramOptimization>
+      <DisableSpecificWarnings>E1542;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -331,6 +333,7 @@
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <Optimization>Full</Optimization>
       <UseFullPaths>false</UseFullPaths>
+      <DisableSpecificWarnings>E1542;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -364,6 +367,7 @@
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <Optimization>Full</Optimization>
       <UseFullPaths>false</UseFullPaths>
+      <DisableSpecificWarnings>E1542;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
