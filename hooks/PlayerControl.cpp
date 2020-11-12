@@ -2,7 +2,7 @@
 
 using namespace app;
 
-void dPlayerControl_FixedUpdate(PlayerControl* __this, MethodInfo* method) {
+/*void dPlayerControl_FixedUpdate(PlayerControl* __this, MethodInfo* method) {
 	if (IsInGame()) {
 		auto playerData = GetPlayerData(__this);
 		auto localData = GetPlayerData(*Game::pLocalPlayer);
@@ -19,4 +19,4 @@ void dPlayerControl_FixedUpdate(PlayerControl* __this, MethodInfo* method) {
 			nameText->fields.Color = Palette__TypeInfo->static_fields->White;
 	}
 	PlayerControl_FixedUpdate(__this, method);
-}
+}*/

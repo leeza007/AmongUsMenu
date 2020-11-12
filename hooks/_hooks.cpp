@@ -157,28 +157,7 @@ void DetourInitilization() {
 	DetourTransactionBegin();
 	DetourUpdateThread(GetCurrentThread());
 
-	if (DetourAttach(&(PVOID&)pHWID_W, dHWID_W) != 0)
-		return;
-
-	if (DetourAttach(&(PVOID&)AutoOpenDoor_DoUpdate, dAutoOpenDoor_DoUpdate) != 0)
-		return;
-
-	if (DetourAttach(&(PVOID&)StatsManager_get_AmBanned, dStatsManager_get_AmBanned) != 0)
-		return;
-
-	if (DetourAttach(&(PVOID&)ShipStatus_CalculateLightRadius, dShipStatus_CalculateLightRadius) != 0)
-		return;
-
-	if (DetourAttach(&(PVOID&)StatsManager_get_BanPoints, dStatsManager_get_BanPoints) != 0)
-		return;
-
-	if (DetourAttach(&(PVOID&)Vent_CanUse, dVent_CanUse) != 0)
-		return;
-
 	if (DetourAttach(&(PVOID&)HatManager_GetUnlockedHats, dHatManager_GetUnlockedHats) != 0)
-		return;
-
-	if (DetourAttach(&(PVOID&)StatsManager_get_BanMinutesLeft, dStatsManager_get_BanMinutesLeft) != 0)
 		return;
 
 	if (DetourAttach(&(PVOID&)HatManager_GetUnlockedPets, dHatManager_GetUnlockedPets) != 0)
@@ -187,59 +166,80 @@ void DetourInitilization() {
 	if (DetourAttach(&(PVOID&)HatManager_GetUnlockedSkins, dHatManager_GetUnlockedSkins) != 0)
 		return;
 
-	if (DetourAttach(&(PVOID&)AmongUsClient_OnStartGame, dAmongUsClient_OnStartGame) != 0)
-		return;
+	//if (DetourAttach(&(PVOID&)StatsManager_get_BanMinutesLeft, dStatsManager_get_BanMinutesLeft) != 0)
+		//return;
 
-	if (DetourAttach(&(PVOID&)ChatBubble_SetName, dChatBubble_SetName) != 0)
-		return;
+	//if (DetourAttach(&(PVOID&)pHWID_W, dHWID_W) != 0)
+	//	return;
 
-	if (DetourAttach(&(PVOID&)ChatController_AddChat, dChatController_AddChat) != 0)
-		return;
+	//if (DetourAttach(&(PVOID&)AutoOpenDoor_DoUpdate, dAutoOpenDoor_DoUpdate) != 0)
+		//return;
 
-	if (DetourAttach(&(PVOID&)ChatController_SetVisible, dChatController_SetVisible) != 0)
-		return;
+	//if (DetourAttach(&(PVOID&)StatsManager_get_AmBanned, dStatsManager_get_AmBanned) != 0)
+		//return;
 
-	if (DetourAttach(&(PVOID&)ElectricTask_FixedUpdate, dElectricTask_FixedUpdate) != 0)
-		return;
+	//if (DetourAttach(&(PVOID&)ShipStatus_CalculateLightRadius, dShipStatus_CalculateLightRadius) != 0)
+		//return;
 
-	if (DetourAttach(&(PVOID&)HqHudOverrideTask_FixedUpdate, dHqHudOverrideTask_FixedUpdate) != 0)
-		return;
+	//if (DetourAttach(&(PVOID&)StatsManager_get_BanPoints, dStatsManager_get_BanPoints) != 0)
+		//return;
 
-	if (DetourAttach(&(PVOID&)HudManager_ShowMap, dHudManager_ShowMap) != 0)
-		return;
+	//if (DetourAttach(&(PVOID&)Vent_CanUse, dVent_CanUse) != 0)
+		//return;
 
-	if (DetourAttach(&(PVOID&)HudOverrideTask_FixedUpdate, dHudOverrideTask_FixedUpdate) != 0)
-		return;
+	//if (DetourAttach(&(PVOID&)AmongUsClient_OnStartGame, dAmongUsClient_OnStartGame) != 0)
+		//return;
 
-	if (DetourAttach(&(PVOID&)KeyboardJoystick_Update, dKeyboardJoystick_Update) != 0)
-		return;
+	//if (DetourAttach(&(PVOID&)ChatBubble_SetName, dChatBubble_SetName) != 0)
+		//return;
 
-	if (DetourAttach(&(PVOID&)MeetingHud_Update, dMeetingHud_Update) != 0)
-		return;
+	//if (DetourAttach(&(PVOID&)ChatController_AddChat, dChatController_AddChat) != 0)
+		//return;
 
-	if (DetourAttach(&(PVOID&)NoOxyTask_FixedUpdate, dNoOxyTask_FixedUpdate) != 0)
-		return;
+	//if (DetourAttach(&(PVOID&)ChatController_SetVisible, dChatController_SetVisible) != 0)
+		//return;
 
-	if (DetourAttach(&(PVOID&)PlainDoor_SetDoorway, dPlainDoor_SetDoorway) != 0)
-		return;
+	//if (DetourAttach(&(PVOID&)ElectricTask_FixedUpdate, dElectricTask_FixedUpdate) != 0)
+		//return;
 
-	if (DetourAttach(&(PVOID&)PlayerControl_FixedUpdate, dPlayerControl_FixedUpdate) != 0)
-		return;
+	//if (DetourAttach(&(PVOID&)HqHudOverrideTask_FixedUpdate, dHqHudOverrideTask_FixedUpdate) != 0)
+		//return;
 
-	if (DetourAttach(&(PVOID&)ReactorTask_FixedUpdate, dReactorTask_FixedUpdate) != 0)
-		return;
+	//if (DetourAttach(&(PVOID&)HudManager_ShowMap, dHudManager_ShowMap) != 0)
+		//return;
 
-	if (DetourAttach(&(PVOID&)SceneManager_Internal_ActiveSceneChanged, dSceneManager_Internal_ActiveSceneChanged) != 0)
-		return;
+	//if (DetourAttach(&(PVOID&)HudOverrideTask_FixedUpdate, dHudOverrideTask_FixedUpdate) != 0)
+		//return;
 
-	if (DetourAttach(&(PVOID&)ShipStatus_OnEnable, dShipStatus_OnEnable) != 0)
-		return;
+	//if (DetourAttach(&(PVOID&)KeyboardJoystick_Update, dKeyboardJoystick_Update) != 0)
+		//return;
 
-	if (kiero::init(kiero::RenderType::D3D11) == kiero::Status::Success) {
-		oPresent = (D3D_PRESENT_FUNCTION)kiero::getMethodsTable()[8];
-		if (DetourAttach(&(PVOID&)oPresent, hkPresent) != 0)
-			return;
-	}
+	//if (DetourAttach(&(PVOID&)MeetingHud_Update, dMeetingHud_Update) != 0)
+		//return;
+
+	//if (DetourAttach(&(PVOID&)NoOxyTask_FixedUpdate, dNoOxyTask_FixedUpdate) != 0)
+		//return;
+
+	//if (DetourAttach(&(PVOID&)PlainDoor_SetDoorway, dPlainDoor_SetDoorway) != 0)
+		//return;
+
+	//if (DetourAttach(&(PVOID&)PlayerControl_FixedUpdate, dPlayerControl_FixedUpdate) != 0)
+		//return;
+
+	//if (DetourAttach(&(PVOID&)ReactorTask_FixedUpdate, dReactorTask_FixedUpdate) != 0)
+		//return;
+
+	//if (DetourAttach(&(PVOID&)SceneManager_Internal_ActiveSceneChanged, dSceneManager_Internal_ActiveSceneChanged) != 0)
+		//return;
+
+	//if (DetourAttach(&(PVOID&)ShipStatus_OnEnable, dShipStatus_OnEnable) != 0)
+		//return;
+
+	//if (kiero::init(kiero::RenderType::D3D11) == kiero::Status::Success) {
+		//oPresent = (D3D_PRESENT_FUNCTION)kiero::getMethodsTable()[8];
+		//if (DetourAttach(&(PVOID&)oPresent, hkPresent) != 0)
+			//return;
+	//}
 
 	DetourTransactionCommit();
 

@@ -3,7 +3,7 @@
 using namespace app;
 
 namespace Radar {
-	ImU32 GetRadarPlayerColor(GameData_PlayerInfo* playerData) {
+	/*ImU32 GetRadarPlayerColor(GameData_PlayerInfo* playerData) {
 		return ImGui::ColorConvertFloat4ToU32(AmongUsColorToImVec4(GetPlayerColor(playerData->fields.ColorId)));
 	}
 
@@ -14,7 +14,7 @@ namespace Radar {
 			return ImGui::ColorConvertFloat4ToU32(AmongUsColorToImVec4(app::Palette__TypeInfo->static_fields->ImpostorRed));
 		else
 			return ImGui::ColorConvertFloat4ToU32(ImVec4(0, 0, 0, 0));
-	}
+	}*/
 
 	void SquareConstraint(ImGuiSizeCallbackData* data)
 	{
@@ -22,7 +22,7 @@ namespace Radar {
 	}
 
 	void OnClick() {
-		if (ImGui::IsMouseClicked(ImGuiPopupFlags_MouseButtonRight)) {
+		/*if (ImGui::IsMouseClicked(ImGuiPopupFlags_MouseButtonRight)) {
 			ImVec2 mouse = ImGui::GetMousePos();
 			ImVec2 winpos = ImGui::GetWindowPos();
 			ImVec2 winsize = ImGui::GetWindowSize();
@@ -40,7 +40,7 @@ namespace Radar {
 			};
 
 			State.rpcQueue.push(new TeleportRPC((*Game::pLocalPlayer)->fields.PlayerId, target));
-		}
+		}*/
 	}
 
 	void Init() {
@@ -50,7 +50,7 @@ namespace Radar {
 
 	bool init = false;
 	void Render() {
-		if (!init)
+		/*if (!init)
 			Radar::Init();
 
 		int MapType = (*Game::pShipStatus)->fields.Type;
@@ -95,6 +95,6 @@ namespace Radar {
 		if (State.ShowRadar_RightClick_Teleport)
 			OnClick();
 
-		ImGui::End();
+		ImGui::End();*/
 	}
 }

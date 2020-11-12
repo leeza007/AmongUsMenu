@@ -1,7 +1,7 @@
 #pragma once
 #include <cstdint>
 
-class RPCInterface
+/*class RPCInterface
 {
 public:
 	virtual ~RPCInterface() {}
@@ -37,4 +37,4 @@ class SabotageRPC : public RPCInterface {
 public:
 	SabotageRPC(SystemTypes__Enum selectedSystem);
 	virtual void Process() override;
-};
+};*/

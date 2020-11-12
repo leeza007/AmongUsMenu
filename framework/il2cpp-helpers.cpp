@@ -24,12 +24,15 @@ app::String* convert_to_string(std::string input) {
 	return app::Marshal_PtrToStringAnsi((void*)input.c_str(), NULL);
 }
 
-std::string translate_class_name(std::string input) {
-	for (auto pair : CLASS_TRANSLATIONS) {
-		if (input.compare(pair.first) == 0) return pair.second;
-		if (input.compare(pair.second) == 0) return pair.first;
+KLASS translate_klass(KLASS klass_input) {
+	for (auto klass_pair : KLASS_TRANSLATIONS) {
+		if (klass_input == klass_pair.obfuscated_klass)
+			return klass_pair.deobfuscated_klass;
+
+		if (klass_input == klass_pair.deobfuscated_klass)
+			return klass_pair.obfuscated_klass;
 	}
-	return input;
+	return klass_input;
 }
 
 std::string translate_method_name(std::string input) {
@@ -115,7 +118,9 @@ Il2CppMethodPointer get_method(std::string methodSignature) {
 	methodName.erase(methodName.rfind("("));
 	paramTypes.pop_back();
 
-	className = translate_class_name(className);
+	auto klass_translation = translate_klass({ namespaze, className });
+	namespaze = klass_translation.namespaze;
+	className = klass_translation.klass_name;
 
 	Il2CppDomain* domain = il2cpp_domain_get();
 	const Il2CppAssembly* assembly = il2cpp_domain_assembly_open(domain, assemblyName.c_str());
@@ -139,7 +144,9 @@ Il2CppClass* get_class(std::string classSignature) {
 
 	std::string className = classSignature;
 
-	className = translate_class_name(className);
+	auto klass_translation = translate_klass({ namespaze, className });
+	namespaze = klass_translation.namespaze;
+	className = klass_translation.klass_name;
 
 	Il2CppDomain* domain = il2cpp_domain_get();
 	const Il2CppAssembly* assembly = il2cpp_domain_assembly_open(domain, assemblyName.c_str());
@@ -153,16 +160,18 @@ Il2CppClass* get_class(std::string classSignature) {
 std::string get_method_description(const MethodInfo* methodInfo) {
 	std::string description = "";
 
+	auto klass_translation = translate_klass({ methodInfo->klass->namespaze, methodInfo->klass->name });
+
 	description.append(methodInfo->klass->image->assembly->aname.name);
 	description.append(", ");
 
 	description.append(get_type_name(methodInfo->return_type));
 	description.append(" ");
-	if (strlen(methodInfo->klass->namespaze) != 0) {
-		description.append(methodInfo->klass->namespaze);
+	if (!klass_translation.namespaze.empty()) {
+		description.append(klass_translation.namespaze);
 		description.append(".");
 	}
-	description.append(translate_class_name(methodInfo->klass->name));
+	description.append(klass_translation.klass_name);
 	description.append("::");
 	description.append(translate_method_name(methodInfo->name));
 	description.append("(");
@@ -189,6 +198,6 @@ void output_assembly_methods(const Il2CppAssembly* assembly) {
 	}
 }
 
-std::string getGameVersion() {
+/*std::string getGameVersion() {
 	return convert_from_string(Application_get_version(NULL));
-}
+}*/

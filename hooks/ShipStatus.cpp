@@ -2,14 +2,14 @@
 
 using namespace app;
 
-float dShipStatus_CalculateLightRadius(ShipStatus* __this, GameData_PlayerInfo* player, MethodInfo* method) {
+/*float dShipStatus_CalculateLightRadius(ShipStatus* __this, GameData_PlayerInfo* player, MethodInfo* method) {
 	if (State.MaxVision && IsInGame())
 		return 10.F;
 	else
 		return ShipStatus_CalculateLightRadius(__this, player, method);
-}
+}*/
 
-void dShipStatus_OnEnable(ShipStatus* __this, MethodInfo* method) {
+/*void dShipStatus_OnEnable(ShipStatus* __this, MethodInfo* method) {
 	ShipStatus_OnEnable(__this, method);
 
 	State.selectedDoor = SystemTypes__Enum_Hallway;
@@ -24,4 +24,4 @@ void dShipStatus_OnEnable(ShipStatus* __this, MethodInfo* method) {
 	}
 
 	std::sort(State.mapDoors.begin(), State.mapDoors.end());
-}
+}*/

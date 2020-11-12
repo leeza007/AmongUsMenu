@@ -2,7 +2,7 @@
 #include "_rpc.h"
 #include "utility.h"
 
-MurderRPC::MurderRPC(uint8_t selectedPlayer, uint8_t targetedPlayer)
+/*MurderRPC::MurderRPC(uint8_t selectedPlayer, uint8_t targetedPlayer)
 {
 	this->selectedPlayer = selectedPlayer;
 	this->targetedPlayer = targetedPlayer;
@@ -18,4 +18,4 @@ void MurderRPC::Process()
 		&& selectedPlayerData->fields.IsImpostor) {
 		app::PlayerControl_RpcMurderPlayer(selectedPlayerData->fields._object, targetedPlayerData->fields._object, NULL);
 	}
-}
+}*/

@@ -69,7 +69,7 @@ namespace Menu {
 
 	bool init = false;
 	void Render() {
-		if (!init)
+		/*if (!init)
 			Menu::Init();
 
 		ImGui::Begin("AmongUsMenu", &State.ShowMenu, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize);
@@ -259,25 +259,25 @@ namespace Menu {
 		}
 		ImGui::EndTabBar();
 
-		ImGui::End();
+		ImGui::End();*/
 	}
 
 	void UpdateModifiers() {
-		(*Game::pGameOptionsData)->fields.PlayerSpeedMod = State.PlayerSpeed;
+		/*(*Game::pGameOptionsData)->fields.PlayerSpeedMod = State.PlayerSpeed;
 		(*Game::pGameOptionsData)->fields.KillDistance = State.KillDistance;
 		(*Game::pGameOptionsData)->fields.TaskProgressVisibility = (TaskProgressVisibility__Enum)State.TaskProgressVisibility;
 
 		if (State.NoKillTimer && (*Game::pGameOptionsData)->fields.KillCooldown > 0.1F)
 			(*Game::pGameOptionsData)->fields.KillCooldown = 0.1F;
 		if (State.NoClip)
-			GameObject_set_layer(Component_get_gameObject((Component*)(*Game::pLocalPlayer), NULL), 14, NULL);
+			GameObject_set_layer(Component_get_gameObject((Component*)(*Game::pLocalPlayer), NULL), 14, NULL);*/
 	}
 
 	void ResetModifiers() {
-		State.selectedPlayerId = 255;
+		/*State.selectedPlayerId = 255;
 
 		State.PlayerSpeed = (*Game::pGameOptionsData)->fields.PlayerSpeedMod;
 		State.KillDistance = (*Game::pGameOptionsData)->fields.KillDistance;
-		State.TaskProgressVisibility = (*Game::pGameOptionsData)->fields.TaskProgressVisibility;
+		State.TaskProgressVisibility = (*Game::pGameOptionsData)->fields.TaskProgressVisibility;*/
 	}
 }

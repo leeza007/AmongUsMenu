@@ -2,7 +2,7 @@
 
 using namespace app;
 
-void dKeyboardJoystick_Update(KeyboardJoystick* __this, MethodInfo* method) {
+/*void dKeyboardJoystick_Update(KeyboardJoystick* __this, MethodInfo* method) {
 	if (IsInGame()) {
 		Menu::UpdateModifiers();
 		
@@ -16,4 +16,4 @@ void dKeyboardJoystick_Update(KeyboardJoystick* __this, MethodInfo* method) {
 	}
 
 	KeyboardJoystick_Update(__this, method);
-}
+}*/

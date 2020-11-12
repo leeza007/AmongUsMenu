@@ -2,7 +2,7 @@
 
 using namespace app;
 
-void dMeetingHud_Update(MeetingHud* __this, MethodInfo* method) {
+/*void dMeetingHud_Update(MeetingHud* __this, MethodInfo* method) {
 	if (IsInGame()) {
 		PlayerVoteArea__Array* playerStates = __this->fields.playerStates;
 		for (int i = 0; i < playerStates->max_length; i++) {
@@ -20,4 +20,4 @@ void dMeetingHud_Update(MeetingHud* __this, MethodInfo* method) {
 		}
 	}
 	MeetingHud_Update(__this, method);
-}
+}*/

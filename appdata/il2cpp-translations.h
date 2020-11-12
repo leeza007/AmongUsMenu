@@ -2,32 +2,36 @@
 #include <vector>
 #include <string>
 
-const std::vector<std::pair<std::string, std::string>> CLASS_TRANSLATIONS = {
-	{ "Palette", "KPNJLIGHOEI" },
-	{ "GameOptionsData", "OEFJGMAEENB" },
-	{ "StatsManager", "PPNOJOGJGFL" },
-	{ "GameData", "BAGGGBBOHOH" },
-	{ "PlayerControl", "GLHCHLEDNBA" },
-	{ "HatManager", "JCEGHLBFDKF" },
-	{ "ShipStatus", "DAFPFFMKPJJ" },
-	{ "HudManager", "KLEKBPLEDOA" },
-	{ "ChatController", "MLINJDBIIEC" },
-	{ "CustomNetworkTransform", "HLNNOIPCILF" },
-	{ "InnerNetClient", "DNAFMCDBMCI" },
-	{ "NormalPlayerTask", "NOMAHIKEKPJ" },
-	{ "AmongUsClient", "JNFEHNLGIFF" },
-	{ "MeetingHud", "GPOHFPAIEMA" },
-	{ "Vent", "FBDDMHFBCPD" },
-	{ "AutoOpenDoor", "DKLABMEOEGK" },
-	{ "PlainDoor", "EEPJNHOLGOO" },
-	{ "ChatBubble", "NLMPPBGEPNL" },
-	{ "NoOxyTask", "ONEHEFFAELI" },
-	{ "ElectricTask", "BPJOMOEKJHI" },
-	{ "HqHudOverrideTask", "GFBKIHICFNI" },
-	{ "HudOverrideTask", "MMPIJGKLMDC" },
-	{ "ReactorTask", "GEGADDFJJDD" },
-	{ "KeyboardJoystick", "IOCAEJCPCKG" },
-	{ "DeadBody", "FIGNMAOINPA"}
+struct KLASS {
+	std::string namespaze;
+	std::string klass_name;
+
+	friend bool operator==(const KLASS& lhs, const KLASS& rhs) {
+		return (lhs.namespaze.compare(rhs.namespaze) == 0 && lhs.klass_name.compare(rhs.klass_name) == 0);
+	}
+};
+
+struct KLASS_PAIR {
+	KLASS deobfuscated_klass;
+	KLASS obfuscated_klass;
+};
+
+const std::vector<KLASS_PAIR> KLASS_TRANSLATIONS = {
+	{ {"", "AmongUsClient"}, {"", "JNFEHNLGIFF"} },
+	{ {"InnerNet", "InnerNetClient"}, {"", "DNAFMCDBMCI"} },
+	{ {"", "AutoOpenDoor"}, {"", "DKLABMEOEGK"} },
+	{ {"", "PlainDoor"}, {"", "EEPJNHOLGOO"} },
+	{ {"", "SomeKindaDoor"}, {"", "EMHAIPHEIFC"} },
+	{ {"", "ChatBubble"}, {"", "NLMPPBGEPNL"} },
+	{ {"", "TextRenderer"}, {"", "FELHHOEBHMA"} },
+	{ {"", "ChatController"}, {"", "MLINJDBIIEC"} },
+	{ {"", "CustomNetworkTransform"}, {"", "HLNNOIPCILF"} },
+	{ {"InnerNet", "InnerNetObject"}, {"", "PEIOEODMCCN"} },
+	{ {"", "Deadbody"}, {"", "FIGNMAOINPA"} },
+	{ {"", "GameData"}, {"", "BAGGGBBOHOH"} },
+	{ {"", "PlayerControl"}, {"", "GLHCHLEDNBA"} },
+	{ {"", "PlayerTask"}, {"", "LOBBAHDOFGE"} },
+	{ {"", "HatManager"}, {"", "JCEGHLBFDKF"} }
 };
 
 const std::vector<std::pair<std::string, std::string>> METHOD_TRANSLATIONS = {
