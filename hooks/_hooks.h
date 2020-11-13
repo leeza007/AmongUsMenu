@@ -39,11 +39,13 @@ void dMeetingHud_Update(MeetingHud* __this, MethodInfo* method);
 float dShipStatus_CalculateLightRadius(ShipStatus* __this, GameData_PlayerInfo* player, MethodInfo* method);
 float dVent_CanUse(Vent* __this, GameData_PlayerInfo* pc, bool* canUse, bool* couldUse, MethodInfo* method);
 
-/*bool dAutoOpenDoor_DoUpdate(AutoOpenDoor* __this, float dt, MethodInfo* method);
 bool dStatsManager_get_AmBanned(StatsManager* __this, MethodInfo* method);
-float dStatsManager_get_BanPoints(StatsManager* __this, MethodInfo* method);
 int32_t dStatsManager_get_BanMinutesLeft(StatsManager* __this, MethodInfo* method);
-void dAmongUsClient_OnStartGame(AmongUsClient* __this, MethodInfo* method);
+float dStatsManager_get_BanPoints(StatsManager* __this, MethodInfo* method);
+
+/*
+* bool dAutoOpenDoor_DoUpdate(AutoOpenDoor* __this, float dt, MethodInfo* method);
+
 void dChatBubble_SetName(ChatBubble* __this, String* playerName, bool isDead, bool voted, Color color, MethodInfo* method);
 void dChatController_AddChat(ChatController* __this, PlayerControl* sourcePlayer, String* chatText, MethodInfo* method);
 void dChatController_SetVisible(ChatController* __this, bool visible, MethodInfo* method);

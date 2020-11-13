@@ -47,7 +47,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release_Xinput|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="hooks\AmongUsClient.cpp" />
     <ClCompile Include="hooks\Chat.cpp" />
     <ClCompile Include="hooks\Doors.cpp" />
     <ClCompile Include="hooks\HatManager.cpp" />

@@ -181,22 +181,19 @@ void DetourInitilization() {
 	if (DetourAttach(&(PVOID&)Vent_CanUse, dVent_CanUse) != 0)
 		return;
 
-	//if (DetourAttach(&(PVOID&)StatsManager_get_BanMinutesLeft, dStatsManager_get_BanMinutesLeft) != 0)
-		//return;
+	if (DetourAttach(&(PVOID&)StatsManager_get_AmBanned, dStatsManager_get_AmBanned) != 0)
+		return;
+
+	if (DetourAttach(&(PVOID&)StatsManager_get_BanMinutesLeft, dStatsManager_get_BanMinutesLeft) != 0)
+		return;	
+
+	if (DetourAttach(&(PVOID&)StatsManager_get_BanPoints, dStatsManager_get_BanPoints) != 0)
+		return;
 
 	//if (DetourAttach(&(PVOID&)pHWID_W, dHWID_W) != 0)
 	//	return;
 
 	//if (DetourAttach(&(PVOID&)AutoOpenDoor_DoUpdate, dAutoOpenDoor_DoUpdate) != 0)
-		//return;
-
-	//if (DetourAttach(&(PVOID&)StatsManager_get_AmBanned, dStatsManager_get_AmBanned) != 0)
-		//return;
-
-	//if (DetourAttach(&(PVOID&)StatsManager_get_BanPoints, dStatsManager_get_BanPoints) != 0)
-		//return;
-
-	//if (DetourAttach(&(PVOID&)AmongUsClient_OnStartGame, dAmongUsClient_OnStartGame) != 0)
 		//return;
 
 	//if (DetourAttach(&(PVOID&)ChatBubble_SetName, dChatBubble_SetName) != 0)

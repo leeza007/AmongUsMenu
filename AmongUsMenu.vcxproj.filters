@@ -73,9 +73,6 @@
     <ClCompile Include="hooks\MeetingHud.cpp">
       <Filter>hooks</Filter>
     </ClCompile>
-    <ClCompile Include="hooks\AmongUsClient.cpp">
-      <Filter>hooks</Filter>
-    </ClCompile>
     <ClCompile Include="hooks\Vent.cpp">
       <Filter>hooks</Filter>
     </ClCompile>

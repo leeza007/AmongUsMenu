@@ -37,13 +37,13 @@ const std::vector<KLASS_PAIR> KLASS_TRANSLATIONS = {
 	{ {"", "ShipStatus"}, {"", "DAFPFFMKPJJ"} },
 	{ {"", "GameOptionsData"}, {"", "OEFJGMAEENB"} },
 	{ {"", "Vent"}, {"", "FBDDMHFBCPD"} },
+	{ {"", "StatsManager"}, {"", "PPNOJOGJGFL"} },
 };
 
 const std::vector<std::pair<std::string, std::string>> METHOD_TRANSLATIONS = {
 	{ "get_BanMinutesLeft", "NEAALMKPALO" },
 	{ "get_AmBanned", "DNOKMILAMAE" },
-	{ "get_BanPoints", "MGKFDDLCGIE" },
-	{ "OnStartGame", "OOCKKGOMIEB" }
+	{ "get_BanPoints", "MGKFDDLCGIE" }
 };
 
 const std::vector<std::pair<std::string, std::string>> TYPE_TRANSLATIONS = {
