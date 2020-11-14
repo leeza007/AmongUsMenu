@@ -31,14 +31,13 @@ public:
     bool UnlockVents = false;
 
     bool RevealImpostors = false;
-    bool NoKillTimer = false;
     int KillDistance = 0;
     int TaskProgressVisibility = 0;
 
     bool NoClip = false;
 
     uint8_t selectedPlayerId = -1;
-    //std::queue<RPCInterface*> rpcQueue;
+    std::queue<RPCInterface*> rpcQueue;
 
     bool ShowRadar = false;
     bool ShowRadar_DeadBodies = false;
@@ -48,14 +47,9 @@ public:
     bool ChatAlwaysActive = false;
     bool ReadGhostMessages = false;
 
-    bool AutoRepairLights = false;
-    bool AutoRepairReactor = false;
-    bool AutoRepairOxygen = false;
-    bool AutoRepairComms = false;
-
-    //SystemTypes__Enum selectedDoor;
-    //std::vector<SystemTypes__Enum> mapDoors;
-    //std::vector<SystemTypes__Enum> pinnedDoors;
+    SystemTypes__Enum selectedDoor;
+    std::vector<SystemTypes__Enum> mapDoors;
+    std::vector<SystemTypes__Enum> pinnedDoors;
 
     void Load();
     void Save();

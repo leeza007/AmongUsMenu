@@ -2,16 +2,16 @@
 
 using namespace app;
 
-/*void dPlainDoor_SetDoorway(PlainDoor* __this, bool open, MethodInfo* method) {
+void dPlainDoor_SetDoorway(PlainDoor* __this, bool open, MethodInfo* method) {
 	if (open && (std::find(State.pinnedDoors.begin(), State.pinnedDoors.end(), __this->fields.Room) != State.pinnedDoors.end())) {
-		ShipStatus_RpcCloseDoorsOfType(*Game::pShipStatus, __this->fields.Room, NULL);
+		State.rpcQueue.push(new DoorRPC(__this->fields.Room, false));
 	}
-	PlainDoor_SetDoorway(__this, open, method);
-}*/
+	app::PlainDoor_SetDoorway(__this, open, method);
+}
 
-/*bool dAutoOpenDoor_DoUpdate(AutoOpenDoor* __this, float dt, MethodInfo* method) {
+bool dAutoOpenDoor_DoUpdate(AutoOpenDoor* __this, float dt, MethodInfo* method) {
 	if ((std::find(State.pinnedDoors.begin(), State.pinnedDoors.end(), __this->fields._.Room) != State.pinnedDoors.end()) && __this->fields.ClosedTimer < 1) {
-		ShipStatus_RpcCloseDoorsOfType(*Game::pShipStatus, __this->fields._.Room, NULL);
+		State.rpcQueue.push(new DoorRPC(__this->fields._.Room, false));
 	}
-	return AutoOpenDoor_DoUpdate(__this, dt, method);
-}*/
+	return app::AutoOpenDoor_DoUpdate(__this, dt, method);
+}

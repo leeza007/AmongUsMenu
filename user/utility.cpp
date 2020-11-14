@@ -76,31 +76,19 @@ std::vector<GameData_PlayerInfo*> GetAllPlayerData() {
 	return players;
 }
 
-/*std::vector<DeadBody*> GetAllDeadBodies() {
+std::vector<DeadBody*> GetAllDeadBodies() {
+	static std::string deadBodyType;
+	if(deadBodyType.empty()) deadBodyType = translate_type_name("DeadBody, Assembly-CSharp");
+
 	std::vector<DeadBody*> deadBodies = std::vector<DeadBody*>();
 
-	Type* deadBody_Type = app::Type_GetType(convert_to_string(translate_type_name("DeadBody, Assembly-CSharp")), NULL);
+	Type* deadBody_Type = app::Type_GetType(convert_to_string(deadBodyType), NULL);
 	DeadBody__Array* deadBodyArray = (DeadBody__Array*)app::Object_1_FindObjectsOfType(deadBody_Type, NULL);
 
 	for (il2cpp_array_size_t i = 0; i < deadBodyArray->max_length; i++)
 		deadBodies.push_back(deadBodyArray->vector[i]);
 
 	return deadBodies;
-}
-
-std::vector<GameData_TaskInfo*> GetPlayerInfoTasks(GameData_PlayerInfo* playerInfo) {
-	static GameData_TaskInfo* (*getItem)(List_1_GameData_TaskInfo_*, int32_t, MethodInfo*);
-	static int32_t(*getCount)(List_1_GameData_TaskInfo_*, MethodInfo*);
-	if (getItem == NULL) getItem = decltype(getItem)(find_method((Il2CppClass*)(Il2CppClass*)playerInfo->fields.Tasks->klass, "GameData.TaskInfo", "get_Item", "System.Int32"));
-	if (getCount == NULL) getCount = decltype(getCount)(find_method((Il2CppClass*)(Il2CppClass*)playerInfo->fields.Tasks->klass, "System.Int32", "get_Count", ""));
-
-	auto tasks = std::vector<GameData_TaskInfo*>();
-	 
-	if (getItem != NULL && getCount != NULL)
-		for (int i = 0; i < getCount(playerInfo->fields.Tasks, NULL); i++)
-			tasks.push_back(getItem(playerInfo->fields.Tasks, i, NULL));
-
-	return tasks;
 }
 
 std::vector<NormalPlayerTask*> GetPlayerTasks(PlayerControl* player) {
@@ -126,7 +114,7 @@ std::vector<NormalPlayerTask*> GetPlayerTasks(PlayerControl* player) {
 }
 
 void CompleteTask(NormalPlayerTask* playerTask) {
-	if (playerTask->fields._._Owner == (*Game::pLocalPlayer)) {
+	if (playerTask->fields._._Owner_k__BackingField == (*Game::pLocalPlayer)) {
 		while (playerTask->fields.taskStep < playerTask->fields.MaxStep)
 			app::NormalPlayerTask_NextStep(playerTask, NULL);
 	}
@@ -153,7 +141,7 @@ const char* TranslateSystemTypes(SystemTypes__Enum systemType) {
 CorrectedColor32 GetPlayerColor(uint8_t colorId) {
 	CorrectedColor32* colorArray = (CorrectedColor32*)app::Palette__TypeInfo->static_fields->PlayerColors->vector;
 	return colorArray[colorId];
-}*/
+}
 
 std::string getModulePath() {
 	TCHAR buff[MAX_PATH];

@@ -3,8 +3,7 @@
 using namespace app;
 
 float dVent_CanUse(Vent* __this, GameData_PlayerInfo* pc, bool* canUse, bool* couldUse, MethodInfo* method) {
-	//if (State.UnlockVents) {
-	if (true) {
+	if (State.UnlockVents) {
 		auto ventTransform = app::Component_get_transform((Component*)__this, NULL);
 		auto ventVector = app::Transform_get_position(ventTransform, NULL);
 

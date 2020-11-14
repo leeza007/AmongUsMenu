@@ -27,7 +27,7 @@ const std::vector<KLASS_PAIR> KLASS_TRANSLATIONS = {
 	{ {"", "ChatController"}, {"", "MLINJDBIIEC"} },
 	{ {"", "CustomNetworkTransform"}, {"", "HLNNOIPCILF"} },
 	{ {"InnerNet", "InnerNetObject"}, {"", "PEIOEODMCCN"} },
-	{ {"", "Deadbody"}, {"", "FIGNMAOINPA"} },
+	{ {"", "DeadBody"}, {"", "FIGNMAOINPA"} },
 	{ {"", "GameData"}, {"", "BAGGGBBOHOH"} },
 	{ {"", "PlayerControl"}, {"", "GLHCHLEDNBA"} },
 	{ {"", "PlayerTask"}, {"", "LOBBAHDOFGE"} },
@@ -38,6 +38,8 @@ const std::vector<KLASS_PAIR> KLASS_TRANSLATIONS = {
 	{ {"", "GameOptionsData"}, {"", "OEFJGMAEENB"} },
 	{ {"", "Vent"}, {"", "FBDDMHFBCPD"} },
 	{ {"", "StatsManager"}, {"", "PPNOJOGJGFL"} },
+	{ {"", "KeyboardJoystick"}, {"", "IOCAEJCPCKG"} },
+	{ {"", "NormalPlayerTask"}, {"", "NOMAHIKEKPJ"} }
 };
 
 const std::vector<std::pair<std::string, std::string>> METHOD_TRANSLATIONS = {

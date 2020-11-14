@@ -1,40 +1,32 @@
 #pragma once
 #include <cstdint>
 
-/*class RPCInterface
+class RPCInterface
 {
 public:
 	virtual ~RPCInterface() {}
 	virtual void Process() = 0;
 };
 
-class MurderRPC : public RPCInterface {
-	uint8_t selectedPlayer;
-	uint8_t targetedPlayer;
-public:
-	MurderRPC(uint8_t selectedPlayer, uint8_t targetedPlayer);
-	virtual void Process() override;
-};
-
-class DoorRPC : public RPCInterface {
+class RpcCloseDoorsOfType : public RPCInterface {
 	SystemTypes__Enum selectedSystem;
 	bool pinDoor;
 public:
-	DoorRPC(SystemTypes__Enum selectedSystem, bool pinDoor);
+	RpcCloseDoorsOfType(SystemTypes__Enum selectedSystem, bool pinDoor);
 	virtual void Process() override;
 };
 
-class TeleportRPC : public RPCInterface {
-	uint8_t selectedPlayer;
+class RpcSnapTo : public RPCInterface {
 	Vector2 targetVector;
 public:
-	TeleportRPC(uint8_t selectedPlayer, Vector2 targetVector);
+	RpcSnapTo(Vector2 targetVector);
 	virtual void Process() override;
 };
 
-class SabotageRPC : public RPCInterface {
+class RpcRepairSystem : public RPCInterface {
 	SystemTypes__Enum selectedSystem;
+	int32_t amount;
 public:
-	SabotageRPC(SystemTypes__Enum selectedSystem);
+	RpcRepairSystem(SystemTypes__Enum selectedSystem, int32_t amount);
 	virtual void Process() override;
-};*/
+};

@@ -36,7 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework\x_input.cpp" />
-    <ClCompile Include="rpc\Door.cpp" />
+    <ClCompile Include="rpc\RpcCloseDoorsOfType.cpp" />
     <ClCompile Include="framework\dllmain.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug_Xinput|Win32'">NotUsing</PrecompiledHeader>
@@ -56,12 +56,10 @@
     <ClCompile Include="hooks\SceneManager.cpp" />
     <ClCompile Include="hooks\ShipStatus.cpp" />
     <ClCompile Include="hooks\StatsManager.cpp" />
-    <ClCompile Include="hooks\Tasks.cpp" />
     <ClCompile Include="hooks\Vent.cpp" />
     <ClCompile Include="hooks\_hooks.cpp" />
-    <ClCompile Include="rpc\Murder.cpp" />
-    <ClCompile Include="rpc\Sabotage.cpp" />
-    <ClCompile Include="rpc\Teleport.cpp" />
+    <ClCompile Include="rpc\RpcRepairSystem.cpp" />
+    <ClCompile Include="rpc\RpcSnapTo.cpp" />
     <ClCompile Include="user\utility.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug_Xinput|Win32'">NotUsing</PrecompiledHeader>

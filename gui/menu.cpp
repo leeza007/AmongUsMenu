@@ -6,15 +6,20 @@ namespace Menu {
 	const std::vector<const char*> KILL_DISTANCE = { "Short", "Medium", "Long" };
 	const std::vector<const char*> TASKPROGRESSVISIBILITY = { "Always", "Meetings", "Never" };
 
+	const char* strcat(std::initializer_list<const char*> strings) {
+		std::string result;
+		for (auto string : strings)
+			result += string;
+		return _strdup(result.c_str());
+	}
+
 	bool CustomListBoxInt(const char* label, int* value, const std::vector<const char*> list, ImGuiComboFlags flags) {
 		ImGuiStyle& style = ImGui::GetStyle();
 		float w = ImGui::CalcItemWidth();
 		float spacing = style.ItemInnerSpacing.x;
 		float button_sz = ImGui::GetFrameHeight();
-		char comboName[32] = "##";
-		strcat_s(comboName, sizeof comboName, label);
 		ImGui::PushItemWidth(w - spacing * 2.0f - button_sz * 2.0f);
-		const bool response = ImGui::BeginCombo(comboName, list.at(*value), flags);
+		const bool response = ImGui::BeginCombo(strcat({ "##", label }), list.at(*value), flags);
 		if (response) {
 			for (int i = 0; i < list.size(); i++) {
 				bool is_selected = (*value == i);
@@ -28,20 +33,14 @@ namespace Menu {
 
 		ImGui::PopItemWidth();
 		ImGui::SameLine(0, spacing);
-		char arrowLeft[32] = "##";
-		strcat_s(arrowLeft, sizeof arrowLeft, label);
-		strcat_s(arrowLeft, sizeof arrowLeft, "Left");
-		if (ImGui::ArrowButton(arrowLeft, ImGuiDir_Left)) {
+		if (ImGui::ArrowButton(strcat({ "##", label, "Left" }), ImGuiDir_Left)) {
 			*value -= 1;
-			if (*value < 0) *value = 0;
+			if (*value < 0) *value = (list.size() - 1);
 		}
 		ImGui::SameLine(0, spacing);
-		char arrowRight[32] = "##";
-		strcat_s(arrowRight, sizeof arrowRight,	label);
-		strcat_s(arrowRight, sizeof arrowRight, "Right");
-		if (ImGui::ArrowButton(arrowRight, ImGuiDir_Right)) {
+		if (ImGui::ArrowButton(strcat({ "##", label, "Right" }), ImGuiDir_Right)) {
 			*value += 1;
-			if (*value > (list.size() - 1)) *value = (list.size() - 1);
+			if (*value > (list.size() - 1)) *value = 0;
 		}
 		ImGui::SameLine(0, style.ItemInnerSpacing.x);
 		ImGui::Text(label);
@@ -69,7 +68,7 @@ namespace Menu {
 
 	bool init = false;
 	void Render() {
-		/*if (!init)
+		if (!init)
 			Menu::Init();
 
 		ImGui::Begin("AmongUsMenu", &State.ShowMenu, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize);
@@ -77,18 +76,22 @@ namespace Menu {
 
 		if (ImGui::BeginTabItem("Game")) {
 			ImGui::Checkbox("Max Vision", &State.MaxVision);
-			SteppedSliderFloat("Player Speed", &State.PlayerSpeed, 0.5f, 3.f, 0.25f, "%.2fx", ImGuiSliderFlags_Logarithmic | ImGuiSliderFlags_NoInput);
-			CustomListBoxInt("Kill Distance", &State.KillDistance, KILL_DISTANCE, ImGuiComboFlags_NoArrowButton);
-			CustomListBoxInt("Task Bar Updates", &State.TaskProgressVisibility, TASKPROGRESSVISIBILITY, ImGuiComboFlags_NoArrowButton);
-			ImGui::Checkbox("No Kill Timer", &State.NoKillTimer);
-			if (ImGui::Checkbox("NoClip", &State.NoClip)) {
-				if (!State.NoClip && IsInGame())
-					GameObject_set_layer(Component_get_gameObject((Component*)(*Game::pLocalPlayer), NULL), 8, NULL);
+			//SteppedSliderFloat("Player Speed", &State.PlayerSpeed, 0.5f, 3.f, 0.25f, "%.2fx", ImGuiSliderFlags_Logarithmic | ImGuiSliderFlags_NoInput);
+			//CustomListBoxInt("Kill Distance", &State.KillDistance, KILL_DISTANCE, ImGuiComboFlags_NoArrowButton);
+			//CustomListBoxInt("Task Bar Updates", &State.TaskProgressVisibility, TASKPROGRESSVISIBILITY, ImGuiComboFlags_NoArrowButton);
+			if (ImGui::Checkbox("No Clip", &State.NoClip)) {
+				if (!IsInGame()) State.NoClip = false;
+				else {
+					if (State.NoClip)
+						app::GameObject_set_layer(app::Component_get_gameObject((Component*)(*Game::pLocalPlayer), NULL), app::LayerMask_NameToLayer(convert_to_string("Ghost"), NULL), NULL);
+					else
+						app::GameObject_set_layer(app::Component_get_gameObject((Component*)(*Game::pLocalPlayer), NULL), app::LayerMask_NameToLayer(convert_to_string("Players"), NULL), NULL);
+				}
 			}
 			ImGui::Checkbox("Reveal Impostors", &State.RevealImpostors);
 			ImGui::Checkbox("Unlock Vents", &State.UnlockVents);
-			ImGui::Checkbox("Chat Always Active", &State.ChatAlwaysActive);
-			ImGui::Checkbox("Read Messages by Ghosts", &State.ReadGhostMessages);
+			//ImGui::Checkbox("Chat Always Active", &State.ChatAlwaysActive);
+			//ImGui::Checkbox("Read Messages by Ghosts", &State.ReadGhostMessages);
 
 			ImGui::EndTabItem();
 		}
@@ -133,25 +136,6 @@ namespace Menu {
 				}
 				ImGui::ListBoxFooter();
 				ImGui::EndChild();
-				ImGui::SameLine();
-				ImGui::BeginChild("players#options", ImVec2(200, 0));
-
-				GameData_PlayerInfo* targetedPlayer = GetPlayerDataById(State.selectedPlayerId);
-				if (targetedPlayer != NULL && !targetedPlayer->fields.Disconnected) {
-					GameData_PlayerInfo* localPlayer = GetPlayerData((*Game::pLocalPlayer));
-					if (localPlayer->fields.IsImpostor) {
-						if (ImGui::Button("Murder")) {
-							State.rpcQueue.push(new MurderRPC(localPlayer->fields.PlayerId, targetedPlayer->fields.PlayerId));
-						}
-					}
-
-					if (ImGui::Button("Teleport To")) {
-						State.rpcQueue.push(new TeleportRPC(localPlayer->fields.PlayerId, PlayerControl_GetTruePosition(targetedPlayer->fields._object, NULL)));
-					}
-				}
-
-				ImGui::EndChild();
-
 				ImGui::EndTabItem();
 			}
 
@@ -159,17 +143,8 @@ namespace Menu {
 				if (ImGui::BeginTabItem("Tasks")) {
 					auto tasks = GetPlayerTasks(*Game::pLocalPlayer);
 
-					if (tasks.size() > 0 && ImGui::Button("Complete All Tasks")) {
-						for (auto task : tasks) {
-							if(!NormalPlayerTask_get_IsComplete(task, NULL))
-								CompleteTask(task);
-						}
-					}
-
-					ImGui::Spacing();
-
 					for (auto task : tasks) {
-						if (ImGui::Button(("Complete##Button" + std::to_string(task->fields._._Id)).c_str()) && !NormalPlayerTask_get_IsComplete(task, NULL)) {
+						if (ImGui::Button(("Complete##Button" + std::to_string(task->fields._._Id_k__BackingField)).c_str()) && !NormalPlayerTask_get_IsComplete(task, NULL)) {
 							CompleteTask(task);
 						}
 
@@ -187,35 +162,30 @@ namespace Menu {
 
 			if (ImGui::BeginTabItem("Sabotage")) {
 				ImGui::BeginChild("system#repair", ImVec2(200, 0));
-				ImGui::Text("Auto-Repair");
-				ImGui::Checkbox("Lights##repair", &State.AutoRepairLights);
-				ImGui::Checkbox("Reactor##repair", &State.AutoRepairReactor);
-				ImGui::Checkbox("Oxygen##repair", &State.AutoRepairOxygen);
-				ImGui::Checkbox("Comms##repair", &State.AutoRepairComms);
+				//ImGui::Text("Auto-Repair");
+				//ImGui::Checkbox("Lights##repair", &State.AutoRepairLights);
+				//ImGui::Checkbox("Reactor##repair", &State.AutoRepairReactor);
+				//ImGui::Checkbox("Oxygen##repair", &State.AutoRepairOxygen);
+				//ImGui::Checkbox("Comms##repair", &State.AutoRepairComms);
 				ImGui::EndChild();
 
 				ImGui::SameLine();
 				ImGui::BeginChild("system#sabotage");
-				ImGui::Text("Sabotage");
-				if (ImGui::Button("Lights##sabotage")) {
-					if (!GetPlayerData(*Game::pLocalPlayer)->fields.IsImpostor) State.AutoRepairLights = false;
-					State.rpcQueue.push(new SabotageRPC(SystemTypes__Enum_Electrical));
+				if (ImGui::Button("Sabotage Lights")) {
+					State.rpcQueue.push(new RpcRepairSystem(SystemTypes__Enum_Sabotage, SystemTypes__Enum_Electrical));
 				}
-				if (ImGui::Button("Reactor##sabotage")) {
-					if (!GetPlayerData(*Game::pLocalPlayer)->fields.IsImpostor) State.AutoRepairReactor = false;
+				if (ImGui::Button("Sabotage Reactor")) {
 					if ((*Game::pShipStatus)->fields.Type == ShipStatus_MapType__Enum_Ship || (*Game::pShipStatus)->fields.Type == ShipStatus_MapType__Enum_Hq)
-						State.rpcQueue.push(new SabotageRPC(SystemTypes__Enum_Reactor));
+						State.rpcQueue.push(new RpcRepairSystem(SystemTypes__Enum_Sabotage, SystemTypes__Enum_Reactor));
 
 					if ((*Game::pShipStatus)->fields.Type == ShipStatus_MapType__Enum_Pb)
-						State.rpcQueue.push(new SabotageRPC(SystemTypes__Enum_Laboratory));
+						State.rpcQueue.push(new RpcRepairSystem(SystemTypes__Enum_Sabotage, SystemTypes__Enum_Laboratory));
 				}
-				if (ImGui::Button("Oxygen##sabotage")) {
-					if (!GetPlayerData(*Game::pLocalPlayer)->fields.IsImpostor) State.AutoRepairOxygen = false;
-					State.rpcQueue.push(new SabotageRPC(SystemTypes__Enum_LifeSupp));
+				if (ImGui::Button("Sabotage Oxygen")) {
+					State.rpcQueue.push(new RpcRepairSystem(SystemTypes__Enum_Sabotage, SystemTypes__Enum_LifeSupp));
 				}
-				if (ImGui::Button("Comms##sabotage")) {
-					if (!GetPlayerData(*Game::pLocalPlayer)->fields.IsImpostor) State.AutoRepairComms = false;
-					State.rpcQueue.push(new SabotageRPC(SystemTypes__Enum_Comms));
+				if (ImGui::Button("Sabotage Comms")) {
+					State.rpcQueue.push(new RpcRepairSystem(SystemTypes__Enum_Sabotage, SystemTypes__Enum_Comms));
 				}
 				ImGui::EndChild();
 				ImGui::EndTabItem();
@@ -237,13 +207,12 @@ namespace Menu {
 					ImGui::BeginChild("doors#options", ImVec2(200, 0));
 					if (State.selectedDoor != SystemTypes__Enum_Hallway) {
 						if (ImGui::Button("Close Door")) {
-							app::ShipStatus_RpcCloseDoorsOfType(*Game::pShipStatus, State.selectedDoor, NULL);
+							State.rpcQueue.push(new RpcCloseDoorsOfType(State.selectedDoor, false));
 						}
 
 						if (std::find(State.pinnedDoors.begin(), State.pinnedDoors.end(), State.selectedDoor) == State.pinnedDoors.end()) {
 							if (ImGui::Button("Pin Door")) {
-								app::ShipStatus_RpcCloseDoorsOfType(*Game::pShipStatus, State.selectedDoor, NULL);
-								State.pinnedDoors.push_back(State.selectedDoor);
+								State.rpcQueue.push(new RpcCloseDoorsOfType(State.selectedDoor, true));
 							}
 						}
 						else {
@@ -259,25 +228,14 @@ namespace Menu {
 		}
 		ImGui::EndTabBar();
 
-		ImGui::End();*/
+		ImGui::End();
 	}
 
 	void UpdateModifiers() {
-		/*(*Game::pGameOptionsData)->fields.PlayerSpeedMod = State.PlayerSpeed;
-		(*Game::pGameOptionsData)->fields.KillDistance = State.KillDistance;
-		(*Game::pGameOptionsData)->fields.TaskProgressVisibility = (TaskProgressVisibility__Enum)State.TaskProgressVisibility;
 
-		if (State.NoKillTimer && (*Game::pGameOptionsData)->fields.KillCooldown > 0.1F)
-			(*Game::pGameOptionsData)->fields.KillCooldown = 0.1F;
-		if (State.NoClip)
-			GameObject_set_layer(Component_get_gameObject((Component*)(*Game::pLocalPlayer), NULL), 14, NULL);*/
 	}
 
 	void ResetModifiers() {
-		/*State.selectedPlayerId = 255;
 
-		State.PlayerSpeed = (*Game::pGameOptionsData)->fields.PlayerSpeedMod;
-		State.KillDistance = (*Game::pGameOptionsData)->fields.KillDistance;
-		State.TaskProgressVisibility = (*Game::pGameOptionsData)->fields.TaskProgressVisibility;*/
 	}
 }
