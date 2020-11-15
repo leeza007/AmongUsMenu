@@ -3,6 +3,7 @@
 #define _USE_MATH_DEFINES
 #include <imgui/imgui.h>
 #include "imgui/imgui_internal.h"
+#include "imgui/imHotKey.h"
 #include <math.h>
 #include <algorithm>
 #include <cmath>

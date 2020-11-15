@@ -186,6 +186,9 @@
     <ClInclude Include="framework\x_input.h">
       <Filter>framework</Filter>
     </ClInclude>
+    <ClInclude Include="includes\imgui\imHotKey.h">
+      <Filter>includes\imgui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="user">

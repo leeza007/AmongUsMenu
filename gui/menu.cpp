@@ -92,6 +92,10 @@ namespace Menu {
 			ImGui::Checkbox("Unlock Vents", &State.UnlockVents);
 			//ImGui::Checkbox("Chat Always Active", &State.ChatAlwaysActive);
 			//ImGui::Checkbox("Read Messages by Ghosts", &State.ReadGhostMessages);
+			if (ImGui::Button("Edit Hotkeys")) {
+				ImGui::OpenPopup("Hotkeys Editor");
+			}
+			ImHotKey::Edit(State.Hotkeys.data(), State.Hotkeys.size(), "Hotkeys Editor");
 
 			ImGui::EndTabItem();
 		}

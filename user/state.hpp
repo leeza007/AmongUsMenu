@@ -11,9 +11,10 @@
 #include <iomanip>
 #include "_rpc.h"
 #include "json.hpp"
+#include "imgui/imHotKey.h"
 
 using namespace app;
-using json = nlohmann::json;
+using json = nlohmann::ordered_json;
 
 class Settings
 {
@@ -21,6 +22,11 @@ private:
     inline bool Exists(const std::string& name);
 
 public:
+    std::vector<ImHotKey::HotKey> Hotkeys = {
+        {"Toggle Menu", "Toggles the visibility of AmongUsMenu", 0xFFFFFF53},
+        {"Toggle Rader", "Toggles the visibility of AmongUsMenu's Rader", 0xFFFFFF52}
+    };
+
     bool ImGuiInitialized = false;
     bool ShowMenu = false;
 

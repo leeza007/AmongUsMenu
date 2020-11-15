@@ -72,12 +72,19 @@ bool LoadTextures() {
 }
 
 LRESULT __stdcall WndProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
-	if (uMsg == WM_KEYUP && wParam == VK_DELETE)
-		State.ShowMenu = !State.ShowMenu;
+	if (!State.ImGuiInitialized)
+		return CallWindowProc(oWndProc, hWnd, uMsg, wParam, lParam);
 
-	if (State.ShowMenu || State.ShowRadar)
-		if (ImGui_ImplWin32_WndProcHandler(hWnd, uMsg, wParam, lParam))
-			return true;
+	if (ImGui_ImplWin32_WndProcHandler(hWnd, uMsg, wParam, lParam))
+		return true;
+
+	if (!ImGui::IsPopupOpen("", ImGuiPopupFlags_AnyPopup)) {
+		auto hotkey = ImHotKey::GetHotKey(State.Hotkeys.data(), State.Hotkeys.size());
+		if (hotkey != -1) {
+			if (hotkey == 0) State.ShowMenu = !State.ShowMenu;
+			if (hotkey == 1) State.ShowRadar = !State.ShowRadar;
+		}
+	}
 
 	return CallWindowProc(oWndProc, hWnd, uMsg, wParam, lParam);
 }
@@ -174,7 +181,7 @@ void DetourInitilization() {
 		return;
 
 	if (DetourAttach(&(PVOID&)app::StatsManager_get_BanMinutesLeft, dStatsManager_get_BanMinutesLeft) != 0)
-		return;	
+		return;
 
 	if (DetourAttach(&(PVOID&)app::StatsManager_get_BanPoints, dStatsManager_get_BanPoints) != 0)
 		return;
