@@ -189,17 +189,17 @@ void DetourInitilization() {
 	if (DetourAttach(&(PVOID&)AutoOpenDoor_DoUpdate, dAutoOpenDoor_DoUpdate) != 0)
 		return;
 
-	//if (DetourAttach(&(PVOID&)ChatBubble_SetName, dChatBubble_SetName) != 0)
-		//return;
+	if (DetourAttach(&(PVOID&)ChatBubble_SetName, dChatBubble_SetName) != 0)
+		return;
 
-	//if (DetourAttach(&(PVOID&)ChatController_AddChat, dChatController_AddChat) != 0)
-		//return;
+	if (DetourAttach(&(PVOID&)ChatController_AddChat, dChatController_AddChat) != 0)
+		return;
 
-	//if (DetourAttach(&(PVOID&)ChatController_SetVisible, dChatController_SetVisible) != 0)
-		//return;
+	if (DetourAttach(&(PVOID&)ChatController_SetVisible, dChatController_SetVisible) != 0)
+		return;
 
-	//if (DetourAttach(&(PVOID&)HudManager_ShowMap, dHudManager_ShowMap) != 0)
-		//return;
+	if (DetourAttach(&(PVOID&)HudManager_ShowMap, dHudManager_ShowMap) != 0)
+		return;
 
 	if (DetourAttach(&(PVOID&)KeyboardJoystick_Update, dKeyboardJoystick_Update) != 0)
 		return;

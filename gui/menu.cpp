@@ -90,8 +90,8 @@ namespace Menu {
 			}
 			ImGui::Checkbox("Reveal Impostors", &State.RevealImpostors);
 			ImGui::Checkbox("Unlock Vents", &State.UnlockVents);
-			//ImGui::Checkbox("Chat Always Active", &State.ChatAlwaysActive);
-			//ImGui::Checkbox("Read Messages by Ghosts", &State.ReadGhostMessages);
+			ImGui::Checkbox("Always show Chat Button", &State.ChatAlwaysActive);
+			ImGui::Checkbox("Read Messages by Ghosts", &State.ReadGhostMessages);
 			if (ImGui::Button("Edit Hotkeys")) {
 				ImGui::OpenPopup("Hotkeys Editor");
 			}
