@@ -4,7 +4,7 @@ using namespace app;
 
 namespace Menu {
 	const std::vector<const char*> KILL_DISTANCE = { "Short", "Medium", "Long" };
-	const std::vector<const char*> TASKPROGRESSVISIBILITY = { "Always", "Meetings", "Never" };
+	const std::vector<const char*> TASKBARUPDATES = { "Always", "Meetings", "Never" };
 
 	const char* strcat(std::initializer_list<const char*> strings) {
 		std::string result;
@@ -33,14 +33,19 @@ namespace Menu {
 
 		ImGui::PopItemWidth();
 		ImGui::SameLine(0, spacing);
-		if (ImGui::ArrowButton(strcat({ "##", label, "Left" }), ImGuiDir_Left)) {
+
+		const bool LeftResponse = ImGui::ArrowButton(strcat({ "##", label, "Left" }), ImGuiDir_Left);
+		if (LeftResponse) {
 			*value -= 1;
 			if (*value < 0) *value = (list.size() - 1);
+			return LeftResponse;
 		}
 		ImGui::SameLine(0, spacing);
-		if (ImGui::ArrowButton(strcat({ "##", label, "Right" }), ImGuiDir_Right)) {
+		const bool RightResponse = ImGui::ArrowButton(strcat({ "##", label, "Right" }), ImGuiDir_Right);
+		if (RightResponse) {
 			*value += 1;
 			if (*value > (list.size() - 1)) *value = 0;
+			return RightResponse;
 		}
 		ImGui::SameLine(0, style.ItemInnerSpacing.x);
 		ImGui::Text(label);
@@ -76,9 +81,24 @@ namespace Menu {
 
 		if (ImGui::BeginTabItem("Game")) {
 			ImGui::Checkbox("Max Vision", &State.MaxVision);
-			//SteppedSliderFloat("Player Speed", &State.PlayerSpeed, 0.5f, 3.f, 0.25f, "%.2fx", ImGuiSliderFlags_Logarithmic | ImGuiSliderFlags_NoInput);
-			//CustomListBoxInt("Kill Distance", &State.KillDistance, KILL_DISTANCE, ImGuiComboFlags_NoArrowButton);
-			//CustomListBoxInt("Task Bar Updates", &State.TaskProgressVisibility, TASKPROGRESSVISIBILITY, ImGuiComboFlags_NoArrowButton);
+			if (SteppedSliderFloat("Player Speed", &State.PlayerSpeed, 0.5f, 3.f, 0.25f, "%.2fx", ImGuiSliderFlags_Logarithmic | ImGuiSliderFlags_NoInput)) {
+				if (!IsInGame()) State.PlayerSpeed = (*Game::pGameOptionsData)->fields.PlayerSpeedMod;
+				else {
+					(*Game::pGameOptionsData)->fields.PlayerSpeedMod = State.PlayerSpeed;
+				}
+			}
+			if (CustomListBoxInt("Kill Distance", &State.KillDistance, KILL_DISTANCE, ImGuiComboFlags_NoArrowButton)) {
+				if (!IsInGame()) State.KillDistance = (*Game::pGameOptionsData)->fields.KillDistance;
+				else {
+					(*Game::pGameOptionsData)->fields.KillDistance = State.KillDistance;
+				}
+			}
+			if (CustomListBoxInt("Task Bar Updates", &State.TaskBarUpdates, TASKBARUPDATES, ImGuiComboFlags_NoArrowButton)) {
+				if (!IsInGame()) State.TaskBarUpdates = (*Game::pGameOptionsData)->fields.TaskBarUpdates;
+				else {
+					(*Game::pGameOptionsData)->fields.TaskBarUpdates = (TaskBarUpdates__Enum)State.TaskBarUpdates;
+				}
+			}
 			if (ImGui::Checkbox("No Clip", &State.NoClip)) {
 				if (!IsInGame()) State.NoClip = false;
 				else {
@@ -233,13 +253,5 @@ namespace Menu {
 		ImGui::EndTabBar();
 
 		ImGui::End();
-	}
-
-	void UpdateModifiers() {
-
-	}
-
-	void ResetModifiers() {
-
 	}
 }

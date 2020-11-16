@@ -38,7 +38,7 @@ public:
 
     bool RevealImpostors = false;
     int KillDistance = 0;
-    int TaskProgressVisibility = 0;
+    int TaskBarUpdates = 0;
 
     bool NoClip = false;
 

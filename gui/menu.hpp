@@ -17,6 +17,4 @@ namespace Menu
 {
 	void Init();
 	void Render();
-	void UpdateModifiers();
-	void ResetModifiers();
 }
