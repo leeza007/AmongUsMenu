@@ -60,7 +60,7 @@ std::string translate_type_name(std::string input) {
 		}
 
 		if (conversion != -1) {
-			auto obfuscated_length = klass_pair.deobfuscated_klass.contains_type(input);
+			auto obfuscated_length = klass_pair.obfuscated_klass.contains_type(input);
 			if (obfuscated_length > match_length) {
 				match = klass_pair;
 				conversion = 1;
