@@ -30,3 +30,10 @@ public:
 	RpcRepairSystem(SystemTypes__Enum selectedSystem, int32_t amount);
 	virtual void Process() override;
 };
+
+class RpcMurderPlayer : public RPCInterface {
+	PlayerControl* target;
+public:
+	RpcMurderPlayer(PlayerControl* target);
+	virtual void Process() override;
+};

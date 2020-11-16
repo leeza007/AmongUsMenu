@@ -9,6 +9,10 @@ void dKeyboardJoystick_Update(KeyboardJoystick* __this, MethodInfo* method) {
 			rpc->Process();
 			delete rpc;
 		}
+
+		if (State.NoKillCooldown && (*Game::pGameOptionsData)->fields.KillCooldown > 0.1f) {
+			(*Game::pGameOptionsData)->fields.KillCooldown = 0.1f;
+		}
 	}
 
 	app::KeyboardJoystick_Update(__this, method);

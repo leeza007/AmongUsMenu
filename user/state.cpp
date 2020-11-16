@@ -42,6 +42,8 @@ void Settings::Load() {
 		Settings::ChatAlwaysActive = j_object["ChatAlwaysActive"].get<bool>();
 	if (j_object.contains("ReadGhostMessages"))
 		Settings::ReadGhostMessages = j_object["ReadGhostMessages"].get<bool>();
+	if (j_object.contains("NoKillCooldown"))
+		Settings::NoKillCooldown = j_object["NoKillCooldown"].get<bool>();
 }
 
 void Settings::Save() {
@@ -60,6 +62,7 @@ void Settings::Save() {
 		{"RevealImpostors", Settings::RevealImpostors},
 		{"ChatAlwaysActive", Settings::ChatAlwaysActive},
 		{"ReadGhostMessages", Settings::ReadGhostMessages},
+		{"NoKillCooldown", Settings::NoKillCooldown}
 	};
 
 	std::ofstream outSettings(pSettings);

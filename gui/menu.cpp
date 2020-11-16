@@ -111,6 +111,7 @@ namespace Menu {
 						app::GameObject_set_layer(app::Component_get_gameObject((Component*)(*Game::pLocalPlayer), NULL), app::LayerMask_NameToLayer(convert_to_string("Players"), NULL), NULL);
 				}
 			}
+			ImGui::Checkbox("No Kill Cooldown", &State.NoKillCooldown);
 			ImGui::Checkbox("Reveal Impostors", &State.RevealImpostors);
 			ImGui::Checkbox("Unlock Vents", &State.UnlockVents);
 			ImGui::Checkbox("Always show Chat Button", &State.ChatAlwaysActive);
@@ -143,6 +144,7 @@ namespace Menu {
 					ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(0, 0));
 					if (ImGui::Selectable(std::string("##" + playerName).c_str(), State.selectedPlayerId == playerData->fields.PlayerId)) {
 						State.selectedPlayerId = playerData->fields.PlayerId;
+						State.selectedPlayer = GetPlayerControlById(playerData->fields.PlayerId);
 					}
 					ImGui::SameLine();
 					ImGui::ColorButton(std::string("##" + playerName + "_ColorButton").c_str(), AmongUsColorToImVec4(GetPlayerColor(playerData->fields.ColorId)), ImGuiColorEditFlags_NoBorder | ImGuiColorEditFlags_NoTooltip);
@@ -162,6 +164,17 @@ namespace Menu {
 					ImGui::TextColored(nameColor, playerName.c_str());
 				}
 				ImGui::ListBoxFooter();
+				ImGui::EndChild();
+				ImGui::SameLine();
+				ImGui::BeginChild("players#actions", ImVec2(200, 0), true);
+				if (State.selectedPlayerId && State.selectedPlayer != (*Game::pLocalPlayer)) {
+					if (ImGui::Button("Teleport To")) {
+						State.rpcQueue.push(new RpcSnapTo(PlayerControl_GetTruePosition(State.selectedPlayer, NULL)));
+					}
+					if (GetPlayerData((*Game::pLocalPlayer))->fields.IsImpostor && ImGui::Button("Murder")) {
+						State.rpcQueue.push(new RpcMurderPlayer(State.selectedPlayer));
+					}
+				}
 				ImGui::EndChild();
 				ImGui::EndTabItem();
 			}
