@@ -167,7 +167,7 @@ namespace Menu {
 				ImGui::EndChild();
 				ImGui::SameLine();
 				ImGui::BeginChild("players#actions", ImVec2(200, 0), true);
-				if (State.selectedPlayerId && State.selectedPlayer != (*Game::pLocalPlayer)) {
+				if (State.selectedPlayerId > -1 && State.selectedPlayer != *Game::pLocalPlayer) {
 					if (ImGui::Button("Teleport To")) {
 						State.rpcQueue.push(new RpcSnapTo(PlayerControl_GetTruePosition(State.selectedPlayer, NULL)));
 					}

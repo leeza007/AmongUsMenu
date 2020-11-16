@@ -46,7 +46,7 @@ public:
 
     bool NoClip = false;
 
-    uint8_t selectedPlayerId = -1;
+    int selectedPlayerId = -1;
     PlayerControl* selectedPlayer = NULL;
     std::queue<RPCInterface*> rpcQueue;
 
