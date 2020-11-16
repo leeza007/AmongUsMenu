@@ -94,9 +94,6 @@
     <ClCompile Include="hooks\GameOptionsData.cpp">
       <Filter>hooks</Filter>
     </ClCompile>
-    <ClCompile Include="rpc\RpcMurderPlayer.cpp">
-      <Filter>rpc</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="user\main.h">

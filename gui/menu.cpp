@@ -111,7 +111,6 @@ namespace Menu {
 						app::GameObject_set_layer(app::Component_get_gameObject((Component*)(*Game::pLocalPlayer), NULL), app::LayerMask_NameToLayer(convert_to_string("Players"), NULL), NULL);
 				}
 			}
-			ImGui::Checkbox("No Kill Cooldown", &State.NoKillCooldown);
 			ImGui::Checkbox("Reveal Impostors", &State.RevealImpostors);
 			ImGui::Checkbox("Unlock Vents", &State.UnlockVents);
 			ImGui::Checkbox("Always show Chat Button", &State.ChatAlwaysActive);
@@ -167,12 +166,12 @@ namespace Menu {
 				ImGui::EndChild();
 				ImGui::SameLine();
 				ImGui::BeginChild("players#actions", ImVec2(200, 0), true);
+				if (ImGui::Button("Call Meeting")) {
+					PlayerControl_CmdReportDeadBody(*Game::pLocalPlayer, NULL, NULL);
+				}
 				if (State.selectedPlayerId > -1 && State.selectedPlayer != *Game::pLocalPlayer) {
 					if (ImGui::Button("Teleport To")) {
 						State.rpcQueue.push(new RpcSnapTo(PlayerControl_GetTruePosition(State.selectedPlayer, NULL)));
-					}
-					if (GetPlayerData((*Game::pLocalPlayer))->fields.IsImpostor && ImGui::Button("Murder")) {
-						State.rpcQueue.push(new RpcMurderPlayer(State.selectedPlayer));
 					}
 				}
 				ImGui::EndChild();

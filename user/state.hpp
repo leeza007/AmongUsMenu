@@ -42,7 +42,6 @@ public:
     int KillDistance = 0;
     int PrevTaskBarUpdates = 0;
     int TaskBarUpdates = 0;
-    bool NoKillCooldown = false;
 
     bool NoClip = false;
 
