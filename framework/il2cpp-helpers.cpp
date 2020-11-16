@@ -3,6 +3,7 @@
 #include <windows.h>
 #include <iostream>
 #include <codecvt>
+#include <optional>
 #include "il2cpp-helpers.h"
 
 void new_console() {
@@ -44,19 +45,45 @@ std::string translate_method_name(std::string input) {
 }
 
 std::string translate_type_name(std::string input) {
-	for (auto pair : TYPE_TRANSLATIONS) {
-		size_t pos = 0;
+	std::optional<KLASS_PAIR> match = std::nullopt;
+	int8_t conversion = 0;
+	size_t match_length = 0;
 
-		if ((pos = input.find(pair.first, 0)) != std::string::npos) {
-			input.replace(pos, pair.first.length(), pair.second);
+	for (auto klass_pair : KLASS_TRANSLATIONS) {
+		if (conversion != 1) {
+			auto deobfuscated_length = klass_pair.deobfuscated_klass.contains_type(input);
+			if (deobfuscated_length > match_length) {
+				match = klass_pair;
+				conversion = -1;
+				match_length = deobfuscated_length;
+			}
+		}
+
+		if (conversion != -1) {
+			auto obfuscated_length = klass_pair.deobfuscated_klass.contains_type(input);
+			if (obfuscated_length > match_length) {
+				match = klass_pair;
+				conversion = 1;
+				match_length = obfuscated_length;
+			}
+		}
+	}
+
+	if (match.has_value()) {
+		auto klass_pair = match.value();
+		if (conversion == -1) {
+			size_t position = input.find(klass_pair.deobfuscated_klass.klass_name, 0);
+			input.replace(position, klass_pair.deobfuscated_klass.klass_name.length(), klass_pair.obfuscated_klass.klass_name);
 			return input;
 		}
 
-		if ((pos = input.find(pair.second, 0)) != std::string::npos) {
-			input.replace(pos, pair.second.length(), pair.first);
+		if (conversion == 1) {
+			size_t position = input.find(klass_pair.obfuscated_klass.klass_name, 0);
+			input.replace(position, klass_pair.obfuscated_klass.klass_name.length(), klass_pair.deobfuscated_klass.klass_name);
 			return input;
 		}
 	}
+
 	return input;
 }
 
