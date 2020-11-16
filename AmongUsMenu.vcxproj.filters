@@ -192,6 +192,9 @@
     <ClInclude Include="includes\imgui\imHotKey.h">
       <Filter>includes\imgui</Filter>
     </ClInclude>
+    <ClInclude Include="user\version.h">
+      <Filter>user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="user">

@@ -16,9 +16,9 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReser
 		DisableThreadLibraryCalls(hModule);
 		init_il2cpp();
 #if _XINPUT
-		CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)Load, NULL, NULL, NULL);
+		CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)Load, hModule, NULL, NULL);
 #else
-		CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)Run, NULL, NULL, NULL);
+		CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)Run, hModule, NULL, NULL);
 #endif
 		break;
 	case DLL_PROCESS_DETACH:

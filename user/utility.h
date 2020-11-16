@@ -32,3 +32,4 @@ const char* TranslateTaskTypes(TaskTypes__Enum taskType);
 const char* TranslateSystemTypes(SystemTypes__Enum systemType);
 CorrectedColor32 GetPlayerColor(uint8_t colorId);
 std::string getModulePath();
+std::string getGameVersion();

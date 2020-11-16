@@ -7,5 +7,6 @@
 #include "game.hpp"
 #include "_hooks.h"
 #include "state.hpp"
+#include "version.h"
 
-void Run();
+void Run(LPVOID lpParam);

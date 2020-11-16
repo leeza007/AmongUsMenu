@@ -97,6 +97,7 @@
     <ClInclude Include="user\game.hpp" />
     <ClInclude Include="user\main.h" />
     <ClInclude Include="user\state.hpp" />
+    <ClInclude Include="user\version.h" />
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="NatvisFile.natvis" />

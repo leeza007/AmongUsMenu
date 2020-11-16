@@ -4,7 +4,13 @@ using namespace app;
 
 extern const LPCWSTR LOG_FILE = L"debug.txt";
 
-void Run() {
+void Run(LPVOID lpParam) {
+	if (getGameVersion().compare(GAME_VERSION) != 0) {
+		MessageBox(NULL, L"This Game Version is not supported!", L"AmongUsMenu", MB_OK | MB_ICONERROR | MB_SYSTEMMODAL);
+		FreeLibraryAndExitThread((HMODULE)lpParam, 0);
+		return;
+	}
+
 #if _DEBUG
 	new_console();
 

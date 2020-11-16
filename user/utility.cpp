@@ -150,3 +150,7 @@ std::string getModulePath() {
 	std::string path(ws.begin(), ws.end());
 	return path.substr(0, path.find_last_of("\\")).append("\\");
 }
+
+std::string getGameVersion() {
+	return convert_from_string(Application_get_version(NULL));
+}
