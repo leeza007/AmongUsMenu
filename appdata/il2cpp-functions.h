@@ -22,6 +22,9 @@ DO_APP_FUNC(Vector2, DeadBody_get_TruePosition, (DeadBody* __this, MethodInfo* m
 
 DO_APP_FUNC(GameData_PlayerInfo*, GameData_GetPlayerById, (GameData* __this, uint8_t id, MethodInfo* method), "Assembly-CSharp, GameData.PlayerInfo GameData::GetPlayerById(System.Byte)");
 
+DO_APP_FUNC(GameOptionsData*, GameOptionsData_Deserialize, (BinaryReader* reader, MethodInfo* method), "Assembly-CSharp, GameOptionsData GameOptionsData::Deserialize(System.IO.BinaryReader)");
+DO_APP_FUNC(GameOptionsData*, GameOptionsData_Deserialize_1, (MessageReader* reader, MethodInfo* method), "Assembly-CSharp, GameOptionsData GameOptionsData::Deserialize(Hazel.MessageReader)");
+
 DO_APP_FUNC(HatBehaviour__Array*, HatManager_GetUnlockedHats, (HatManager* __this, MethodInfo* method), "Assembly-CSharp, HatBehaviour[] HatManager::GetUnlockedHats()");
 DO_APP_FUNC(PetBehaviour__Array*, HatManager_GetUnlockedPets, (HatManager* __this, MethodInfo* method), "Assembly-CSharp, PetBehaviour[] HatManager::GetUnlockedPets()");
 DO_APP_FUNC(SkinData__Array*, HatManager_GetUnlockedSkins, (HatManager* __this, MethodInfo* method), "Assembly-CSharp, SkinData[] HatManager::GetUnlockedSkins()");
@@ -38,6 +41,7 @@ DO_APP_FUNC(void, PlainDoor_SetDoorway, (PlainDoor* __this, bool open, MethodInf
 DO_APP_FUNC(void, PlayerControl_FixedUpdate, (PlayerControl* __this, MethodInfo* method), "Assembly-CSharp, System.Void PlayerControl::FixedUpdate()");
 DO_APP_FUNC(GameData_PlayerInfo*, PlayerControl_get_Data, (PlayerControl* __this, MethodInfo* method), "Assembly-CSharp, GameData.PlayerInfo PlayerControl::get_Data()");
 DO_APP_FUNC(Vector2, PlayerControl_GetTruePosition, (PlayerControl* __this, MethodInfo* method), "Assembly-CSharp, UnityEngine.Vector2 PlayerControl::GetTruePosition()");
+DO_APP_FUNC(void, PlayerControl_RpcSyncSettings, (PlayerControl* __this, GameOptionsData* gameOptions, MethodInfo* method), "Assembly-CSharp, System.Void PlayerControl::RpcSyncSettings(GameOptionsData)");
 
 DO_APP_FUNC(float, ShipStatus_CalculateLightRadius, (ShipStatus* __this, GameData_PlayerInfo* player, MethodInfo* method), "Assembly-CSharp, System.Single ShipStatus::CalculateLightRadius(GameData.PlayerInfo)");
 DO_APP_FUNC(void, ShipStatus_OnEnable, (ShipStatus* __this, MethodInfo* method), "Assembly-CSharp, System.Void ShipStatus::OnEnable()");

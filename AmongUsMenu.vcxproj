@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework\x_input.cpp" />
+    <ClCompile Include="hooks\GameOptionsData.cpp" />
     <ClCompile Include="rpc\RpcCloseDoorsOfType.cpp" />
     <ClCompile Include="framework\dllmain.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>

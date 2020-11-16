@@ -37,6 +37,7 @@ const std::vector<KLASS_PAIR> KLASS_TRANSLATIONS = {
 	{ {"", "GameData.TaskInfo"}, {"", "BAGGGBBOHOH.ALLADIFCEHO"} },
 	{ {"", "GameOptionsData"}, {"", "OEFJGMAEENB"} },
 	{ {"", "HatManager"}, {"", "JCEGHLBFDKF"} },
+	{ {"", "HudManager"}, {"", "KLEKBPLEDOA"}},
 	{ {"", "KeyboardJoystick"}, {"", "IOCAEJCPCKG"} },
 	{ {"", "MapBehaviour"}, {"", "EFAGMLJDPOA"} },
 	{ {"", "MeetingHud"}, {"", "GPOHFPAIEMA"} },
@@ -52,7 +53,6 @@ const std::vector<KLASS_PAIR> KLASS_TRANSLATIONS = {
 	{ {"", "SystemTypes"}, {"", "JBPEMAACAEP"} },
 	{ {"", "TextRenderer"}, {"", "FELHHOEBHMA"} },
 	{ {"", "Vent"}, {"", "FBDDMHFBCPD"} },
-	{ {"", "HudManager"}, {"", "KLEKBPLEDOA"}},
 	{ {"InnerNet", "InnerNetClient"}, {"", "DNAFMCDBMCI"} },
 	{ {"InnerNet", "InnerNetObject"}, {"", "PEIOEODMCCN"} },
 };
@@ -60,5 +60,6 @@ const std::vector<KLASS_PAIR> KLASS_TRANSLATIONS = {
 const std::vector<std::pair<std::string, std::string>> METHOD_TRANSLATIONS = {
 	{ "get_BanMinutesLeft", "NEAALMKPALO" },
 	{ "get_AmBanned", "DNOKMILAMAE" },
-	{ "get_BanPoints", "MGKFDDLCGIE" }
+	{ "get_BanPoints", "MGKFDDLCGIE" },
+	{ "Deserialize", "NAOHMHJBJKP"}
 };

@@ -91,6 +91,9 @@
     <ClCompile Include="rpc\RpcRepairSystem.cpp">
       <Filter>rpc</Filter>
     </ClCompile>
+    <ClCompile Include="hooks\GameOptionsData.cpp">
+      <Filter>hooks</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="user\main.h">

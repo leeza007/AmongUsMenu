@@ -224,7 +224,3 @@ void output_assembly_methods(const Il2CppAssembly* assembly) {
 		output_class_methods(const_cast<Il2CppClass*>(il2cpp_image_get_class(assembly->image, i)));
 	}
 }
-
-/*std::string getGameVersion() {
-	return convert_from_string(Application_get_version(NULL));
-}*/

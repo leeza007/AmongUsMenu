@@ -82,21 +82,24 @@ namespace Menu {
 		if (ImGui::BeginTabItem("Game")) {
 			ImGui::Checkbox("Max Vision", &State.MaxVision);
 			if (SteppedSliderFloat("Player Speed", &State.PlayerSpeed, 0.5f, 3.f, 0.25f, "%.2fx", ImGuiSliderFlags_Logarithmic | ImGuiSliderFlags_NoInput)) {
-				if (!IsInGame()) State.PlayerSpeed = (*Game::pGameOptionsData)->fields.PlayerSpeedMod;
+				if (!IsInGame()) State.PlayerSpeed = State.PrevPlayerSpeed;
 				else {
 					(*Game::pGameOptionsData)->fields.PlayerSpeedMod = State.PlayerSpeed;
+					State.PrevPlayerSpeed = State.PlayerSpeed;
 				}
 			}
 			if (CustomListBoxInt("Kill Distance", &State.KillDistance, KILL_DISTANCE, ImGuiComboFlags_NoArrowButton)) {
-				if (!IsInGame()) State.KillDistance = (*Game::pGameOptionsData)->fields.KillDistance;
+				if (!IsInGame()) State.KillDistance = State.PrevKillDistance;
 				else {
 					(*Game::pGameOptionsData)->fields.KillDistance = State.KillDistance;
+					State.PrevKillDistance = State.KillDistance;
 				}
 			}
 			if (CustomListBoxInt("Task Bar Updates", &State.TaskBarUpdates, TASKBARUPDATES, ImGuiComboFlags_NoArrowButton)) {
-				if (!IsInGame()) State.TaskBarUpdates = (*Game::pGameOptionsData)->fields.TaskBarUpdates;
+				if (!IsInGame()) State.TaskBarUpdates = State.PrevTaskBarUpdates;
 				else {
 					(*Game::pGameOptionsData)->fields.TaskBarUpdates = (TaskBarUpdates__Enum)State.TaskBarUpdates;
+					State.PrevTaskBarUpdates = State.TaskBarUpdates;
 				}
 			}
 			if (ImGui::Checkbox("No Clip", &State.NoClip)) {

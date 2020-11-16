@@ -46,9 +46,11 @@ float dVent_CanUse(Vent* __this, GameData_PlayerInfo* pc, bool* canUse, bool* co
 void dKeyboardJoystick_Update(KeyboardJoystick* __this, MethodInfo* method);
 bool dAutoOpenDoor_DoUpdate(AutoOpenDoor* __this, float dt, MethodInfo* method);
 void dPlainDoor_SetDoorway(PlainDoor* __this, bool open, MethodInfo* method);
-
-
 void dChatBubble_SetName(ChatBubble* __this, String* playerName, bool isDead, bool voted, Color color, MethodInfo* method);
 void dChatController_AddChat(ChatController* __this, PlayerControl* sourcePlayer, String* chatText, MethodInfo* method);
 void dChatController_SetVisible(ChatController* __this, bool visible, MethodInfo* method);
 void dHudManager_ShowMap(HudManager* __this, Action_1_MapBehaviour_* mapAction, MethodInfo* method);
+
+GameOptionsData* dGameOptionsData_Deserialize(BinaryReader* reader, MethodInfo* method);
+GameOptionsData* dGameOptionsData_Deserialize_1(MessageReader* reader, MethodInfo* method);
+void dPlayerControl_RpcSyncSettings(PlayerControl* __this, GameOptionsData* gameOptions, MethodInfo* method);

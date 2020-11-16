@@ -20,3 +20,14 @@ void dPlayerControl_FixedUpdate(PlayerControl* __this, MethodInfo* method) {
 	}
 	PlayerControl_FixedUpdate(__this, method);
 }
+
+void dPlayerControl_RpcSyncSettings(PlayerControl* __this, GameOptionsData* gameOptions, MethodInfo* method) {
+	State.PrevPlayerSpeed = gameOptions->fields.PlayerSpeedMod;
+	State.PlayerSpeed = gameOptions->fields.PlayerSpeedMod;
+	State.PrevKillDistance = gameOptions->fields.KillDistance;
+	State.KillDistance = gameOptions->fields.KillDistance;
+	State.PrevTaskBarUpdates = gameOptions->fields.TaskBarUpdates;
+	State.TaskBarUpdates = gameOptions->fields.TaskBarUpdates;
+
+	PlayerControl_RpcSyncSettings(__this, gameOptions, method);
+}

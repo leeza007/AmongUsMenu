@@ -150,62 +150,28 @@ void DetourInitilization() {
 	DetourTransactionBegin();
 	DetourUpdateThread(GetCurrentThread());
 
-	if (DetourAttach(&(PVOID&)app::SceneManager_Internal_ActiveSceneChanged, dSceneManager_Internal_ActiveSceneChanged) != 0)
-		return;
-
-	if (DetourAttach(&(PVOID&)app::HatManager_GetUnlockedHats, dHatManager_GetUnlockedHats) != 0)
-		return;
-
-	if (DetourAttach(&(PVOID&)app::HatManager_GetUnlockedPets, dHatManager_GetUnlockedPets) != 0)
-		return;
-
-	if (DetourAttach(&(PVOID&)app::HatManager_GetUnlockedSkins, dHatManager_GetUnlockedSkins) != 0)
-		return;
-
-	if (DetourAttach(&(PVOID&)app::PlayerControl_FixedUpdate, dPlayerControl_FixedUpdate) != 0)
-		return;
-
-	if (DetourAttach(&(PVOID&)app::MeetingHud_Update, dMeetingHud_Update) != 0)
-		return;
-
-	if (DetourAttach(&(PVOID&)app::ShipStatus_CalculateLightRadius, dShipStatus_CalculateLightRadius) != 0)
-		return;
-
-	if (DetourAttach(&(PVOID&)app::ShipStatus_OnEnable, dShipStatus_OnEnable) != 0)
-		return;
-
-	if (DetourAttach(&(PVOID&)app::Vent_CanUse, dVent_CanUse) != 0)
-		return;
-
-	if (DetourAttach(&(PVOID&)app::StatsManager_get_AmBanned, dStatsManager_get_AmBanned) != 0)
-		return;
-
-	if (DetourAttach(&(PVOID&)app::StatsManager_get_BanMinutesLeft, dStatsManager_get_BanMinutesLeft) != 0)
-		return;
-
-	if (DetourAttach(&(PVOID&)app::StatsManager_get_BanPoints, dStatsManager_get_BanPoints) != 0)
-		return;
-
-	if (DetourAttach(&(PVOID&)AutoOpenDoor_DoUpdate, dAutoOpenDoor_DoUpdate) != 0)
-		return;
-
-	if (DetourAttach(&(PVOID&)ChatBubble_SetName, dChatBubble_SetName) != 0)
-		return;
-
-	if (DetourAttach(&(PVOID&)ChatController_AddChat, dChatController_AddChat) != 0)
-		return;
-
-	if (DetourAttach(&(PVOID&)ChatController_SetVisible, dChatController_SetVisible) != 0)
-		return;
-
-	if (DetourAttach(&(PVOID&)HudManager_ShowMap, dHudManager_ShowMap) != 0)
-		return;
-
-	if (DetourAttach(&(PVOID&)KeyboardJoystick_Update, dKeyboardJoystick_Update) != 0)
-		return;
-
-	if (DetourAttach(&(PVOID&)PlainDoor_SetDoorway, dPlainDoor_SetDoorway) != 0)
-		return;
+	if (DetourAttach(&(PVOID&)SceneManager_Internal_ActiveSceneChanged, dSceneManager_Internal_ActiveSceneChanged) != 0) return;
+	if (DetourAttach(&(PVOID&)HatManager_GetUnlockedHats, dHatManager_GetUnlockedHats) != 0) return;
+	if (DetourAttach(&(PVOID&)HatManager_GetUnlockedPets, dHatManager_GetUnlockedPets) != 0) return;
+	if (DetourAttach(&(PVOID&)HatManager_GetUnlockedSkins, dHatManager_GetUnlockedSkins) != 0) return;
+	if (DetourAttach(&(PVOID&)PlayerControl_FixedUpdate, dPlayerControl_FixedUpdate) != 0) return;
+	if (DetourAttach(&(PVOID&)PlayerControl_RpcSyncSettings, dPlayerControl_RpcSyncSettings) != 0) return;
+	if (DetourAttach(&(PVOID&)MeetingHud_Update, dMeetingHud_Update) != 0) return;
+	if (DetourAttach(&(PVOID&)ShipStatus_CalculateLightRadius, dShipStatus_CalculateLightRadius) != 0) return;
+	if (DetourAttach(&(PVOID&)ShipStatus_OnEnable, dShipStatus_OnEnable) != 0) return;
+	if (DetourAttach(&(PVOID&)Vent_CanUse, dVent_CanUse) != 0) return;
+	if (DetourAttach(&(PVOID&)StatsManager_get_AmBanned, dStatsManager_get_AmBanned) != 0) return;
+	if (DetourAttach(&(PVOID&)StatsManager_get_BanMinutesLeft, dStatsManager_get_BanMinutesLeft) != 0) return;
+	if (DetourAttach(&(PVOID&)StatsManager_get_BanPoints, dStatsManager_get_BanPoints) != 0) return;
+	if (DetourAttach(&(PVOID&)AutoOpenDoor_DoUpdate, dAutoOpenDoor_DoUpdate) != 0) return;
+	if (DetourAttach(&(PVOID&)ChatBubble_SetName, dChatBubble_SetName) != 0) return;
+	if (DetourAttach(&(PVOID&)ChatController_AddChat, dChatController_AddChat) != 0) return;
+	if (DetourAttach(&(PVOID&)ChatController_SetVisible, dChatController_SetVisible) != 0) return;
+	if (DetourAttach(&(PVOID&)HudManager_ShowMap, dHudManager_ShowMap) != 0) return;
+	if (DetourAttach(&(PVOID&)KeyboardJoystick_Update, dKeyboardJoystick_Update) != 0) return;
+	if (DetourAttach(&(PVOID&)PlainDoor_SetDoorway, dPlainDoor_SetDoorway) != 0) return;
+	if (DetourAttach(&(PVOID&)GameOptionsData_Deserialize, dGameOptionsData_Deserialize) != 0) return;
+	if (DetourAttach(&(PVOID&)GameOptionsData_Deserialize_1, dGameOptionsData_Deserialize_1) != 0) return;
 
 	if (kiero::init(kiero::RenderType::D3D11) == kiero::Status::Success) {
 		oPresent = (D3D_PRESENT_FUNCTION)kiero::getMethodsTable()[8];
