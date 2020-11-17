@@ -24,7 +24,8 @@ private:
 public:
     std::vector<ImHotKey::HotKey> Hotkeys = {
         {"Toggle Menu", "Toggles the visibility of AmongUsMenu", 0xFFFFFF53},
-        {"Toggle Rader", "Toggles the visibility of AmongUsMenu's Rader", 0xFFFFFF52}
+        {"Toggle Rader", "Toggles the visibility of AmongUsMenu's Rader", 0xFFFFFF52},
+        {"Repair Sabotage", "Repairs currently ongoing sabotage", 0xFFFFFF4F}
     };
 
     bool ImGuiInitialized = false;

@@ -50,7 +50,7 @@ PlayerControl* GetPlayerControlById(uint8_t id) {
 
 std::vector<PlayerControl*> GetAllPlayerControl() {
 	static PlayerControl* (*getItem)(List_1_PlayerControl_*, int32_t, MethodInfo*);
-	static int32_t (*getCount)(List_1_PlayerControl_*, MethodInfo*);
+	static int32_t(*getCount)(List_1_PlayerControl_*, MethodInfo*);
 	if (getItem == NULL) getItem = decltype(getItem)(find_method((Il2CppClass*)(*Game::pAllPlayerControls)->klass, "PlayerControl", "get_Item", "System.Int32"));
 	if (getCount == NULL) getCount = decltype(getCount)(find_method((Il2CppClass*)(*Game::pAllPlayerControls)->klass, "System.Int32", "get_Count", ""));
 
@@ -81,8 +81,7 @@ std::vector<GameData_PlayerInfo*> GetAllPlayerData() {
 }
 
 std::vector<DeadBody*> GetAllDeadBodies() {
-	static std::string deadBodyType;
-	if(deadBodyType.empty()) deadBodyType = translate_type_name("DeadBody, Assembly-CSharp");
+	static std::string deadBodyType = translate_type_name("DeadBody, Assembly-CSharp");
 
 	std::vector<DeadBody*> deadBodies = std::vector<DeadBody*>();
 
@@ -95,26 +94,96 @@ std::vector<DeadBody*> GetAllDeadBodies() {
 	return deadBodies;
 }
 
-std::vector<NormalPlayerTask*> GetPlayerTasks(PlayerControl* player) {
-	static PlayerTask* (*getItem)(List_1_PlayerTask_*, int32_t, MethodInfo*);
-	static int32_t(*getCount)(List_1_PlayerTask_*, MethodInfo*);
-	static std::string normalPlayerTask;
-	if (getItem == NULL) getItem = decltype(getItem)(find_method((Il2CppClass*)(Il2CppClass*)player->fields.myTasks->klass, "PlayerTask", "get_Item", "System.Int32"));
-	if (getCount == NULL) getCount = decltype(getCount)(find_method((Il2CppClass*)(Il2CppClass*)player->fields.myTasks->klass, "System.Int32", "get_Count", ""));
-	if (normalPlayerTask.empty()) normalPlayerTask = translate_type_name("NormalPlayerTask");
+std::vector<PlayerTask*> GetPlayerTasks(PlayerControl* player) {
+	static PlayerTask* (*getItem)(List_1_PlayerTask_*, int32_t, MethodInfo*) = decltype(getItem)(find_method((Il2CppClass*)(Il2CppClass*)player->fields.myTasks->klass, "PlayerTask", "get_Item", "System.Int32"));
+	static int32_t(*getCount)(List_1_PlayerTask_*, MethodInfo*) = decltype(getCount)(find_method((Il2CppClass*)(Il2CppClass*)player->fields.myTasks->klass, "System.Int32", "get_Count", ""));
 
 	std::vector<PlayerTask*> playerTasks = std::vector<PlayerTask*>();
-	std::vector<NormalPlayerTask*> normalPlayerTasks = std::vector<NormalPlayerTask*>();
 
 	if (getItem != NULL && getCount != NULL)
 		for (int i = 0; i < getCount(player->fields.myTasks, NULL); i++)
 			playerTasks.push_back(getItem(player->fields.myTasks, i, NULL));
 
+	return playerTasks;
+}
+
+std::vector<NormalPlayerTask*> GetNormalPlayerTasks(PlayerControl* player) {
+	static std::string normalPlayerTaskType = translate_type_name("NormalPlayerTask");
+
+	std::vector<PlayerTask*> playerTasks = GetPlayerTasks(player);
+	std::vector<NormalPlayerTask*> normalPlayerTasks = std::vector<NormalPlayerTask*>();
+
 	for (auto playerTask : playerTasks)
-		if (strcmp(playerTask->klass->_0.name, normalPlayerTask.c_str()) == 0 || strcmp(playerTask->klass->_0.parent->name, normalPlayerTask.c_str()) == 0)
+		if (normalPlayerTaskType == playerTask->klass->_0.name || normalPlayerTaskType == playerTask->klass->_0.parent->name)
 			normalPlayerTasks.push_back((NormalPlayerTask*)playerTask);
 
 	return normalPlayerTasks;
+}
+
+SabotageTask* GetSabotageTask(PlayerControl* player) {
+	static std::string sabotageTaskType = translate_type_name("SabotageTask");
+
+	std::vector<PlayerTask*> playerTasks = GetPlayerTasks(player);
+
+	for (auto playerTask : playerTasks)
+		if (sabotageTaskType == playerTask->klass->_0.name || sabotageTaskType == playerTask->klass->_0.parent->name)
+			return (SabotageTask*)playerTask;
+
+	return NULL;
+}
+
+void RepairSabotage(PlayerControl* player) {
+	static std::string electricTaskType = translate_type_name("ElectricTask");
+	static std::string hqHudOverrideTaskType = translate_type_name("HqHudOverrideTask");
+	static std::string hudOverrideTaskType = translate_type_name("HudOverrideTask");
+	static std::string noOxyTaskType = translate_type_name("NoOxyTask");
+	static std::string reactorTaskType = translate_type_name("ReactorTask");
+
+	auto sabotageTask = GetSabotageTask(player);
+	if (sabotageTask == NULL) return;
+
+	if (electricTaskType == sabotageTask->klass->_0.name) {
+		auto electricTask = (ElectricTask*)sabotageTask;
+
+		auto switchSystem = electricTask->fields.system;
+		auto actualSwitches = switchSystem->fields.ActualSwitches;
+		auto expectedSwitches = switchSystem->fields.ExpectedSwitches;
+
+		if (actualSwitches != expectedSwitches) {
+			for (auto i = 0; i < 5; i++) {
+				auto switchMask = 1 << (i & 0x1F);
+
+				if ((actualSwitches & switchMask) != (expectedSwitches & switchMask))
+					State.rpcQueue.push(new RpcRepairSystem(SystemTypes__Enum_Electrical, i));
+			}
+		}
+	}
+
+	if (hqHudOverrideTaskType == sabotageTask->klass->_0.name) {
+		State.rpcQueue.push(new RpcRepairSystem(SystemTypes__Enum_Comms, 16));
+		State.rpcQueue.push(new RpcRepairSystem(SystemTypes__Enum_Comms, 17));
+	}
+
+	if (hudOverrideTaskType == sabotageTask->klass->_0.name) {
+		State.rpcQueue.push(new RpcRepairSystem(SystemTypes__Enum_Comms, 0));
+	}
+
+	if (noOxyTaskType == sabotageTask->klass->_0.name) {
+		State.rpcQueue.push(new RpcRepairSystem(SystemTypes__Enum_LifeSupp, 64));
+		State.rpcQueue.push(new RpcRepairSystem(SystemTypes__Enum_LifeSupp, 65));
+	}
+
+	if (reactorTaskType == sabotageTask->klass->_0.name) {
+		if ((*Game::pShipStatus)->fields.Type == ShipStatus_MapType__Enum_Ship || (*Game::pShipStatus)->fields.Type == ShipStatus_MapType__Enum_Hq) {
+			State.rpcQueue.push(new RpcRepairSystem(SystemTypes__Enum_Reactor, 64));
+			State.rpcQueue.push(new RpcRepairSystem(SystemTypes__Enum_Reactor, 65));
+		}
+
+		if ((*Game::pShipStatus)->fields.Type == ShipStatus_MapType__Enum_Pb) {
+			State.rpcQueue.push(new RpcRepairSystem(SystemTypes__Enum_Laboratory, 64));
+			State.rpcQueue.push(new RpcRepairSystem(SystemTypes__Enum_Laboratory, 65));
+		}
+	}
 }
 
 void CompleteTask(NormalPlayerTask* playerTask) {

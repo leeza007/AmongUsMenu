@@ -180,7 +180,7 @@ namespace Menu {
 
 			if (GetPlayerData(*Game::pLocalPlayer)->fields.Tasks != NULL && !GetPlayerData(*Game::pLocalPlayer)->fields.IsImpostor) {
 				if (ImGui::BeginTabItem("Tasks")) {
-					auto tasks = GetPlayerTasks(*Game::pLocalPlayer);
+					auto tasks = GetNormalPlayerTasks(*Game::pLocalPlayer);
 
 					for (auto task : tasks) {
 						if (ImGui::Button(("Complete##Button" + std::to_string(task->fields._._Id_k__BackingField)).c_str()) && !NormalPlayerTask_get_IsComplete(task, NULL)) {
@@ -200,16 +200,6 @@ namespace Menu {
 			}
 
 			if (ImGui::BeginTabItem("Sabotage")) {
-				ImGui::BeginChild("system#repair", ImVec2(200, 0));
-				//ImGui::Text("Auto-Repair");
-				//ImGui::Checkbox("Lights##repair", &State.AutoRepairLights);
-				//ImGui::Checkbox("Reactor##repair", &State.AutoRepairReactor);
-				//ImGui::Checkbox("Oxygen##repair", &State.AutoRepairOxygen);
-				//ImGui::Checkbox("Comms##repair", &State.AutoRepairComms);
-				ImGui::EndChild();
-
-				ImGui::SameLine();
-				ImGui::BeginChild("system#sabotage");
 				if (ImGui::Button("Sabotage Lights")) {
 					State.rpcQueue.push(new RpcRepairSystem(SystemTypes__Enum_Sabotage, SystemTypes__Enum_Electrical));
 				}
@@ -226,7 +216,9 @@ namespace Menu {
 				if (ImGui::Button("Sabotage Comms")) {
 					State.rpcQueue.push(new RpcRepairSystem(SystemTypes__Enum_Sabotage, SystemTypes__Enum_Comms));
 				}
-				ImGui::EndChild();
+				if (ImGui::Button("Repair Sabotage")) {
+					RepairSabotage(*Game::pLocalPlayer);
+				}
 				ImGui::EndTabItem();
 			}
 

@@ -32,6 +32,9 @@ void Settings::Load() {
 	if (j_object.contains("ShowRadar_RightClick_Teleport"))
 		Settings::ShowRadar_RightClick_Teleport = j_object["ShowRadar_RightClick_Teleport"].get<bool>();
 
+	if (j_object.contains("RepairSabotage_Hotkey"))
+		Settings::Hotkeys[2].functionKeys = j_object["RepairSabotage_Hotkey"].get<uint32_t>();
+
 	if (j_object.contains("MaxVision"))
 		Settings::MaxVision = j_object["MaxVision"].get<bool>();
 	if (j_object.contains("UnlockVents"))
@@ -54,6 +57,8 @@ void Settings::Save() {
 		{"ShowRadar_DeadBodies", Settings::ShowRadar_DeadBodies},
 		{"ShowRadar_Ghosts", Settings::ShowRadar_Ghosts},
 		{"ShowRadar_RightClick_Teleport", Settings::ShowRadar_RightClick_Teleport},
+
+		{"RepairSabotage_Hotkey", Settings::Hotkeys[2].functionKeys},
 
 		{"MaxVision", Settings::MaxVision},
 		{"UnlockVents", Settings::UnlockVents},
