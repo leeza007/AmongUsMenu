@@ -20,7 +20,7 @@ int randi(int lo, int hi);
 ImVec4 AmongUsColorToImVec4(Color color);
 ImVec4 AmongUsColorToImVec4(CorrectedColor32 color);
 bool IsInGame();
-bool IsInOnlineGame();
+bool IsInMultiplayerGame();
 GameData_PlayerInfo* GetPlayerData(PlayerControl* player);
 GameData_PlayerInfo* GetPlayerDataById(uint8_t id);
 PlayerControl* GetPlayerControlById(uint8_t id);
