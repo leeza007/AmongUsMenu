@@ -22,6 +22,11 @@ Will automatically be loaded by the Game itself if the dll is in the game direct
 - Debug_Xinput (With Debug Information and can be attached to process)
 - Release_Xinput (Optimized with all information stripped)
 
+### Default Hotkeys
+- Show Menu - DELETE
+- Show Radar - INSERT
+- Repair Sabotage - END
+
 ## Screenshot
 <p align="center">
    <img src="screenshot.png">
