@@ -27,6 +27,10 @@ bool IsInGame() {
 	return (LocalInGame || OnlineInGame || TutorialScene) && (*Game::pShipStatus) && (*Game::pLocalPlayer);
 }
 
+bool IsInOnlineGame() {
+	return OnlineInGame && (*Game::pShipStatus) && (*Game::pLocalPlayer);
+}
+
 GameData_PlayerInfo* GetPlayerData(PlayerControl* player) {
 	if (player) return app::PlayerControl_get_Data(player, NULL);
 	return NULL;

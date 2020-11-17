@@ -166,7 +166,7 @@ namespace Menu {
 				ImGui::EndChild();
 				ImGui::SameLine();
 				ImGui::BeginChild("players#actions", ImVec2(200, 0), true);
-				if (ImGui::Button("Call Meeting")) {
+				if (IsInOnlineGame() && !GetPlayerData(*Game::pLocalPlayer)->fields.IsDead && ImGui::Button("Call Meeting")) {
 					PlayerControl_CmdReportDeadBody(*Game::pLocalPlayer, NULL, NULL);
 				}
 				if (State.selectedPlayerId > -1 && State.selectedPlayer != *Game::pLocalPlayer) {
