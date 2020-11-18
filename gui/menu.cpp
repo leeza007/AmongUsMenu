@@ -25,7 +25,6 @@ namespace Menu {
 		DoorsTab::Render();
 		
 		ImGui::EndTabBar();
-
 		ImGui::End();
 	}
 }
