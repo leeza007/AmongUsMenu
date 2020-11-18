@@ -1,9 +1,3 @@
-#pragma once
-#define WIN32_LEAN_AND_MEAN
-#include <windows.h>
-#include <iostream>
-#include <codecvt>
-#include <optional>
 #include "il2cpp-helpers.h"
 
 void new_console() {
@@ -11,14 +5,20 @@ void new_console() {
 	freopen_s((FILE**)stdout, "CONOUT$", "w", stdout);
 }
 
+std::string utf16_to_utf8(std::u16string u16_string) {
+	std::wstring wide_string(u16_string.begin(), u16_string.end());
+	std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> convert;
+	return convert.to_bytes(wide_string);
+}
+
 std::string convert_from_string(Il2CppString* input) {
 	std::u16string u16(reinterpret_cast<const char16_t*>(input->chars));
-	return std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t>{}.to_bytes(u16);
+	return utf16_to_utf8(u16);
 }
 
 std::string convert_from_string(app::String* input) {
 	std::u16string u16(reinterpret_cast<const char16_t*>(&input->fields.m_firstChar));
-	return std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t>{}.to_bytes(u16);
+	return utf16_to_utf8(u16);
 }
 
 app::String* convert_to_string(std::string input) {

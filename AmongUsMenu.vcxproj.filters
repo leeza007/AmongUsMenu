@@ -94,6 +94,27 @@
     <ClCompile Include="hooks\GameOptionsData.cpp">
       <Filter>hooks</Filter>
     </ClCompile>
+    <ClCompile Include="gui\gui-helpers.cpp">
+      <Filter>gui</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\tabs\game_tab.cpp">
+      <Filter>gui\tabs</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\tabs\doors_tab.cpp">
+      <Filter>gui\tabs</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\tabs\players_tab.cpp">
+      <Filter>gui\tabs</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\tabs\radar_tab.cpp">
+      <Filter>gui\tabs</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\tabs\sabotage_tab.cpp">
+      <Filter>gui\tabs</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\tabs\tasks_tab.cpp">
+      <Filter>gui\tabs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="user\main.h">
@@ -195,6 +216,27 @@
     <ClInclude Include="user\version.h">
       <Filter>user</Filter>
     </ClInclude>
+    <ClInclude Include="gui\gui-helpers.h">
+      <Filter>gui</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\tabs\game_tab.h">
+      <Filter>gui\tabs</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\tabs\doors_tab.h">
+      <Filter>gui\tabs</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\tabs\players_tab.h">
+      <Filter>gui\tabs</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\tabs\radar_tab.h">
+      <Filter>gui\tabs</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\tabs\sabotage_tab.h">
+      <Filter>gui\tabs</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\tabs\tasks_tab.h">
+      <Filter>gui\tabs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="user">
@@ -226,6 +268,9 @@
     </Filter>
     <Filter Include="rpc">
       <UniqueIdentifier>{34796e1f-0eb0-4048-8a58-92b9eed2b812}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gui\tabs">
+      <UniqueIdentifier>{adf8506d-c5ae-43ab-a084-b809640a34aa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

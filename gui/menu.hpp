@@ -7,14 +7,16 @@
 #include <math.h>
 #include <algorithm>
 #include <cmath>
-#include <iostream>
-#include <string>
 #include "state.hpp"
 #include "game.hpp"
-#include "utility.h"
+#include "tabs/game_tab.h"
+#include "tabs/radar_tab.h"
+#include "tabs/players_tab.h"
+#include "tabs/tasks_tab.h"
+#include "tabs/sabotage_tab.h"
+#include "tabs/doors_tab.h"
 
-namespace Menu
-{
+namespace Menu {
 	void Init();
 	void Render();
 }
