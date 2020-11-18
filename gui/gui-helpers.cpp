@@ -15,7 +15,7 @@ bool CustomListBoxInt(const char* label, int* value, const std::vector<const cha
 	ImGui::PushItemWidth(w - spacing * 2.0f - button_sz * 2.0f);
 	const bool response = ImGui::BeginCombo(strcat({ "##", label }), list.at(*value), flags);
 	if (response) {
-		for (int i = 0; i < list.size(); i++) {
+		for (size_t i = 0; i < list.size(); i++) {
 			bool is_selected = (*value == i);
 			if (ImGui::Selectable(list.at(i), is_selected))
 				*value = i;
@@ -38,7 +38,7 @@ bool CustomListBoxInt(const char* label, int* value, const std::vector<const cha
 	const bool RightResponse = ImGui::ArrowButton(strcat({ "##", label, "Right" }), ImGuiDir_Right);
 	if (RightResponse) {
 		*value += 1;
-		if (*value > (list.size() - 1)) *value = 0;
+		if (*value > (int)(list.size() - 1)) *value = 0;
 		return RightResponse;
 	}
 	ImGui::SameLine(0, style.ItemInnerSpacing.x);

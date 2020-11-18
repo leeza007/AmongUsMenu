@@ -18,7 +18,7 @@ void dShipStatus_OnEnable(ShipStatus* __this, MethodInfo* method) {
 
 	auto allDoors = __this->fields.AllDoors;
 
-	for (int i = 0; i < allDoors->max_length; i++) {
+	for (il2cpp_array_size_t i = 0; i < allDoors->max_length; i++) {
 		if (std::find(State.mapDoors.begin(), State.mapDoors.end(), allDoors->vector[i]->fields.Room) == State.mapDoors.end())
 			State.mapDoors.push_back(allDoors->vector[i]->fields.Room);
 	}

@@ -5,7 +5,7 @@ using namespace app;
 void dMeetingHud_Update(MeetingHud* __this, MethodInfo* method) {
 	if (IsInGame()) {
 		PlayerVoteArea__Array* playerStates = __this->fields.playerStates;
-		for (int i = 0; i < playerStates->max_length; i++) {
+		for (il2cpp_array_size_t i = 0; i < playerStates->max_length; i++) {
 			PlayerVoteArea* playerVoteArea = playerStates->vector[i];
 			auto playerData = GetPlayerDataById(playerVoteArea->fields._TargetPlayerId_k__BackingField);
 			auto localData = GetPlayerData(*Game::pLocalPlayer);
