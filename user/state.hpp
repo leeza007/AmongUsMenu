@@ -19,51 +19,51 @@ using json = nlohmann::ordered_json;
 class Settings
 {
 private:
-    inline bool Exists(const std::string& name);
+	inline bool Exists(const std::string& name);
 
 public:
-    std::vector<ImHotKey::HotKey> Hotkeys = {
-        {"Toggle Menu", "Toggles the visibility of AmongUsMenu", 0xFFFFFF53},
-        {"Toggle Rader", "Toggles the visibility of AmongUsMenu's Rader", 0xFFFFFF52},
-        {"Repair Sabotage", "Repairs currently ongoing sabotage", 0xFFFFFF4F}
-    };
+	std::vector<ImHotKey::HotKey> Hotkeys = {
+		{"Toggle Menu", "Toggles the visibility of AmongUsMenu", 0xFFFFFF53},
+		{"Toggle Rader", "Toggles the visibility of AmongUsMenu's Rader", 0xFFFFFF52},
+		{"Repair Sabotage", "Repairs currently ongoing sabotage", 0xFFFFFF4F}
+	};
 
-    bool ImGuiInitialized = false;
-    bool ShowMenu = false;
+	bool ImGuiInitialized = false;
+	bool ShowMenu = false;
 
-    std::string CurrentScene;
+	std::string CurrentScene;
 
-    bool MaxVision = false;
-    float PrevPlayerSpeed = 1.f;
-    float PlayerSpeed = 1.f;
-    bool UnlockVents = false;
+	bool MaxVision = false;
+	float PrevPlayerSpeed = 1.f;
+	float PlayerSpeed = 1.f;
+	bool UnlockVents = false;
 
-    bool RevealImpostors = false;
-    int PrevKillDistance = 0;
-    int KillDistance = 0;
-    int PrevTaskBarUpdates = 0;
-    int TaskBarUpdates = 0;
+	bool RevealImpostors = false;
+	int PrevKillDistance = 0;
+	int KillDistance = 0;
+	int PrevTaskBarUpdates = 0;
+	int TaskBarUpdates = 0;
 
-    bool NoClip = false;
+	bool NoClip = false;
 
-    int selectedPlayerId = -1;
-    PlayerControl* selectedPlayer = NULL;
-    std::queue<RPCInterface*> rpcQueue;
+	int selectedPlayerId = -1;
+	PlayerControl* selectedPlayer = NULL;
+	std::queue<RPCInterface*> rpcQueue;
 
-    bool ShowRadar = false;
-    bool ShowRadar_DeadBodies = false;
-    bool ShowRadar_Ghosts = false;
-    bool ShowRadar_RightClick_Teleport = false;
+	bool ShowRadar = false;
+	bool ShowRadar_DeadBodies = false;
+	bool ShowRadar_Ghosts = false;
+	bool ShowRadar_RightClick_Teleport = false;
 
-    bool ChatAlwaysActive = false;
-    bool ReadGhostMessages = false;
+	bool ChatAlwaysActive = false;
+	bool ReadGhostMessages = false;
 
-    SystemTypes__Enum selectedDoor;
-    std::vector<SystemTypes__Enum> mapDoors;
-    std::vector<SystemTypes__Enum> pinnedDoors;
+	SystemTypes__Enum selectedDoor;
+	std::vector<SystemTypes__Enum> mapDoors;
+	std::vector<SystemTypes__Enum> pinnedDoors;
 
-    void Load();
-    void Save();
+	void Load();
+	void Save();
 };
 
 extern Settings State;

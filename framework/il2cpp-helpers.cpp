@@ -181,7 +181,6 @@ Il2CppClass* get_class(std::string classSignature) {
 
 	Il2CppClass* klass = il2cpp_class_from_name(assembly->image, namespaze.c_str(), className.c_str());
 	return klass;
-
 }
 
 std::string get_method_description(const MethodInfo* methodInfo) {

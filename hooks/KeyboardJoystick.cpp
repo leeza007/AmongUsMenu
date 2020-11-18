@@ -1,7 +1,7 @@
 #include "_hooks.h"
 
 void dKeyboardJoystick_Update(KeyboardJoystick* __this, MethodInfo* method) {
-	if (IsInGame()) {	
+	if (IsInGame()) {
 		if (!State.rpcQueue.empty()) {
 			auto rpc = State.rpcQueue.front();
 			State.rpcQueue.pop();
