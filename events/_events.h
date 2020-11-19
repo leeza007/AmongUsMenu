@@ -26,28 +26,22 @@ public:
 
 class MurderEvent : public EventInterface {
 private:
-	PlayerControl* source;
-	PlayerControl* target;
-	Vector2 position;
+	std::string murderer;
+	std::string victim;
+	app::Vector2 position;
+	app::SystemTypes__Enum room;
 public:
-	MurderEvent(PlayerControl* source, PlayerControl* target) : EventInterface(EVENT_MURDER) {
-		MurderEvent::source = source;
-		MurderEvent::target = target;
-		MurderEvent::position = PlayerControl_GetTruePosition(target, 0);
-	}
+	MurderEvent(std::string murderer, std::string victim, app::Vector2 position);
 	virtual std::string Output() override;
 };
 
 class VentEvent : public EventInterface {
 private:
-	Vent* vent;
-	PlayerControl* source;
+	std::string player;
+	app::Vector2 position;
+	app::SystemTypes__Enum room;
 	VENT_ACTION action;
 public:
-	VentEvent(Vent* vent, PlayerControl* source, VENT_ACTION action) : EventInterface(EVENT_VENT) {
-		VentEvent::vent = vent;
-		VentEvent::source = source;
-		VentEvent::action;
-	}
+	VentEvent(std::string player, app::Vector2 position, VENT_ACTION action);
 	virtual std::string Output() override;
 };

@@ -228,8 +228,19 @@ std::string getGameVersion() {
 	return convert_from_string(Application_get_version(NULL));
 }
 
+SystemTypes__Enum GetSystemTypes(Vector2 vector) {
+	if (*Game::pShipStatus) {
+		auto shipStatus = *Game::pShipStatus;
+		auto allRooms = shipStatus->fields._AllRooms_k__BackingField;
+
+		for (size_t i = 0; i < allRooms->max_length; i++)
+			if (Collider2D_OverlapPoint(allRooms->vector[i]->fields.roomArea, vector, NULL)) return allRooms->vector[i]->fields.RoomId;
+	}
+	return SystemTypes__Enum_Outside;
+}
+
 const char* getRoomNameByVector2(Vector2 point) {
-	for (int i = 0; i < State.mapRooms.size(); i++) {
+	for (size_t i = 0; i < State.mapRooms.size(); i++) {
 		auto roomArea = State.mapRooms[i]->fields.roomArea;
 		if (Collider2D_OverlapPoint(State.mapRooms[i]->fields.roomArea, point, NULL)) return TranslateSystemTypes(State.mapRooms[i]->fields.RoomId);
 	}

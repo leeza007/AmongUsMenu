@@ -37,4 +37,5 @@ const char* TranslateSystemTypes(SystemTypes__Enum systemType);
 CorrectedColor32 GetPlayerColor(uint8_t colorId);
 std::string getModulePath();
 std::string getGameVersion();
+SystemTypes__Enum GetSystemTypes(Vector2 vector);
 const char* getRoomNameByVector2(Vector2 point);

@@ -25,11 +25,19 @@ float dVent_CanUse(Vent* __this, GameData_PlayerInfo* pc, bool* canUse, bool* co
 };
 
 void dVent_EnterVent(Vent* __this, PlayerControl* pc, MethodInfo * method) {
-	State.events.push_back(new VentEvent(__this, pc, VENT_ENTER));
+	auto player = convert_from_string(pc->fields._cachedData->fields.PlayerName);
+	auto ventTransform = app::Component_get_transform((Component*)__this, NULL);
+	auto ventVector = app::Transform_get_position(ventTransform, NULL);
+
+	State.events.push_back(new VentEvent(player, { ventVector.x, ventVector.y }, VENT_ENTER));
 	Vent_EnterVent(__this, pc, method);
 }
 
 void dVent_ExitVent(Vent* __this, PlayerControl* pc, MethodInfo * method) {
-	State.events.push_back(new VentEvent(__this, pc, VENT_EXIT));
+	auto player = convert_from_string(pc->fields._cachedData->fields.PlayerName);
+	auto ventTransform = app::Component_get_transform((Component*)__this, NULL);
+	auto ventVector = app::Transform_get_position(ventTransform, NULL);
+
+	State.events.push_back(new VentEvent(player, { ventVector.x, ventVector.y }, VENT_EXIT));
 	Vent_ExitVent(__this, pc, method);
 }

@@ -33,6 +33,10 @@ void dPlayerControl_RpcSyncSettings(PlayerControl* __this, GameOptionsData* game
 }
 
 void dPlayerControl_MurderPlayer(PlayerControl* __this, PlayerControl* target, MethodInfo* method) {
-	State.events.push_back(new MurderEvent(__this, target));
+	auto murderer = convert_from_string(__this->fields._cachedData->fields.PlayerName);
+	auto victim = convert_from_string(target->fields._cachedData->fields.PlayerName);
+	auto position = PlayerControl_GetTruePosition(__this, NULL);
+
+	State.events.push_back(new MurderEvent(murderer, victim, position));
 	PlayerControl_MurderPlayer(__this, target, method);
 }

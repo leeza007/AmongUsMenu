@@ -2,16 +2,16 @@
 #include "_events.h"
 #include "utility.h"
 
+VentEvent::VentEvent(std::string player, app::Vector2 position, VENT_ACTION action) : EventInterface(EVENT_VENT)
+{
+	this->player = player;
+	this->position = position;
+	this->room = GetSystemTypes(position);
+	this->action = action;
+}
+
 std::string VentEvent::Output() {
-	std::stringstream ss;
-	ss << convert_from_string(GetPlayerData(source)->fields.PlayerName);
-	if (VentEvent::action == VENT_ENTER) ss << " entered Vent in ";
-	else ss << " exited Vent in ";
-
-	Vector2 vec;
-	vec.x = vent->fields.Offset.x;
-	vec.y = vent->fields.Offset.y;
-	ss << getRoomNameByVector2(vec);
-
-	return ss.str();
+	std::stringstream outputStream;
+	outputStream << player << ((action == VENT_ENTER) ? " entered Vent in " : " exited Vent in ") << TranslateSystemTypes(room);
+	return outputStream.str();
 }

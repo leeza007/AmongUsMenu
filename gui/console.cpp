@@ -13,8 +13,8 @@ namespace ConsoleGui {
 
 		ImGui::Begin("Console", &State.ShowConsole, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize);
 		ImGui::BeginChild("console#scroll", ImVec2(0, -22 * ImGui::GetIO().FontGlobalScale), false, ImGuiWindowFlags_HorizontalScrollbar);
-		for (EventInterface* e : State.events) {
-			ImGui::Text(e->Output().c_str());
+		for (size_t i = 0; i < State.events.size(); i++) {
+			ImGui::Text(State.events[i]->Output().c_str());
 		}
 		ImGui::EndChild();
 		ImGui::End();

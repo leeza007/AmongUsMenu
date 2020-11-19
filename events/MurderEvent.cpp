@@ -2,12 +2,16 @@
 #include "_events.h"
 #include "utility.h"
 
+MurderEvent::MurderEvent(std::string murderer, std::string victim, app::Vector2 position) : EventInterface(EVENT_MURDER)
+{
+	this->murderer = murderer;
+	this->victim = victim;
+	this->position = position;
+	this->room = GetSystemTypes(position);
+}
+
 std::string MurderEvent::Output() {
-	std::stringstream ss;
-	ss << convert_from_string(GetPlayerData(source)->fields.PlayerName) 
-		<< " has murdered "
-		<< convert_from_string(GetPlayerData(target)->fields.PlayerName)
-		<< " in "
-		<< getRoomNameByVector2(position);
-	return ss.str();
+	std::stringstream outputStream;
+	outputStream << murderer << " has murdered " << victim << " in " << TranslateSystemTypes(room);
+	return outputStream.str();
 }
