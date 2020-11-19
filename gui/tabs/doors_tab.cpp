@@ -1,6 +1,6 @@
 #include "doors_tab.h"
 
-namespace DoorsTab{
+namespace DoorsTab {
 	void Render() {
 		if (IsInGame() && !State.mapDoors.empty()) {
 			if (ImGui::BeginTabItem("Doors")) {

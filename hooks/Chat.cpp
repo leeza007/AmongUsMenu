@@ -47,7 +47,6 @@ void dChatBubble_SetName(ChatBubble* __this, String* playerName, bool isDead, bo
 	ChatBubble_SetName(__this, playerName, isDead, voted, color, method);
 }
 
-
 void dHudManager_ShowMap(HudManager* __this, Action_1_MapBehaviour_* mapAction, MethodInfo* method) {
 	HudManager_ShowMap(__this, mapAction, method);
 

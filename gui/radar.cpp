@@ -88,7 +88,7 @@ namespace Radar {
 				float radX = maps[MapType].x_offset + (bodyPos.x * maps[MapType].scale) + winpos.x;
 				float radY = maps[MapType].y_offset - (bodyPos.y * maps[MapType].scale) + winpos.y;
 
-				drawList->AddText(ImGui::GetFont(), 16, ImVec2(radX -5.F, radY - 6.75F), GetRadarPlayerColor(playerData), "X");
+				drawList->AddText(ImGui::GetFont(), 16, ImVec2(radX - 5.F, radY - 6.75F), GetRadarPlayerColor(playerData), "X");
 			}
 		}
 

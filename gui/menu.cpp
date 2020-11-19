@@ -22,7 +22,7 @@ namespace Menu {
 		TasksTab::Render();
 		SabotageTab::Render();
 		DoorsTab::Render();
-		
+
 		ImGui::EndTabBar();
 		//ImGui::Checkbox("Console", &State.ShowConsole);
 		ImGui::End();

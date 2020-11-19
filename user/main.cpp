@@ -16,9 +16,9 @@ void Run(LPVOID lpParam) {
 
 	using namespace app;
 
-	#define DO_APP_FUNC(r, n, p, s) printf("%s = %p\n", #n, n)
-	#include "il2cpp-functions.h"
-	#undef DO_APP_FUNC
+#define DO_APP_FUNC(r, n, p, s) printf("%s = %p\n", #n, n)
+#include "il2cpp-functions.h"
+#undef DO_APP_FUNC
 
 	/*auto domain = il2cpp_domain_get();
 	auto assembly = il2cpp_domain_assembly_open(domain, "Assembly-CSharp");
