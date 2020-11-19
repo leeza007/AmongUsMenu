@@ -5,7 +5,7 @@
 #include <cstdint>
 #include <iostream>
 #include "game.hpp"
-#include "_hooks.h"
+#include "_hooks.hpp"
 #include "state.hpp"
 #include "version.h"
 

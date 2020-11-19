@@ -115,6 +115,15 @@
     <ClCompile Include="gui\tabs\tasks_tab.cpp">
       <Filter>gui\tabs</Filter>
     </ClCompile>
+    <ClCompile Include="gui\console.cpp">
+      <Filter>gui</Filter>
+    </ClCompile>
+    <ClCompile Include="events\MurderEvent.cpp">
+      <Filter>events</Filter>
+    </ClCompile>
+    <ClCompile Include="events\VentEvent.cpp">
+      <Filter>events</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="user\main.h">
@@ -134,9 +143,6 @@
     </ClInclude>
     <ClInclude Include="user\game.hpp">
       <Filter>user</Filter>
-    </ClInclude>
-    <ClInclude Include="gui\theme.h">
-      <Filter>gui</Filter>
     </ClInclude>
     <ClInclude Include="framework\il2cpp-helpers.h">
       <Filter>framework</Filter>
@@ -161,9 +167,6 @@
     </ClInclude>
     <ClInclude Include="user\utility.h">
       <Filter>user</Filter>
-    </ClInclude>
-    <ClInclude Include="hooks\_hooks.h">
-      <Filter>hooks</Filter>
     </ClInclude>
     <ClInclude Include="includes\kiero\kiero.h">
       <Filter>includes\kiero</Filter>
@@ -216,9 +219,6 @@
     <ClInclude Include="user\version.h">
       <Filter>user</Filter>
     </ClInclude>
-    <ClInclude Include="gui\gui-helpers.h">
-      <Filter>gui</Filter>
-    </ClInclude>
     <ClInclude Include="gui\tabs\game_tab.h">
       <Filter>gui\tabs</Filter>
     </ClInclude>
@@ -236,6 +236,21 @@
     </ClInclude>
     <ClInclude Include="gui\tabs\tasks_tab.h">
       <Filter>gui\tabs</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\console.hpp">
+      <Filter>gui</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\gui-helpers.hpp">
+      <Filter>gui</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\theme.hpp">
+      <Filter>gui</Filter>
+    </ClInclude>
+    <ClInclude Include="hooks\_hooks.hpp">
+      <Filter>hooks</Filter>
+    </ClInclude>
+    <ClInclude Include="events\_events.h">
+      <Filter>events</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -271,6 +286,9 @@
     </Filter>
     <Filter Include="gui\tabs">
       <UniqueIdentifier>{adf8506d-c5ae-43ab-a084-b809640a34aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="events">
+      <UniqueIdentifier>{d526527a-bee5-4ec3-ab45-73dcba5394b0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -7,7 +7,7 @@
 #include "state.hpp"
 #include "game.hpp"
 #include "utility.h"
-#include "gui-helpers.h"
+#include "gui-helpers.hpp"
 
 namespace GameTab {
 	const std::vector<const char*> KILL_DISTANCE = { "Short", "Medium", "Long" };

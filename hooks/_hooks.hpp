@@ -13,6 +13,7 @@
 #include "state.hpp"
 #include "menu.hpp"
 #include "radar.hpp"
+#include "console.hpp"
 
 typedef HRESULT(__stdcall* D3D_PRESENT_FUNCTION)(IDXGISwapChain*, UINT, UINT);
 
@@ -43,6 +44,8 @@ bool dStatsManager_get_AmBanned(StatsManager* __this, MethodInfo* method);
 int32_t dStatsManager_get_BanMinutesLeft(StatsManager* __this, MethodInfo* method);
 float dStatsManager_get_BanPoints(StatsManager* __this, MethodInfo* method);
 float dVent_CanUse(Vent* __this, GameData_PlayerInfo* pc, bool* canUse, bool* couldUse, MethodInfo* method);
+void dVent_EnterVent(Vent* __this, PlayerControl* pc, MethodInfo * method);
+void dVent_ExitVent(Vent* __this, PlayerControl* pc, MethodInfo * method);
 void dKeyboardJoystick_Update(KeyboardJoystick* __this, MethodInfo* method);
 bool dAutoOpenDoor_DoUpdate(AutoOpenDoor* __this, float dt, MethodInfo* method);
 void dPlainDoor_SetDoorway(PlainDoor* __this, bool open, MethodInfo* method);
@@ -54,3 +57,4 @@ void dHudManager_ShowMap(HudManager* __this, Action_1_MapBehaviour_* mapAction, 
 GameOptionsData* dGameOptionsData_Deserialize(BinaryReader* reader, MethodInfo* method);
 GameOptionsData* dGameOptionsData_Deserialize_1(MessageReader* reader, MethodInfo* method);
 void dPlayerControl_RpcSyncSettings(PlayerControl* __this, GameOptionsData* gameOptions, MethodInfo* method);
+void dPlayerControl_MurderPlayer(PlayerControl* __this, PlayerControl* target, MethodInfo* method);

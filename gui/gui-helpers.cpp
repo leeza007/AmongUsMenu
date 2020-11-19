@@ -1,4 +1,4 @@
-#include "gui-helpers.h"
+#include "gui-helpers.hpp"
 
 const char* strcat(std::initializer_list<const char*> strings) {
 	std::string result;

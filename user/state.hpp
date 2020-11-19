@@ -9,6 +9,7 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
+#include "_events.h"
 #include "_rpc.h"
 #include "json.hpp"
 #include "imgui/imHotKey.h"
@@ -16,8 +17,7 @@
 using namespace app;
 using json = nlohmann::ordered_json;
 
-class Settings
-{
+class Settings {
 private:
     inline bool Exists(const std::string& name);
 
@@ -61,6 +61,11 @@ public:
     SystemTypes__Enum selectedDoor;
     std::vector<SystemTypes__Enum> mapDoors;
     std::vector<SystemTypes__Enum> pinnedDoors;
+
+	std::vector<PlainShipRoom*> mapRooms;
+
+	bool ShowConsole = false;
+	std::vector<EventInterface*> events;
 
     void Load();
     void Save();

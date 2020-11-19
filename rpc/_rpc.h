@@ -1,8 +1,7 @@
 #pragma once
 #include <cstdint>
 
-class RPCInterface
-{
+class RPCInterface {
 public:
 	virtual ~RPCInterface() {}
 	virtual void Process() = 0;

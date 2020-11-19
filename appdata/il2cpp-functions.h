@@ -13,6 +13,7 @@ DO_APP_FUNC(String*, Scene_GetNameInternal, (int32_t sceneHandle, MethodInfo* me
 DO_APP_FUNC(void, SceneManager_Internal_ActiveSceneChanged, (Scene previousActiveScene, Scene newActiveScene, MethodInfo* method), "UnityEngine.CoreModule, System.Void UnityEngine.SceneManagement.SceneManager::Internal_ActiveSceneChanged(UnityEngine.SceneManagement.Scene, UnityEngine.SceneManagement.Scene)");
 DO_APP_FUNC(Vector3, Transform_get_position, (Transform* __this, MethodInfo* method), "UnityEngine.CoreModule, UnityEngine.Vector3 UnityEngine.Transform::get_position()");
 DO_APP_FUNC(float, Vector2_Distance, (Vector2 a, Vector2 b, MethodInfo* method), "UnityEngine.CoreModule, System.Single UnityEngine.Vector2::Distance(UnityEngine.Vector2, UnityEngine.Vector2)");
+DO_APP_FUNC(bool, Collider2D_OverlapPoint, (Collider2D* __this, Vector2 point, MethodInfo* method), "UnityEngine.Physics2DModule, System.Boolean UnityEngine.Collider2D::OverlapPoint(UnityEngine.Vector2)");
 
 DO_APP_FUNC(bool, AutoOpenDoor_DoUpdate, (AutoOpenDoor* __this, float dt, MethodInfo* method), "Assembly-CSharp, System.Boolean AutoOpenDoor::DoUpdate(System.Single)");
 
@@ -44,6 +45,7 @@ DO_APP_FUNC(Vector2, PlayerControl_GetTruePosition, (PlayerControl* __this, Meth
 DO_APP_FUNC(void, PlayerControl_RpcSyncSettings, (PlayerControl* __this, GameOptionsData* gameOptions, MethodInfo* method), "Assembly-CSharp, System.Void PlayerControl::RpcSyncSettings(GameOptionsData)");
 DO_APP_FUNC(void, PlayerControl_RpcMurderPlayer, (PlayerControl* __this, PlayerControl* target, MethodInfo* method), "Assembly-CSharp, System.Void PlayerControl::RpcMurderPlayer(PlayerControl)");
 DO_APP_FUNC(void, PlayerControl_CmdReportDeadBody, (PlayerControl* __this, GameData_PlayerInfo* target, MethodInfo* method), "Assembly-CSharp, System.Void PlayerControl::CmdReportDeadBody(GameData.PlayerInfo)");
+DO_APP_FUNC(void, PlayerControl_MurderPlayer, (PlayerControl * __this, PlayerControl * target, MethodInfo * method), "Assembly-CSharp, System.Void PlayerControl::MurderPlayer(PlayerControl)");
 
 
 DO_APP_FUNC(float, ShipStatus_CalculateLightRadius, (ShipStatus* __this, GameData_PlayerInfo* player, MethodInfo* method), "Assembly-CSharp, System.Single ShipStatus::CalculateLightRadius(GameData.PlayerInfo)");
@@ -57,6 +59,8 @@ DO_APP_FUNC(bool, StatsManager_get_AmBanned, (StatsManager* __this, MethodInfo* 
 
 DO_APP_FUNC(float, Vent_CanUse, (Vent* __this, GameData_PlayerInfo* player, bool* canUse, bool* couldUse, MethodInfo* method), "Assembly-CSharp, System.Single Vent::CanUse(GameData.PlayerInfo, System.Boolean&, System.Boolean&)");
 DO_APP_FUNC(float, Vent_get_UsableDistance, (Vent* __this, MethodInfo* method), "Assembly-CSharp, System.Single Vent::get_UsableDistance()");
+DO_APP_FUNC(void, Vent_EnterVent, (Vent* __this, PlayerControl* pc, MethodInfo* method), "Assembly-CSharp, System.Void Vent::EnterVent(PlayerControl)");
+DO_APP_FUNC(void, Vent_ExitVent, (Vent* __this, PlayerControl* pc, MethodInfo* method), "Assembly-CSharp, System.Void Vent::ExitVent(PlayerControl)");
 
 DO_APP_FUNC(void, HudManager_ShowMap, (HudManager* __this, Action_1_MapBehaviour_* mapAction, MethodInfo* method), "Assembly-CSharp, System.Void HudManager::ShowMap(System.Action<MapBehaviour>)");
 DO_APP_FUNC(void, ChatController_AddChat, (ChatController* __this, PlayerControl* sourcePlayer, String* chatText, MethodInfo* method), "Assembly-CSharp, System.Void ChatController::AddChat(PlayerControl, System.String)");

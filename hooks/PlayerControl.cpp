@@ -1,4 +1,4 @@
-#include "_hooks.h"
+#include "_hooks.hpp"
 
 using namespace app;
 
@@ -30,4 +30,9 @@ void dPlayerControl_RpcSyncSettings(PlayerControl* __this, GameOptionsData* game
 	State.TaskBarUpdates = gameOptions->fields.TaskBarUpdates;
 
 	PlayerControl_RpcSyncSettings(__this, gameOptions, method);
+}
+
+void dPlayerControl_MurderPlayer(PlayerControl* __this, PlayerControl* target, MethodInfo* method) {
+	State.events.push_back(new MurderEvent(__this, target));
+	PlayerControl_MurderPlayer(__this, target, method);
 }

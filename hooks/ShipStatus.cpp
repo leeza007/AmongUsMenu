@@ -1,4 +1,4 @@
-#include "_hooks.h"
+#include "_hooks.hpp"
 
 using namespace app;
 
@@ -11,6 +11,16 @@ float dShipStatus_CalculateLightRadius(ShipStatus* __this, GameData_PlayerInfo* 
 
 void dShipStatus_OnEnable(ShipStatus* __this, MethodInfo* method) {
 	ShipStatus_OnEnable(__this, method);
+
+	State.events.clear();
+
+	State.mapRooms.clear();
+
+	auto allRooms = __this->fields._AllRooms_k__BackingField;
+
+	for (il2cpp_array_size_t i = 0; i < allRooms->max_length; i++) {
+		State.mapRooms.push_back(allRooms->vector[i]);
+	}
 
 	State.selectedDoor = SystemTypes__Enum_Hallway;
 	State.mapDoors.clear();

@@ -1,8 +1,8 @@
-#include "_hooks.h"
+#include "_hooks.hpp"
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
 #include <fcntl.h>
-#include "theme.h"
+#include "theme.hpp"
 
 using namespace app;
 
@@ -136,6 +136,10 @@ HRESULT __stdcall hkPresent(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT 
 		Radar::Render();
 	}
 
+	if (State.ShowConsole) {
+		ConsoleGui::Render();
+	}
+
 	ImGui::EndFrame();
 	ImGui::Render();
 
@@ -161,6 +165,8 @@ void DetourInitilization() {
 	if (DetourAttach(&(PVOID&)ShipStatus_CalculateLightRadius, dShipStatus_CalculateLightRadius) != 0) return;
 	if (DetourAttach(&(PVOID&)ShipStatus_OnEnable, dShipStatus_OnEnable) != 0) return;
 	if (DetourAttach(&(PVOID&)Vent_CanUse, dVent_CanUse) != 0) return;
+	if (DetourAttach(&(PVOID&)Vent_EnterVent, dVent_EnterVent) != 0) return;
+	if (DetourAttach(&(PVOID&)Vent_ExitVent, dVent_ExitVent) != 0) return;
 	if (DetourAttach(&(PVOID&)StatsManager_get_AmBanned, dStatsManager_get_AmBanned) != 0) return;
 	if (DetourAttach(&(PVOID&)StatsManager_get_BanMinutesLeft, dStatsManager_get_BanMinutesLeft) != 0) return;
 	if (DetourAttach(&(PVOID&)StatsManager_get_BanPoints, dStatsManager_get_BanPoints) != 0) return;
@@ -173,6 +179,7 @@ void DetourInitilization() {
 	if (DetourAttach(&(PVOID&)PlainDoor_SetDoorway, dPlainDoor_SetDoorway) != 0) return;
 	if (DetourAttach(&(PVOID&)GameOptionsData_Deserialize, dGameOptionsData_Deserialize) != 0) return;
 	if (DetourAttach(&(PVOID&)GameOptionsData_Deserialize_1, dGameOptionsData_Deserialize_1) != 0) return;
+	if (DetourAttach(&(PVOID&)PlayerControl_MurderPlayer, dPlayerControl_MurderPlayer) != 0) return;
 
 	if (kiero::init(kiero::RenderType::D3D11) == kiero::Status::Success) {
 		oPresent = (D3D_PRESENT_FUNCTION)kiero::getMethodsTable()[8];

@@ -9,7 +9,7 @@
 #include "state.hpp"
 #include "game.hpp"
 #include "utility.h"
-#include "_hooks.h"
+#include "_hooks.hpp"
 
 namespace Radar
 {

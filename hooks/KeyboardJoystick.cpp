@@ -1,4 +1,4 @@
-#include "_hooks.h"
+#include "_hooks.hpp"
 
 void dKeyboardJoystick_Update(KeyboardJoystick* __this, MethodInfo* method) {
 	if (IsInGame()) {	

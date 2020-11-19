@@ -1,4 +1,4 @@
-#include "_hooks.h"
+#include "_hooks.hpp"
 
 using namespace app;
 
@@ -23,3 +23,13 @@ float dVent_CanUse(Vent* __this, GameData_PlayerInfo* pc, bool* canUse, bool* co
 
 	return app::Vent_CanUse(__this, pc, canUse, couldUse, method);
 };
+
+void dVent_EnterVent(Vent* __this, PlayerControl* pc, MethodInfo * method) {
+	State.events.push_back(new VentEvent(__this, pc, VENT_ENTER));
+	Vent_EnterVent(__this, pc, method);
+}
+
+void dVent_ExitVent(Vent* __this, PlayerControl* pc, MethodInfo * method) {
+	State.events.push_back(new VentEvent(__this, pc, VENT_EXIT));
+	Vent_ExitVent(__this, pc, method);
+}

@@ -227,3 +227,11 @@ std::string getModulePath() {
 std::string getGameVersion() {
 	return convert_from_string(Application_get_version(NULL));
 }
+
+const char* getRoomNameByVector2(Vector2 point) {
+	for (int i = 0; i < State.mapRooms.size(); i++) {
+		auto roomArea = State.mapRooms[i]->fields.roomArea;
+		if (Collider2D_OverlapPoint(State.mapRooms[i]->fields.roomArea, point, NULL)) return TranslateSystemTypes(State.mapRooms[i]->fields.RoomId);
+	}
+	return "Unknown";
+}
