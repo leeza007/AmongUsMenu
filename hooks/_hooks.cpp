@@ -83,7 +83,8 @@ LRESULT __stdcall WndProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 		if (hotkey != -1) {
 			if (hotkey == 0) State.ShowMenu = !State.ShowMenu;
 			if (hotkey == 1) State.ShowRadar = !State.ShowRadar;
-			if (hotkey == 2 && IsInGame()) RepairSabotage(*Game::pLocalPlayer);
+			if (hotkey == 2) State.ShowConsole = !State.ShowConsole;
+			if (hotkey == 3 && IsInGame()) RepairSabotage(*Game::pLocalPlayer);
 		}
 	}
 

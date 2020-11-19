@@ -33,7 +33,7 @@ void Settings::Load() {
 		Settings::ShowRadar_RightClick_Teleport = j_object["ShowRadar_RightClick_Teleport"].get<bool>();
 
 	if (j_object.contains("RepairSabotage_Hotkey"))
-		Settings::Hotkeys[2].functionKeys = j_object["RepairSabotage_Hotkey"].get<uint32_t>();
+		Settings::Hotkeys[3].functionKeys = j_object["RepairSabotage_Hotkey"].get<uint32_t>();
 
 	if (j_object.contains("MaxVision"))
 		Settings::MaxVision = j_object["MaxVision"].get<bool>();
@@ -48,6 +48,8 @@ void Settings::Load() {
 
 	if (j_object.contains("ShowConsole"))
 		Settings::ShowConsole = j_object["ShowConsole"].get<bool>();
+	if (j_object.contains("Console_Hotkey"))
+		Settings::Hotkeys[2].functionKeys = j_object["Console_Hotkey"].get<uint32_t>();
 }
 
 void Settings::Save() {
@@ -61,7 +63,7 @@ void Settings::Save() {
 		{"ShowRadar_Ghosts", Settings::ShowRadar_Ghosts},
 		{"ShowRadar_RightClick_Teleport", Settings::ShowRadar_RightClick_Teleport},
 
-		{"RepairSabotage_Hotkey", Settings::Hotkeys[2].functionKeys},
+		{"RepairSabotage_Hotkey", Settings::Hotkeys[3].functionKeys},
 
 		{"MaxVision", Settings::MaxVision},
 		{"UnlockVents", Settings::UnlockVents},
@@ -69,7 +71,8 @@ void Settings::Save() {
 		{"ChatAlwaysActive", Settings::ChatAlwaysActive},
 		{"ReadGhostMessages", Settings::ReadGhostMessages},
 
-		{"ShowConsole", Settings::ShowConsole}
+		{"ShowConsole", Settings::ShowConsole},
+		{"Console_Hotkey", Settings::Hotkeys[2].functionKeys}
 	};
 
 	std::ofstream outSettings(pSettings);
