@@ -6,12 +6,12 @@ VentEvent::VentEvent(std::string player, app::Vector2 position, VENT_ACTION acti
 {
 	this->player = player;
 	this->position = position;
-	this->room = GetSystemTypes(position);
+	this->systemType = GetSystemTypes(position);
 	this->action = action;
 }
 
 std::string VentEvent::Output() {
 	std::stringstream outputStream;
-	outputStream << player << ((action == VENT_ENTER) ? " entered Vent in " : " exited Vent in ") << TranslateSystemTypes(room);
+	outputStream << player << ((action == VENT_ENTER) ? " entered Vent in " : " exited Vent in ") << TranslateSystemTypes(systemType);
 	return outputStream.str();
 }

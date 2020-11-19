@@ -7,11 +7,11 @@ MurderEvent::MurderEvent(std::string murderer, std::string victim, app::Vector2 
 	this->murderer = murderer;
 	this->victim = victim;
 	this->position = position;
-	this->room = GetSystemTypes(position);
+	this->systemType = GetSystemTypes(position);
 }
 
 std::string MurderEvent::Output() {
 	std::stringstream outputStream;
-	outputStream << murderer << " has murdered " << victim << " in " << TranslateSystemTypes(room);
+	outputStream << murderer << " has murdered " << victim << " in " << TranslateSystemTypes(systemType);
 	return outputStream.str();
 }

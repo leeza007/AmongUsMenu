@@ -58,3 +58,4 @@ GameOptionsData* dGameOptionsData_Deserialize(BinaryReader* reader, MethodInfo* 
 GameOptionsData* dGameOptionsData_Deserialize_1(MessageReader* reader, MethodInfo* method);
 void dPlayerControl_RpcSyncSettings(PlayerControl* __this, GameOptionsData* gameOptions, MethodInfo* method);
 void dPlayerControl_MurderPlayer(PlayerControl* __this, PlayerControl* target, MethodInfo* method);
+void dPlayerControl_CompleteTask(PlayerControl* __this, uint32_t idx, MethodInfo* method);

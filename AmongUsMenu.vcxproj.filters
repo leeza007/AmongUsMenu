@@ -124,6 +124,9 @@
     <ClCompile Include="events\VentEvent.cpp">
       <Filter>events</Filter>
     </ClCompile>
+    <ClCompile Include="events\TaskCompletedEvent.cpp">
+      <Filter>events</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="user\main.h">

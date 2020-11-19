@@ -29,7 +29,7 @@ private:
 	std::string murderer;
 	std::string victim;
 	app::Vector2 position;
-	app::SystemTypes__Enum room;
+	app::SystemTypes__Enum systemType;
 public:
 	MurderEvent(std::string murderer, std::string victim, app::Vector2 position);
 	virtual std::string Output() override;
@@ -39,9 +39,20 @@ class VentEvent : public EventInterface {
 private:
 	std::string player;
 	app::Vector2 position;
-	app::SystemTypes__Enum room;
+	app::SystemTypes__Enum systemType;
 	VENT_ACTION action;
 public:
 	VentEvent(std::string player, app::Vector2 position, VENT_ACTION action);
+	virtual std::string Output() override;
+};
+
+class TaskCompletedEvent : public EventInterface {
+private:
+	std::string player;
+	app::TaskTypes__Enum taskType;
+	app::Vector2 position;
+	app::SystemTypes__Enum systemType;
+public:
+	TaskCompletedEvent(std::string player, app::TaskTypes__Enum taskType, app::Vector2 position);
 	virtual std::string Output() override;
 };

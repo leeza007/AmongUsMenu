@@ -2,6 +2,19 @@
 
 using namespace app;
 
+void dPlayerControl_CompleteTask(PlayerControl* __this, uint32_t idx, MethodInfo* method) {
+	auto player = convert_from_string(__this->fields._cachedData->fields.PlayerName);
+	TaskTypes__Enum taskType = (TaskTypes__Enum )-1;
+	auto position = PlayerControl_GetTruePosition(__this, NULL);
+
+	auto normalPlayerTasks = GetNormalPlayerTasks(__this);
+	for (auto normalPlayerTask : normalPlayerTasks)
+		if (normalPlayerTask->fields._._Id_k__BackingField == idx) taskType = normalPlayerTask->fields._.TaskType;
+
+	State.events.push_back(new TaskCompletedEvent(player, taskType, position));
+	PlayerControl_CompleteTask(__this, idx, method);
+}
+
 void dPlayerControl_FixedUpdate(PlayerControl* __this, MethodInfo* method) {
 	if (IsInGame()) {
 		auto playerData = GetPlayerData(__this);
