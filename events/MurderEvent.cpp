@@ -2,9 +2,7 @@
 #include "_events.h"
 #include "utility.h"
 
-MurderEvent::MurderEvent(std::string murderer, std::string victim, app::Vector2 position) : EventInterface(EVENT_MURDER)
-{
-	this->murderer = murderer;
+MurderEvent::MurderEvent(PlayerControl* murderer, PlayerControl* victim, app::Vector2 position) : EventInterface(murderer, EVENT_MURDER) {
 	this->victim = victim;
 	this->position = position;
 	this->systemType = GetSystemTypes(position);
@@ -12,6 +10,10 @@ MurderEvent::MurderEvent(std::string murderer, std::string victim, app::Vector2 
 
 std::string MurderEvent::Output() {
 	std::stringstream outputStream;
-	outputStream << murderer << " has murdered " << victim << " in " << TranslateSystemTypes(systemType);
+	outputStream << convert_from_string(getSource()->fields._cachedData->fields.PlayerName)
+		<< " has murdered "
+		<< convert_from_string(victim->fields._cachedData->fields.PlayerName)
+		<< " in "
+		<< TranslateSystemTypes(systemType);
 	return outputStream.str();
 }

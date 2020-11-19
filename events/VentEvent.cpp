@@ -2,9 +2,7 @@
 #include "_events.h"
 #include "utility.h"
 
-VentEvent::VentEvent(std::string player, app::Vector2 position, VENT_ACTION action) : EventInterface(EVENT_VENT)
-{
-	this->player = player;
+VentEvent::VentEvent(PlayerControl* player, app::Vector2 position, VENT_ACTION action) : EventInterface(player, EVENT_VENT) {
 	this->position = position;
 	this->systemType = GetSystemTypes(position);
 	this->action = action;
@@ -12,6 +10,8 @@ VentEvent::VentEvent(std::string player, app::Vector2 position, VENT_ACTION acti
 
 std::string VentEvent::Output() {
 	std::stringstream outputStream;
-	outputStream << player << ((action == VENT_ENTER) ? " entered Vent in " : " exited Vent in ") << TranslateSystemTypes(systemType);
+	outputStream << convert_from_string(getSource()->fields._cachedData->fields.PlayerName)
+		<< ((action == VENT_ENTER) ? " entered Vent in " : " exited Vent in ")
+		<< TranslateSystemTypes(systemType);
 	return outputStream.str();
 }

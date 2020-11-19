@@ -17,42 +17,44 @@ enum VENT_ACTION {
 class EventInterface {
 private:
 	EVENT_TYPES type;
+	PlayerControl* source;
 public:
-	EventInterface(EVENT_TYPES type) { EventInterface::type = type; }
+	EventInterface(PlayerControl* source, EVENT_TYPES type) {
+		EventInterface::source = source;
+		EventInterface::type = type;
+	}
 	virtual ~EventInterface() {}
 	virtual std::string Output() = 0;
 	EVENT_TYPES getType() { return EventInterface::type; }
+	PlayerControl* getSource() { return EventInterface::source; }
 };
 
 class MurderEvent : public EventInterface {
 private:
-	std::string murderer;
-	std::string victim;
+	PlayerControl* victim;
 	app::Vector2 position;
 	app::SystemTypes__Enum systemType;
 public:
-	MurderEvent(std::string murderer, std::string victim, app::Vector2 position);
+	MurderEvent(PlayerControl* murderer, PlayerControl* victim, app::Vector2 position);
 	virtual std::string Output() override;
 };
 
 class VentEvent : public EventInterface {
 private:
-	std::string player;
 	app::Vector2 position;
 	app::SystemTypes__Enum systemType;
 	VENT_ACTION action;
 public:
-	VentEvent(std::string player, app::Vector2 position, VENT_ACTION action);
+	VentEvent(PlayerControl* player, app::Vector2 position, VENT_ACTION action);
 	virtual std::string Output() override;
 };
 
 class TaskCompletedEvent : public EventInterface {
 private:
-	std::string player;
 	app::TaskTypes__Enum taskType;
 	app::Vector2 position;
 	app::SystemTypes__Enum systemType;
 public:
-	TaskCompletedEvent(std::string player, app::TaskTypes__Enum taskType, app::Vector2 position);
+	TaskCompletedEvent(PlayerControl* player, app::TaskTypes__Enum taskType, app::Vector2 position);
 	virtual std::string Output() override;
 };
