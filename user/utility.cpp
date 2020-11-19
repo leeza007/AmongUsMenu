@@ -238,11 +238,3 @@ SystemTypes__Enum GetSystemTypes(Vector2 vector) {
 	}
 	return SystemTypes__Enum_Outside;
 }
-
-const char* getRoomNameByVector2(Vector2 point) {
-	for (size_t i = 0; i < State.mapRooms.size(); i++) {
-		auto roomArea = State.mapRooms[i]->fields.roomArea;
-		if (Collider2D_OverlapPoint(State.mapRooms[i]->fields.roomArea, point, NULL)) return TranslateSystemTypes(State.mapRooms[i]->fields.RoomId);
-	}
-	return "Unknown";
-}

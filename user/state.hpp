@@ -62,8 +62,6 @@ public:
 	std::vector<SystemTypes__Enum> mapDoors;
 	std::vector<SystemTypes__Enum> pinnedDoors;
 
-	std::vector<PlainShipRoom*> mapRooms;
-
 	bool ShowConsole = false;
 	std::vector<EventInterface*> events;
 
