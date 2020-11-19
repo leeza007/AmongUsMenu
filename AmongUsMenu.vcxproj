@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="events\MurderEvent.cpp" />
+    <ClCompile Include="events\ReportDeadBodyEvent.cpp" />
     <ClCompile Include="events\VentEvent.cpp" />
     <ClCompile Include="framework\x_input.cpp" />
     <ClCompile Include="gui\console.cpp" />

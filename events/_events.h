@@ -6,7 +6,9 @@ enum EVENT_TYPES {
 	EVENT_MURDER = 0x1,
 	EVENT_VENT = 0x2,
 	EVENT_TASK_COMPLETED = 0x3,
-	EVENT_DEADBODY_FOUND = 0x4
+	EVENT_REPORT_DEADBODY = 0x4,
+	EVENT_SABOTAGE = 0x5,
+	EVENT_REPAIR = 0x6
 };
 
 enum VENT_ACTION {
@@ -56,5 +58,15 @@ private:
 	app::SystemTypes__Enum systemType;
 public:
 	TaskCompletedEvent(PlayerControl* player, app::TaskTypes__Enum taskType, app::Vector2 position);
+	virtual std::string Output() override;
+};
+
+class ReportDeadBodyEvent : public EventInterface {
+private:
+	GameData_PlayerInfo* target;
+	app::Vector2 position;
+	app::SystemTypes__Enum systemType;
+public:
+	ReportDeadBodyEvent(PlayerControl* player, GameData_PlayerInfo* target, app::Vector2 position);
 	virtual std::string Output() override;
 };

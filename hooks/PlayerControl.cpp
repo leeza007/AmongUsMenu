@@ -47,3 +47,8 @@ void dPlayerControl_MurderPlayer(PlayerControl* __this, PlayerControl* target, M
 	State.events.push_back(new MurderEvent(__this, target, PlayerControl_GetTruePosition(__this, NULL)));
 	PlayerControl_MurderPlayer(__this, target, method);
 }
+
+void dPlayerControl_ReportDeadBody(PlayerControl*__this, GameData_PlayerInfo* target, MethodInfo *method) {
+	State.events.push_back(new ReportDeadBodyEvent(__this, target, PlayerControl_GetTruePosition(__this, NULL)));
+	PlayerControl_ReportDeadBody(__this, target, method);
+}
