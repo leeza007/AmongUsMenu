@@ -27,3 +27,10 @@ void dShipStatus_OnEnable(ShipStatus* __this, MethodInfo* method) {
 
 	std::sort(State.mapDoors.begin(), State.mapDoors.end());
 }
+
+void dShipStatus_RepairSystem(ShipStatus* __this, SystemTypes__Enum systemType, PlayerControl* player, uint8_t amount, MethodInfo* method) {
+	// create event here
+	// check if event is sabotage or repair
+	// TODO: implement an actual event for this
+	ShipStatus_RepairSystem(__this, systemType, player, amount, method);
+}

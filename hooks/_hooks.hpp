@@ -60,3 +60,5 @@ void dPlayerControl_RpcSyncSettings(PlayerControl* __this, GameOptionsData* game
 void dPlayerControl_MurderPlayer(PlayerControl* __this, PlayerControl* target, MethodInfo* method);
 void dPlayerControl_CompleteTask(PlayerControl* __this, uint32_t idx, MethodInfo* method);
 void dPlayerControl_ReportDeadBody(PlayerControl*__this, GameData_PlayerInfo* target, MethodInfo *method);
+
+void dShipStatus_RepairSystem(ShipStatus* __this, SystemTypes__Enum systemType, PlayerControl* player, uint8_t amount, MethodInfo* method);
