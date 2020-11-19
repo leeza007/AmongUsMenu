@@ -12,8 +12,8 @@ namespace ConsoleGui {
 			ConsoleGui::Init();
 
 		ImGui::Begin("Console", &State.ShowConsole, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar);
-		ImGui::BeginChild("console#scroll", ImVec2(490, 225), false, ImGuiWindowFlags_None);
-		for (size_t i = 0; i < State.events.size(); i++) {
+		ImGui::BeginChild("console#scroll", ImVec2(490, 225), true);
+		for (int i = State.events.size() - 1; i >= 0; i--) {
 			auto playerData = GetPlayerData(State.events[i]->getSource());
 			std::string playerName = convert_from_string(playerData->fields.PlayerName);
 			ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0, 0));
