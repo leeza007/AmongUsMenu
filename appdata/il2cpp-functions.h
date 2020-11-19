@@ -52,7 +52,7 @@ DO_APP_FUNC(float, ShipStatus_CalculateLightRadius, (ShipStatus* __this, GameDat
 DO_APP_FUNC(void, ShipStatus_OnEnable, (ShipStatus* __this, MethodInfo* method), "Assembly-CSharp, System.Void ShipStatus::OnEnable()");
 DO_APP_FUNC(void, ShipStatus_RpcCloseDoorsOfType, (ShipStatus* __this, SystemTypes__Enum type, MethodInfo* method), "Assembly-CSharp, System.Void ShipStatus::RpcCloseDoorsOfType(SystemTypes)");
 DO_APP_FUNC(void, ShipStatus_RpcRepairSystem, (ShipStatus* __this, SystemTypes__Enum systemType, int32_t amount, MethodInfo* method), "Assembly-CSharp, System.Void ShipStatus::RpcRepairSystem(SystemTypes, System.Int32)");
-DO_APP_FUNC(void, ShipStatus_RepairSystem, (ShipStatus* __this, SystemTypes__Enum systemType, PlayerControl* player, uint8_t amount, MethodInfo* method), "Assembly-CSharp, System.Void ShipStatus::RepairSystem(SystemTypes, PlayerControl, System.Int32)");
+DO_APP_FUNC(void, ShipStatus_RepairSystem, (ShipStatus* __this, SystemTypes__Enum systemType, PlayerControl* player, uint8_t amount, MethodInfo* method), "Assembly-CSharp, System.Void ShipStatus::RepairSystem(SystemTypes, PlayerControl, System.Byte)");
 
 DO_APP_FUNC(float, StatsManager_get_BanPoints, (StatsManager* __this, MethodInfo* method), "Assembly-CSharp, System.Single StatsManager::get_BanPoints()");
 DO_APP_FUNC(int32_t, StatsManager_get_BanMinutesLeft, (StatsManager* __this, MethodInfo* method), "Assembly-CSharp, System.Int32 StatsManager::get_BanMinutesLeft()");
