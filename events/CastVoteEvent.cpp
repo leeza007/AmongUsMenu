@@ -22,5 +22,9 @@ void CastVoteEvent::Output()
 
 void CastVoteEvent::ColoredEventOutput()
 {
-	ImGui::Text("[ VOTE ]");
+	ImGui::Text("[");
+	ImGui::SameLine();
+	ImGui::TextColored(ImVec4(0.3f, 0.4f, 1.f, 1.f), "VOTE");
+	ImGui::SameLine();
+	ImGui::Text("]");
 }
