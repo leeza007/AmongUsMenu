@@ -2,22 +2,17 @@
 #include "_events.h"
 #include "utility.h"
 
-TaskCompletedEvent::TaskCompletedEvent(PlayerControl* player, app::TaskTypes__Enum taskType, app::Vector2 position) : EventInterface(player, EVENT_TASK_COMPLETED) {
+TaskCompletedEvent::TaskCompletedEvent(EVENT_PLAYER source, std::optional<TaskTypes__Enum> taskType, Vector2 position) : EventInterface(source, EVENT_TASK)
+{
 	this->taskType = taskType;
 	this->position = position;
 	this->systemType = GetSystemTypes(position);
 }
 
 void TaskCompletedEvent::Output() {
-	std::stringstream outputStream;
-	outputStream
-		<< "> "
-		<< ((taskType == -1) ? "UNKNOWN" : TranslateTaskTypes(taskType))
-		<< " (" << TranslateSystemTypes(systemType) << ")";
-	ImGui::TextColored(AmongUsColorToImVec4(GetPlayerColor(GetPlayerData(getSource())->fields.ColorId)),
-		convert_from_string(getSource()->fields._cachedData->fields.PlayerName).c_str());
+	ImGui::TextColored(AmongUsColorToImVec4(GetPlayerColor(source.colorId)), source.playerName);
 	ImGui::SameLine();
-	ImGui::Text(outputStream.str().c_str());
+	ImGui::Text(strcat({ "(", (taskType.has_value()) ? TranslateTaskTypes(*taskType) : "UNKOWN" , ")" }));
 }
 
 void TaskCompletedEvent::ColoredEventOutput() {

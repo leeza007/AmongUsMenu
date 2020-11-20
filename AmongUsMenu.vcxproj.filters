@@ -130,6 +130,9 @@
     <ClCompile Include="events\KillEvent.cpp">
       <Filter>events</Filter>
     </ClCompile>
+    <ClCompile Include="events\CastVoteEvent.cpp">
+      <Filter>events</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="user\main.h">

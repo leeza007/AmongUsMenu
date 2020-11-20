@@ -2,39 +2,32 @@
 #include "_events.h"
 #include "utility.h"
 
-ReportDeadBodyEvent::ReportDeadBodyEvent(PlayerControl* player, GameData_PlayerInfo* target, app::Vector2 position)
-	: EventInterface(player, (target) ? EVENT_REPORT_DEADBODY : EVENT_MEETING) {
+ReportDeadBodyEvent::ReportDeadBodyEvent(EVENT_PLAYER source, std::optional<EVENT_PLAYER> target, Vector2 position)
+	: EventInterface(source, (target.has_value() ? EVENT_REPORT : EVENT_MEETING))
+{
 	this->target = target;
 	this->position = position;
 	this->systemType = GetSystemTypes(position);
 }
 
 void ReportDeadBodyEvent::Output() {
-	std::stringstream outputStream;
-	outputStream
-		<< "("
-		<< TranslateSystemTypes(systemType)
-		<< ")";
-	ImGui::TextColored(AmongUsColorToImVec4(GetPlayerColor(GetPlayerData(getSource())->fields.ColorId)),
-		convert_from_string(getSource()->fields._cachedData->fields.PlayerName).c_str());
+	ImGui::TextColored(AmongUsColorToImVec4(GetPlayerColor(source.colorId)), source.playerName);
 	ImGui::SameLine();
 
-	if (target) {
+	if (target.has_value()) {
 		ImGui::Text(">");
 		ImGui::SameLine();
-		ImGui::TextColored(AmongUsColorToImVec4(GetPlayerColor(target->fields.ColorId)),
-			convert_from_string(target->fields.PlayerName).c_str());
-
+		ImGui::TextColored(AmongUsColorToImVec4(GetPlayerColor(target->colorId)), target->playerName);
 		ImGui::SameLine();
 	}
 
-	ImGui::Text(outputStream.str().c_str());
+	ImGui::Text(strcat({ "(", TranslateSystemTypes(systemType) , ")" }));
 }
 
 void ReportDeadBodyEvent::ColoredEventOutput() {
 	ImGui::Text("[");
 	ImGui::SameLine();
-	ImGui::TextColored((target) ? ImVec4(1.f, 0.5f, 0.f, 1.f) : ImVec4(1.f, 1.f, 0, 1.f), (target) ? "REPORT" : "MEETING");
+	ImGui::TextColored((target) ? ImVec4(1.f, 0.5f, 0.f, 1.f) : ImVec4(1.f, 1.f, 0, 1.f), (target.has_value()) ? "REPORT" : "MEETING");
 	ImGui::SameLine();
 	ImGui::Text("]");
 }

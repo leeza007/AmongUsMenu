@@ -32,6 +32,7 @@ DO_APP_FUNC(SkinData__Array*, HatManager_GetUnlockedSkins, (HatManager* __this, 
 
 DO_APP_FUNC(void, KeyboardJoystick_Update, (KeyboardJoystick* __this, MethodInfo* method), "Assembly-CSharp, System.Void KeyboardJoystick::Update()");
 
+DO_APP_FUNC(void, MeetingHud_CastVote, (MeetingHud* __this, uint8_t srcPlayerId, int8_t suspectPlayerId, MethodInfo* method), "Assembly-CSharp, System.Void MeetingHud::CastVote(System.Byte, System.SByte)");
 DO_APP_FUNC(void, MeetingHud_Update, (MeetingHud* __this, MethodInfo* method), "Assembly-CSharp, System.Void MeetingHud::Update()");
 
 DO_APP_FUNC(bool, NormalPlayerTask_get_IsComplete, (NormalPlayerTask* __this, MethodInfo* method), "Assembly-CSharp, System.Boolean NormalPlayerTask::get_IsComplete()");

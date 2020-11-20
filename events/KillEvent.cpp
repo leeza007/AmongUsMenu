@@ -2,27 +2,21 @@
 #include "_events.h"
 #include "utility.h"
 
-KillEvent::KillEvent(PlayerControl* murderer, PlayerControl* victim, app::Vector2 position) : EventInterface(murderer, EVENT_KILL) {
-	this->victim = victim;
+KillEvent::KillEvent(EVENT_PLAYER source, EVENT_PLAYER target, Vector2 position) : EventInterface(source, EVENT_KILL)
+{
+	this->target = target;
 	this->position = position;
 	this->systemType = GetSystemTypes(position);
 }
 
 void KillEvent::Output() {
-	std::stringstream outputStream;
-	outputStream
-		<< "("
-		<< TranslateSystemTypes(systemType)
-		<< ")";
-	ImGui::TextColored(AmongUsColorToImVec4(GetPlayerColor(GetPlayerData(getSource())->fields.ColorId)),
-		convert_from_string(getSource()->fields._cachedData->fields.PlayerName).c_str());
+	ImGui::TextColored(AmongUsColorToImVec4(GetPlayerColor(source.colorId)), source.playerName);
 	ImGui::SameLine();
 	ImGui::Text(">");
 	ImGui::SameLine();
-	ImGui::TextColored(AmongUsColorToImVec4(GetPlayerColor(GetPlayerData(victim)->fields.ColorId)),
-		convert_from_string(victim->fields._cachedData->fields.PlayerName).c_str());
+	ImGui::TextColored(AmongUsColorToImVec4(GetPlayerColor(target.colorId)), target.playerName);
 	ImGui::SameLine();
-	ImGui::Text(outputStream.str().c_str());
+	ImGui::Text(strcat({ "(", TranslateSystemTypes(systemType) , ")" }));
 }
 
 void KillEvent::ColoredEventOutput() {

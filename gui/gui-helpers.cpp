@@ -1,12 +1,5 @@
 #include "gui-helpers.hpp"
 
-const char* strcat(std::initializer_list<const char*> strings) {
-	std::string result;
-	for (auto string : strings)
-		result += string;
-	return _strdup(result.c_str());
-}
-
 bool CustomListBoxInt(const char* label, int* value, const std::vector<const char*> list, float width, ImGuiComboFlags flags) {
 	ImGuiStyle& style = ImGui::GetStyle();
 	float w = ImGui::CalcItemWidth();

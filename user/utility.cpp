@@ -238,3 +238,25 @@ SystemTypes__Enum GetSystemTypes(Vector2 vector) {
 	}
 	return SystemTypes__Enum_Outside;
 }
+
+const char* strcat(std::initializer_list<const char*> strings) {
+	std::string result;
+	for (auto string : strings)
+		result += string;
+	return _strdup(result.c_str());
+}
+
+std::optional<EVENT_PLAYER> GetEventPlayer(GameData_PlayerInfo* playerInfo)
+{
+	if (!playerInfo) return std::nullopt;
+	EVENT_PLAYER eventPlayer{};
+	eventPlayer.playerId = playerInfo->fields.PlayerId;
+	eventPlayer.colorId = playerInfo->fields.ColorId;
+	eventPlayer.playerName = _strdup(convert_from_string(playerInfo->fields.PlayerName).c_str());
+	return eventPlayer;
+}
+
+EVENT_PLAYER GetEventPlayer(PlayerControl* player)
+{
+	return *GetEventPlayer(player->fields._cachedData);
+}

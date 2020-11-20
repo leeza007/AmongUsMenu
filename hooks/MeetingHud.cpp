@@ -2,6 +2,8 @@
 
 using namespace app;
 
+static bool didVoteArray[255];
+
 void dMeetingHud_Update(MeetingHud* __this, MethodInfo* method) {
 	if (IsInGame()) {
 		PlayerVoteArea__Array* playerStates = __this->fields.playerStates;
@@ -16,6 +18,16 @@ void dMeetingHud_Update(MeetingHud* __this, MethodInfo* method) {
 					: Palette__TypeInfo->static_fields->White;
 				else
 					playerVoteArea->fields.NameText->fields.Color = Palette__TypeInfo->static_fields->White;
+			}
+
+			if (playerVoteArea->fields.didVote) {
+				if (didVoteArray[playerData->fields.PlayerId] == false) {
+					State.events.push_back(new CastVoteEvent(*GetEventPlayer(playerData), GetEventPlayer(GetPlayerDataById(playerVoteArea->fields.votedFor))));
+					didVoteArray[playerData->fields.PlayerId] = true;
+				}
+			}
+			else {
+				didVoteArray[playerData->fields.PlayerId] = false;
 			}
 		}
 	}

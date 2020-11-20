@@ -5,12 +5,13 @@ enum EVENT_TYPES {
 	EVENT_NONE = 0x0,
 	EVENT_KILL = 0x1,
 	EVENT_VENT = 0x2,
-	EVENT_TASK_COMPLETED = 0x3,
-	EVENT_REPORT_DEADBODY = 0x4,
+	EVENT_TASK = 0x3,
+	EVENT_REPORT = 0x4,
 	EVENT_MEETING = 0x5,
 	EVENT_SABOTAGE = 0x6,
 	EVENT_REPAIR = 0x7,
 	EVENT_WALK = 0x8,
+	EVENT_VOTE = 0x9
 };
 
 enum VENT_ACTION {
@@ -18,62 +19,76 @@ enum VENT_ACTION {
 	VENT_EXIT = 0x1
 };
 
+struct EVENT_PLAYER {
+	uint8_t playerId;
+	uint8_t colorId;
+	const char* playerName;
+};
+
 class EventInterface {
-private:
-	EVENT_TYPES type;
-	PlayerControl* source;
+protected:
+	EVENT_TYPES eventType;
+	EVENT_PLAYER source;
 public:
-	EventInterface(PlayerControl* source, EVENT_TYPES type) {
-		EventInterface::source = source;
-		EventInterface::type = type;
+	EventInterface(EVENT_PLAYER source, EVENT_TYPES eventType) {
+		this->source = source;
+		this->eventType = eventType;
 	}
 	virtual ~EventInterface() {}
 	virtual void Output() = 0;
 	virtual void ColoredEventOutput() = 0;
-	EVENT_TYPES getType() { return EventInterface::type; }
-	PlayerControl* getSource() { return EventInterface::source; }
+	EVENT_TYPES getType() { return this->eventType; }
+	EVENT_PLAYER getSource() { return this->source; }
 };
 
 class KillEvent : public EventInterface {
 private:
-	PlayerControl* victim;
-	app::Vector2 position;
-	app::SystemTypes__Enum systemType;
+	EVENT_PLAYER target;
+	Vector2 position;
+	SystemTypes__Enum systemType;
 public:
-	KillEvent(PlayerControl* murderer, PlayerControl* victim, app::Vector2 position);
+	KillEvent(EVENT_PLAYER source, EVENT_PLAYER target, Vector2 position);
 	virtual void Output() override;
 	virtual void ColoredEventOutput() override;
 };
 
 class VentEvent : public EventInterface {
 private:
-	app::Vector2 position;
-	app::SystemTypes__Enum systemType;
+	Vector2 position;
+	SystemTypes__Enum systemType;
 	VENT_ACTION action;
 public:
-	VentEvent(PlayerControl* player, app::Vector2 position, VENT_ACTION action);
+	VentEvent(EVENT_PLAYER source, Vector2 position, VENT_ACTION action);
 	virtual void Output() override;
 	virtual void ColoredEventOutput() override;
 };
 
 class TaskCompletedEvent : public EventInterface {
 private:
-	app::TaskTypes__Enum taskType;
-	app::Vector2 position;
-	app::SystemTypes__Enum systemType;
+	std::optional<TaskTypes__Enum> taskType;
+	Vector2 position;
+	SystemTypes__Enum systemType;
 public:
-	TaskCompletedEvent(PlayerControl* player, app::TaskTypes__Enum taskType, app::Vector2 position);
+	TaskCompletedEvent(EVENT_PLAYER source, std::optional<TaskTypes__Enum> taskType, Vector2 position);
 	virtual void Output() override;
 	virtual void ColoredEventOutput() override;
 };
 
 class ReportDeadBodyEvent : public EventInterface {
 private:
-	GameData_PlayerInfo* target;
-	app::Vector2 position;
-	app::SystemTypes__Enum systemType;
+	std::optional<EVENT_PLAYER> target;
+	Vector2 position;
+	SystemTypes__Enum systemType;
 public:
-	ReportDeadBodyEvent(PlayerControl* player, GameData_PlayerInfo* target, app::Vector2 position);
+	ReportDeadBodyEvent(EVENT_PLAYER source, std::optional<EVENT_PLAYER> target, Vector2 position);
+	virtual void Output() override;
+	virtual void ColoredEventOutput() override;
+};
+
+class CastVoteEvent : public EventInterface {
+	std::optional<EVENT_PLAYER> target;
+public:
+	CastVoteEvent(EVENT_PLAYER source, std::optional<EVENT_PLAYER> target);
 	virtual void Output() override;
 	virtual void ColoredEventOutput() override;
 };

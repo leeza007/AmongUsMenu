@@ -2,19 +2,17 @@
 #include "_events.h"
 #include "utility.h"
 
-VentEvent::VentEvent(PlayerControl* player, app::Vector2 position, VENT_ACTION action) : EventInterface(player, EVENT_VENT) {
+VentEvent::VentEvent(EVENT_PLAYER source, Vector2 position, VENT_ACTION action) : EventInterface(source, EVENT_VENT)
+{
 	this->position = position;
 	this->systemType = GetSystemTypes(position);
 	this->action = action;
 }
 
 void VentEvent::Output() {
-	std::stringstream outputStream;
-	outputStream << "(" << TranslateSystemTypes(systemType) << ")";
-	ImGui::TextColored(AmongUsColorToImVec4(GetPlayerColor(GetPlayerData(getSource())->fields.ColorId)),
-		convert_from_string(getSource()->fields._cachedData->fields.PlayerName).c_str());
+	ImGui::TextColored(AmongUsColorToImVec4(GetPlayerColor(source.colorId)), source.playerName);
 	ImGui::SameLine();
-	ImGui::Text(outputStream.str().c_str());
+	ImGui::Text(strcat({ "(", TranslateSystemTypes(systemType) , ")" }));
 }
 
 void VentEvent::ColoredEventOutput() {
