@@ -23,7 +23,7 @@ void TaskCompletedEvent::Output() {
 void TaskCompletedEvent::ColoredEventOutput() {
 	ImGui::Text("[");
 	ImGui::SameLine();
-	ImGui::TextColored(ImVec4(0, 255, 0, 255), "TASK");
+	ImGui::TextColored(ImVec4(0.f, 1.f, 0.f, 1.f), "TASK");
 	ImGui::SameLine();
 	ImGui::Text("]");
 }

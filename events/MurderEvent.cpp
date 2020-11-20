@@ -28,7 +28,7 @@ void MurderEvent::Output() {
 void MurderEvent::ColoredEventOutput() {
 	ImGui::Text("[");
 	ImGui::SameLine();
-	ImGui::TextColored(ImVec4(255, 0, 0, 255), "KILL");
+	ImGui::TextColored(ImVec4(1.f, 0.f, 0.f, 1.f), "KILL");
 	ImGui::SameLine();
 	ImGui::Text("]");
 }

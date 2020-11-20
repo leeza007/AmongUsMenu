@@ -22,7 +22,7 @@ void VentEvent::ColoredEventOutput() {
 	ImGui::SameLine();
 
 	ImVec4 color;
-	((action == VENT_ENTER) ? color = ImVec4(0, 255, 0, 255) : color = ImVec4(255, 0, 0, 255));
+	((action == VENT_ENTER) ? color = ImVec4(0.f, 1.f, 0.f, 1.f) : color = ImVec4(1.f, 0.f, 0.f, 1.f));
 
 	ImGui::TextColored(color, ((action == VENT_ENTER) ? "IN" : "OUT"));
 	ImGui::SameLine();
