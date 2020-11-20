@@ -28,10 +28,12 @@ namespace GameTab {
 			if (ImGui::Checkbox("No Clip", &State.NoClip)) {
 				if (!IsInGame()) State.NoClip = false;
 				else {
-					if (State.NoClip)
-						app::GameObject_set_layer(app::Component_get_gameObject((Component*)(*Game::pLocalPlayer), NULL), app::LayerMask_NameToLayer(convert_to_string("Ghost"), NULL), NULL);
-					else
-						app::GameObject_set_layer(app::Component_get_gameObject((Component*)(*Game::pLocalPlayer), NULL), app::LayerMask_NameToLayer(convert_to_string("Players"), NULL), NULL);
+					if (!(GetPlayerData(*Game::pLocalPlayer)->fields.IsDead)) {
+						if (State.NoClip)
+							app::GameObject_set_layer(app::Component_get_gameObject((Component*)(*Game::pLocalPlayer), NULL), app::LayerMask_NameToLayer(convert_to_string("Ghost"), NULL), NULL);
+						else
+							app::GameObject_set_layer(app::Component_get_gameObject((Component*)(*Game::pLocalPlayer), NULL), app::LayerMask_NameToLayer(convert_to_string("Players"), NULL), NULL);
+					}
 				}
 			}
 			ImGui::Checkbox("Reveal Impostors", &State.RevealImpostors);
