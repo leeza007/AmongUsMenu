@@ -8,11 +8,22 @@ TaskCompletedEvent::TaskCompletedEvent(PlayerControl* player, app::TaskTypes__En
 	this->systemType = GetSystemTypes(position);
 }
 
-std::string TaskCompletedEvent::Output() {
+void TaskCompletedEvent::Output() {
 	std::stringstream outputStream;
-	outputStream << convert_from_string(getSource()->fields._cachedData->fields.PlayerName)
-		<< " completed their task "
+	outputStream
+		<< "> "
 		<< ((taskType == -1) ? "UNKNOWN" : TranslateTaskTypes(taskType))
-		<< " in " << TranslateSystemTypes(systemType);
-	return outputStream.str();
+		<< " (" << TranslateSystemTypes(systemType) << ")";
+	ImGui::TextColored(AmongUsColorToImVec4(GetPlayerColor(GetPlayerData(getSource())->fields.ColorId)),
+		convert_from_string(getSource()->fields._cachedData->fields.PlayerName).c_str());
+	ImGui::SameLine();
+	ImGui::Text(outputStream.str().c_str());
+}
+
+void TaskCompletedEvent::ColoredEventOutput() {
+	ImGui::Text("[");
+	ImGui::SameLine();
+	ImGui::TextColored(ImVec4(0, 255, 0, 255), "TASK");
+	ImGui::SameLine();
+	ImGui::Text("]");
 }

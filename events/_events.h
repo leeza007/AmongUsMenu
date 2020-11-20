@@ -26,7 +26,8 @@ public:
 		EventInterface::type = type;
 	}
 	virtual ~EventInterface() {}
-	virtual std::string Output() = 0;
+	virtual void Output() = 0;
+	virtual void ColoredEventOutput() = 0;
 	EVENT_TYPES getType() { return EventInterface::type; }
 	PlayerControl* getSource() { return EventInterface::source; }
 };
@@ -38,7 +39,8 @@ private:
 	app::SystemTypes__Enum systemType;
 public:
 	MurderEvent(PlayerControl* murderer, PlayerControl* victim, app::Vector2 position);
-	virtual std::string Output() override;
+	virtual void Output() override;
+	virtual void ColoredEventOutput() override;
 };
 
 class VentEvent : public EventInterface {
@@ -48,7 +50,8 @@ private:
 	VENT_ACTION action;
 public:
 	VentEvent(PlayerControl* player, app::Vector2 position, VENT_ACTION action);
-	virtual std::string Output() override;
+	virtual void Output() override;
+	virtual void ColoredEventOutput() override;
 };
 
 class TaskCompletedEvent : public EventInterface {
@@ -58,7 +61,8 @@ private:
 	app::SystemTypes__Enum systemType;
 public:
 	TaskCompletedEvent(PlayerControl* player, app::TaskTypes__Enum taskType, app::Vector2 position);
-	virtual std::string Output() override;
+	virtual void Output() override;
+	virtual void ColoredEventOutput() override;
 };
 
 class ReportDeadBodyEvent : public EventInterface {
@@ -68,5 +72,6 @@ private:
 	app::SystemTypes__Enum systemType;
 public:
 	ReportDeadBodyEvent(PlayerControl* player, GameData_PlayerInfo* target, app::Vector2 position);
-	virtual std::string Output() override;
+	virtual void Output() override;
+	virtual void ColoredEventOutput() override;
 };

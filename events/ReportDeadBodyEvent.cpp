@@ -8,12 +8,27 @@ ReportDeadBodyEvent::ReportDeadBodyEvent(PlayerControl* player, GameData_PlayerI
 	this->systemType = GetSystemTypes(position);
 }
 
-std::string ReportDeadBodyEvent::Output() {
+void ReportDeadBodyEvent::Output() {
 	std::stringstream outputStream;
-	outputStream << convert_from_string(getSource()->fields._cachedData->fields.PlayerName)
-		<< " has found "
-		<< convert_from_string(target->fields.PlayerName)
-		<< "'s Dead Body in "
-		<< TranslateSystemTypes(systemType);
-	return outputStream.str();
+	outputStream
+		<< "("
+		<< TranslateSystemTypes(systemType)
+		<< ")";
+	ImGui::TextColored(AmongUsColorToImVec4(GetPlayerColor(GetPlayerData(getSource())->fields.ColorId)),
+		convert_from_string(getSource()->fields._cachedData->fields.PlayerName).c_str());
+	ImGui::SameLine();
+	ImGui::Text(">");
+	ImGui::SameLine();
+	ImGui::TextColored(AmongUsColorToImVec4(GetPlayerColor(target->fields.ColorId)),
+		convert_from_string(target->fields.PlayerName).c_str());
+	ImGui::SameLine();
+	ImGui::Text(outputStream.str().c_str());
+}
+
+void ReportDeadBodyEvent::ColoredEventOutput() {
+	ImGui::Text("[");
+	ImGui::SameLine();
+	ImGui::TextColored(ImVec4(255, 140, 0, 255), "REPORT");
+	ImGui::SameLine();
+	ImGui::Text("]");
 }

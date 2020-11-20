@@ -8,10 +8,23 @@ VentEvent::VentEvent(PlayerControl* player, app::Vector2 position, VENT_ACTION a
 	this->action = action;
 }
 
-std::string VentEvent::Output() {
+void VentEvent::Output() {
 	std::stringstream outputStream;
-	outputStream << convert_from_string(getSource()->fields._cachedData->fields.PlayerName)
-		<< ((action == VENT_ENTER) ? " entered Vent in " : " exited Vent in ")
-		<< TranslateSystemTypes(systemType);
-	return outputStream.str();
+	outputStream << "(" << TranslateSystemTypes(systemType) << ")";
+	ImGui::TextColored(AmongUsColorToImVec4(GetPlayerColor(GetPlayerData(getSource())->fields.ColorId)),
+		convert_from_string(getSource()->fields._cachedData->fields.PlayerName).c_str());
+	ImGui::SameLine();
+	ImGui::Text(outputStream.str().c_str());
+}
+
+void VentEvent::ColoredEventOutput() {
+	ImGui::Text("[ VENT");
+	ImGui::SameLine();
+
+	ImVec4 color;
+	((action == VENT_ENTER) ? color = ImVec4(0, 255, 0, 255) : color = ImVec4(255, 0, 0, 255));
+
+	ImGui::TextColored(color, ((action == VENT_ENTER) ? "IN" : "OUT"));
+	ImGui::SameLine();
+	ImGui::Text("]");
 }

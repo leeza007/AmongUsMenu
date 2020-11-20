@@ -8,12 +8,27 @@ MurderEvent::MurderEvent(PlayerControl* murderer, PlayerControl* victim, app::Ve
 	this->systemType = GetSystemTypes(position);
 }
 
-std::string MurderEvent::Output() {
+void MurderEvent::Output() {
 	std::stringstream outputStream;
-	outputStream << convert_from_string(getSource()->fields._cachedData->fields.PlayerName)
-		<< " has murdered "
-		<< convert_from_string(victim->fields._cachedData->fields.PlayerName)
-		<< " in "
-		<< TranslateSystemTypes(systemType);
-	return outputStream.str();
+	outputStream
+		<< "("
+		<< TranslateSystemTypes(systemType)
+		<< ")";
+	ImGui::TextColored(AmongUsColorToImVec4(GetPlayerColor(GetPlayerData(getSource())->fields.ColorId)),
+		convert_from_string(getSource()->fields._cachedData->fields.PlayerName).c_str());
+	ImGui::SameLine();
+	ImGui::Text(">");
+	ImGui::SameLine();
+	ImGui::TextColored(AmongUsColorToImVec4(GetPlayerColor(GetPlayerData(victim)->fields.ColorId)),
+		convert_from_string(victim->fields._cachedData->fields.PlayerName).c_str());
+	ImGui::SameLine();
+	ImGui::Text(outputStream.str().c_str());
+}
+
+void MurderEvent::ColoredEventOutput() {
+	ImGui::Text("[");
+	ImGui::SameLine();
+	ImGui::TextColored(ImVec4(255, 0, 0, 255), "KILL");
+	ImGui::SameLine();
+	ImGui::Text("]");
 }
