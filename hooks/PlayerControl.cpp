@@ -44,7 +44,7 @@ void dPlayerControl_RpcSyncSettings(PlayerControl* __this, GameOptionsData* game
 }
 
 void dPlayerControl_MurderPlayer(PlayerControl* __this, PlayerControl* target, MethodInfo* method) {
-	State.events.push_back(new MurderEvent(__this, target, PlayerControl_GetTruePosition(__this, NULL)));
+	State.events.push_back(new KillEvent(__this, target, PlayerControl_GetTruePosition(__this, NULL)));
 	PlayerControl_MurderPlayer(__this, target, method);
 }
 

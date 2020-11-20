@@ -118,9 +118,6 @@
     <ClCompile Include="gui\console.cpp">
       <Filter>gui</Filter>
     </ClCompile>
-    <ClCompile Include="events\MurderEvent.cpp">
-      <Filter>events</Filter>
-    </ClCompile>
     <ClCompile Include="events\VentEvent.cpp">
       <Filter>events</Filter>
     </ClCompile>
@@ -128,6 +125,9 @@
       <Filter>events</Filter>
     </ClCompile>
     <ClCompile Include="events\ReportDeadBodyEvent.cpp">
+      <Filter>events</Filter>
+    </ClCompile>
+    <ClCompile Include="events\KillEvent.cpp">
       <Filter>events</Filter>
     </ClCompile>
   </ItemGroup>

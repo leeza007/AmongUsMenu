@@ -2,13 +2,13 @@
 #include "_events.h"
 #include "utility.h"
 
-MurderEvent::MurderEvent(PlayerControl* murderer, PlayerControl* victim, app::Vector2 position) : EventInterface(murderer, EVENT_MURDER) {
+KillEvent::KillEvent(PlayerControl* murderer, PlayerControl* victim, app::Vector2 position) : EventInterface(murderer, EVENT_KILL) {
 	this->victim = victim;
 	this->position = position;
 	this->systemType = GetSystemTypes(position);
 }
 
-void MurderEvent::Output() {
+void KillEvent::Output() {
 	std::stringstream outputStream;
 	outputStream
 		<< "("
@@ -25,7 +25,7 @@ void MurderEvent::Output() {
 	ImGui::Text(outputStream.str().c_str());
 }
 
-void MurderEvent::ColoredEventOutput() {
+void KillEvent::ColoredEventOutput() {
 	ImGui::Text("[");
 	ImGui::SameLine();
 	ImGui::TextColored(ImVec4(1.f, 0.f, 0.f, 1.f), "KILL");

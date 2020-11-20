@@ -3,7 +3,7 @@
 
 enum EVENT_TYPES {
 	EVENT_NONE = 0x0,
-	EVENT_MURDER = 0x1,
+	EVENT_KILL = 0x1,
 	EVENT_VENT = 0x2,
 	EVENT_TASK_COMPLETED = 0x3,
 	EVENT_REPORT_DEADBODY = 0x4,
@@ -34,13 +34,13 @@ public:
 	PlayerControl* getSource() { return EventInterface::source; }
 };
 
-class MurderEvent : public EventInterface {
+class KillEvent : public EventInterface {
 private:
 	PlayerControl* victim;
 	app::Vector2 position;
 	app::SystemTypes__Enum systemType;
 public:
-	MurderEvent(PlayerControl* murderer, PlayerControl* victim, app::Vector2 position);
+	KillEvent(PlayerControl* murderer, PlayerControl* victim, app::Vector2 position);
 	virtual void Output() override;
 	virtual void ColoredEventOutput() override;
 };
