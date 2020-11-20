@@ -11,14 +11,14 @@ namespace GameTab {
 					State.PrevPlayerSpeed = State.PlayerSpeed;
 				}
 			}
-			if (CustomListBoxInt("Kill Distance", &State.KillDistance, KILL_DISTANCE, ImGuiComboFlags_NoArrowButton)) {
+			if (CustomListBoxInt("Kill Distance", &State.KillDistance, KILL_DISTANCE)) {
 				if (!IsInGame()) State.KillDistance = State.PrevKillDistance;
 				else {
 					(*Game::pGameOptionsData)->fields.KillDistance = State.KillDistance;
 					State.PrevKillDistance = State.KillDistance;
 				}
 			}
-			if (CustomListBoxInt("Task Bar Updates", &State.TaskBarUpdates, TASKBARUPDATES, ImGuiComboFlags_NoArrowButton)) {
+			if (CustomListBoxInt("Task Bar Updates", &State.TaskBarUpdates, TASKBARUPDATES)) {
 				if (!IsInGame()) State.TaskBarUpdates = State.PrevTaskBarUpdates;
 				else {
 					(*Game::pGameOptionsData)->fields.TaskBarUpdates = (TaskBarUpdates__Enum)State.TaskBarUpdates;
@@ -38,9 +38,14 @@ namespace GameTab {
 			ImGui::Checkbox("Unlock Vents", &State.UnlockVents);
 			ImGui::Checkbox("Always show Chat Button", &State.ChatAlwaysActive);
 			ImGui::Checkbox("Read Messages by Ghosts", &State.ReadGhostMessages);
+			ImGui::NewLine();
+			ImGui::NewLine();
+			ImGui::Separator();
 			if (ImGui::Button("Edit Hotkeys")) {
 				ImGui::OpenPopup("Hotkeys Editor");
 			}
+			ImGui::SameLine();
+			ImGui::Checkbox("Console", &State.ShowConsole);
 			ImHotKey::Edit(State.Hotkeys.data(), State.Hotkeys.size(), "Hotkeys Editor");
 
 			ImGui::EndTabItem();

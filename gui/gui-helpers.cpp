@@ -7,13 +7,13 @@ const char* strcat(std::initializer_list<const char*> strings) {
 	return _strdup(result.c_str());
 }
 
-bool CustomListBoxInt(const char* label, int* value, const std::vector<const char*> list, ImGuiComboFlags flags) {
+bool CustomListBoxInt(const char* label, int* value, const std::vector<const char*> list, float width, ImGuiComboFlags flags) {
 	ImGuiStyle& style = ImGui::GetStyle();
 	float w = ImGui::CalcItemWidth();
 	float spacing = style.ItemInnerSpacing.x;
 	float button_sz = ImGui::GetFrameHeight();
-	ImGui::PushItemWidth(w - spacing * 2.0f - button_sz * 2.0f);
-	const bool response = ImGui::BeginCombo(strcat({ "##", label }), list.at(*value), flags);
+	ImGui::PushItemWidth(width);
+	const bool response = ImGui::BeginCombo(strcat({ "##", label }), list.at(*value), ImGuiComboFlags_NoArrowButton | flags);
 	if (response) {
 		for (size_t i = 0; i < list.size(); i++) {
 			bool is_selected = (*value == i);

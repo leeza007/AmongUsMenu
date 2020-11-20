@@ -4,7 +4,7 @@ using namespace app;
 
 namespace Menu {
 	void Init() {
-		ImGui::SetNextWindowSize(ImVec2(400, 250), ImGuiCond_Once);
+		ImGui::SetNextWindowSize(ImVec2(400, 255), ImGuiCond_Once);
 		ImGui::SetNextWindowBgAlpha(1.F);
 	}
 
@@ -24,7 +24,6 @@ namespace Menu {
 		DoorsTab::Render();
 
 		ImGui::EndTabBar();
-		//ImGui::Checkbox("Console", &State.ShowConsole);
 		ImGui::End();
 	}
 }
