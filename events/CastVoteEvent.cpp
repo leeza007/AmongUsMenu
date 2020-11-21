@@ -2,13 +2,11 @@
 #include "_events.h"
 #include "utility.h"
 
-CastVoteEvent::CastVoteEvent(EVENT_PLAYER source, std::optional<EVENT_PLAYER> target) : EventInterface(source, EVENT_VOTE)
-{
+CastVoteEvent::CastVoteEvent(EVENT_PLAYER source, std::optional<EVENT_PLAYER> target) : EventInterface(source, EVENT_VOTE) {
 	this->target = target;
 }
 
-void CastVoteEvent::Output()
-{
+void CastVoteEvent::Output() {
 	ImGui::TextColored(AmongUsColorToImVec4(GetPlayerColor(source.colorId)), source.playerName);
 	ImGui::SameLine();
 	ImGui::Text(">");
@@ -20,8 +18,7 @@ void CastVoteEvent::Output()
 		ImGui::Text("Skipped");
 }
 
-void CastVoteEvent::ColoredEventOutput()
-{
+void CastVoteEvent::ColoredEventOutput() {
 	ImGui::Text("[");
 	ImGui::SameLine();
 	ImGui::TextColored(ImVec4(0.3f, 0.4f, 1.f, 1.f), "VOTE");

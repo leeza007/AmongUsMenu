@@ -3,8 +3,7 @@
 #include "utility.h"
 
 ReportDeadBodyEvent::ReportDeadBodyEvent(EVENT_PLAYER source, std::optional<EVENT_PLAYER> target, Vector2 position)
-	: EventInterface(source, (target.has_value() ? EVENT_REPORT : EVENT_MEETING))
-{
+	: EventInterface(source, (target.has_value() ? EVENT_REPORT : EVENT_MEETING)) {
 	this->target = target;
 	this->position = position;
 	this->systemType = GetSystemTypes(position);
