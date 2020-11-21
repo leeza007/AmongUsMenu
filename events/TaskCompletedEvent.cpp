@@ -12,7 +12,7 @@ TaskCompletedEvent::TaskCompletedEvent(EVENT_PLAYER source, std::optional<TaskTy
 void TaskCompletedEvent::Output() {
 	ImGui::TextColored(AmongUsColorToImVec4(GetPlayerColor(source.colorId)), source.playerName);
 	ImGui::SameLine();
-	ImGui::Text(strcat({ "(", (taskType.has_value()) ? TranslateTaskTypes(*taskType) : "UNKOWN" , ")" }));
+	ImGui::Text(strcat({ "> ", (taskType.has_value()) ? TranslateTaskTypes(*taskType) : "UNKOWN" , " (", TranslateSystemTypes(systemType), ")" }));
 }
 
 void TaskCompletedEvent::ColoredEventOutput() {
