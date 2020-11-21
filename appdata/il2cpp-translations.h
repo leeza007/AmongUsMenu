@@ -60,7 +60,6 @@ const std::vector<KLASS_PAIR> KLASS_TRANSLATIONS = {
 	{ {"", "SystemTypes"}, {"", "JBPEMAACAEP"} },
 	{ {"", "TextRenderer"}, {"", "FELHHOEBHMA"} },
 	{ {"", "Vent"}, {"", "FBDDMHFBCPD"} },
-	{ {"", "ProgressTracker"}, {"", "HAJMHGGPNHK"} },
 	{ {"InnerNet", "InnerNetClient"}, {"", "DNAFMCDBMCI"} },
 	{ {"InnerNet", "InnerNetObject"}, {"", "PEIOEODMCCN"} },
 };
