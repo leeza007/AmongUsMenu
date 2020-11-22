@@ -7,7 +7,7 @@
 #include "gui-helpers.hpp"
 
 namespace ConsoleGui {
-	const std::vector<const char*> BY_TYPE = { "", "Kill", "Vent", "Task", "Report", "Meeting", "Sabotage", "Repair", "Vote" };
+	const std::vector<const char*> BY_TYPE = { "", "Kill", "Vent", "Task", "Report", "Meeting", "Vote" };
 	extern int selectedType;
 
 	void Init();
