@@ -184,6 +184,8 @@ void DetourInitilization() {
 	if (DetourAttach(&(PVOID&)PlayerControl_CompleteTask, dPlayerControl_CompleteTask) != 0) return;
 	if (DetourAttach(&(PVOID&)PlayerControl_ReportDeadBody, dPlayerControl_ReportDeadBody) != 0) return;
 	if (DetourAttach(&(PVOID&)ShipStatus_RepairSystem, dShipStatus_RepairSystem) != 0) return;
+	if (DetourAttach(&(PVOID&)MeetingHud_Awake, dMeetingHud_Awake) != 0) return;
+	if (DetourAttach(&(PVOID&)MeetingHud_Close, dMeetingHud_Close) != 0) return;
 
 	if (kiero::init(kiero::RenderType::D3D11) == kiero::Status::Success) {
 		oPresent = (D3D_PRESENT_FUNCTION)kiero::getMethodsTable()[8];

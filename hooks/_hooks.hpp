@@ -62,3 +62,5 @@ void dPlayerControl_CompleteTask(PlayerControl* __this, uint32_t idx, MethodInfo
 void dPlayerControl_ReportDeadBody(PlayerControl*__this, GameData_PlayerInfo* target, MethodInfo *method);
 
 void dShipStatus_RepairSystem(ShipStatus* __this, SystemTypes__Enum systemType, PlayerControl* player, uint8_t amount, MethodInfo* method);
+void dMeetingHud_Awake(MeetingHud* __this, MethodInfo* method);
+void dMeetingHud_Close(MeetingHud* __this, MethodInfo* method);

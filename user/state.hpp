@@ -66,6 +66,8 @@ public:
 	bool ShowConsole = false;
 	std::vector<EventInterface*> events;
 
+	std::map<uint8_t, bool> voteMonitor;
+
     void Load();
     void Save();
 };
