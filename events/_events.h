@@ -25,8 +25,20 @@ struct EVENT_PLAYER {
 	uint8_t colorId;
 	char* playerName;
 
+	EVENT_PLAYER() {
+		playerId = 0;
+		colorId = 0;
+		playerName = nullptr;
+	}
+
+	EVENT_PLAYER(const EVENT_PLAYER& eventPlayer) {
+		playerId = eventPlayer.playerId;
+		colorId = eventPlayer.colorId;
+		playerName = _strdup(eventPlayer.playerName);
+	}
+
 	~EVENT_PLAYER() {
-		free(playerName);
+		if(playerName) free(playerName);
 	}
 };
 
