@@ -23,6 +23,7 @@
     <ClCompile Include="events\KillEvent.cpp" />
     <ClCompile Include="events\ReportDeadBodyEvent.cpp" />
     <ClCompile Include="events\VentEvent.cpp" />
+    <ClCompile Include="events\WalkEvent.cpp" />
     <ClCompile Include="framework\x_input.cpp" />
     <ClCompile Include="gui\console.cpp" />
     <ClCompile Include="gui\gui-helpers.cpp" />

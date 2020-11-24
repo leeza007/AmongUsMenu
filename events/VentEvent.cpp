@@ -12,7 +12,7 @@ VentEvent::VentEvent(EVENT_PLAYER source, Vector2 position, VENT_ACTION action) 
 void VentEvent::Output() {
 	ImGui::TextColored(AmongUsColorToImVec4(GetPlayerColor(source.colorId)), source.playerName);
 	ImGui::SameLine();
-	ImGui::Text(strcat({ "(", TranslateSystemTypes(systemType) , ")" }));
+	ImGui::Text("(%s)", TranslateSystemTypes(systemType));
 }
 
 void VentEvent::ColoredEventOutput() {

@@ -20,7 +20,7 @@ void ReportDeadBodyEvent::Output() {
 		ImGui::SameLine();
 	}
 
-	ImGui::Text(strcat({ "(", TranslateSystemTypes(systemType) , ")" }));
+	ImGui::Text("(%s)", TranslateSystemTypes(systemType));
 }
 
 void ReportDeadBodyEvent::ColoredEventOutput() {

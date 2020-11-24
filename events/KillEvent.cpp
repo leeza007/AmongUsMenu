@@ -15,7 +15,7 @@ void KillEvent::Output() {
 	ImGui::SameLine();
 	ImGui::TextColored(AmongUsColorToImVec4(GetPlayerColor(target.colorId)), target.playerName);
 	ImGui::SameLine();
-	ImGui::Text(strcat({ "(", TranslateSystemTypes(systemType) , ")" }));
+	ImGui::Text("(%s)", TranslateSystemTypes(systemType));
 }
 
 void KillEvent::ColoredEventOutput() {

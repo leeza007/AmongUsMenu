@@ -23,7 +23,11 @@ enum VENT_ACTION {
 struct EVENT_PLAYER {
 	uint8_t playerId;
 	uint8_t colorId;
-	const char* playerName;
+	char* playerName;
+
+	~EVENT_PLAYER() {
+		free(playerName);
+	}
 };
 
 class EventInterface {
@@ -87,9 +91,19 @@ public:
 };
 
 class CastVoteEvent : public EventInterface {
+private:
 	std::optional<EVENT_PLAYER> target;
 public:
 	CastVoteEvent(EVENT_PLAYER source, std::optional<EVENT_PLAYER> target);
 	virtual void Output() override;
 	virtual void ColoredEventOutput() override;
 };
+
+class WalkEvent : public EventInterface {
+public:
+	Vector2 position;
+	WalkEvent(EVENT_PLAYER source, Vector2 position);
+	virtual void Output() override;
+	virtual void ColoredEventOutput() override;
+};
+
