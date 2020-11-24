@@ -133,6 +133,9 @@
     <ClCompile Include="events\CastVoteEvent.cpp">
       <Filter>events</Filter>
     </ClCompile>
+    <ClCompile Include="rpc\RpcCompleteTask.cpp">
+      <Filter>rpc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="user\main.h">

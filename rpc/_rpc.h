@@ -1,5 +1,7 @@
 #pragma once
-#include <cstdint>
+#include "il2cpp-appdata.h"
+
+using namespace app;
 
 class RPCInterface {
 public:
@@ -27,5 +29,12 @@ class RpcRepairSystem : public RPCInterface {
 	int32_t amount;
 public:
 	RpcRepairSystem(SystemTypes__Enum selectedSystem, int32_t amount);
+	virtual void Process() override;
+};
+
+class RpcCompleteTask : public RPCInterface {
+	uint32_t taskId;
+public:
+	RpcCompleteTask(uint32_t taskId);
 	virtual void Process() override;
 };

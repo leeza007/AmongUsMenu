@@ -1,5 +1,8 @@
 #pragma once
+#include "il2cpp-appdata.h"
 #include <iostream>
+
+using namespace app;
 
 enum EVENT_TYPES {
 	EVENT_NONE = 0x0,
