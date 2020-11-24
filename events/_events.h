@@ -31,6 +31,12 @@ struct EVENT_PLAYER {
 		playerName = nullptr;
 	}
 
+	EVENT_PLAYER(GameData_PlayerInfo* playerInfo) {
+		playerId = playerInfo->fields.PlayerId;
+		colorId = playerInfo->fields.ColorId;
+		playerName = _strdup(convert_from_string(playerInfo->fields.PlayerName).c_str());
+	}
+
 	EVENT_PLAYER(const EVENT_PLAYER& eventPlayer) {
 		playerId = eventPlayer.playerId;
 		colorId = eventPlayer.colorId;

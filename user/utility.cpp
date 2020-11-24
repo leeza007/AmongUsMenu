@@ -249,11 +249,7 @@ const char* strcat(std::initializer_list<const char*> strings) {
 std::optional<EVENT_PLAYER> GetEventPlayer(GameData_PlayerInfo* playerInfo)
 {
 	if (!playerInfo) return std::nullopt;
-	EVENT_PLAYER eventPlayer{};
-	eventPlayer.playerId = playerInfo->fields.PlayerId;
-	eventPlayer.colorId = playerInfo->fields.ColorId;
-	eventPlayer.playerName = _strdup(convert_from_string(playerInfo->fields.PlayerName).c_str());
-	return eventPlayer;
+	return EVENT_PLAYER(playerInfo);
 }
 
 EVENT_PLAYER GetEventPlayer(PlayerControl* player)
