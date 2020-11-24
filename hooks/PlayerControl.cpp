@@ -30,8 +30,8 @@ void dPlayerControl_FixedUpdate(PlayerControl* __this, MethodInfo* method) {
 			nameText->fields.Color = Palette__TypeInfo->static_fields->White;
 
 		Vector2 position = PlayerControl_GetTruePosition(__this, NULL);
-		std::optional<Vector2> lastPosition = GetLastWalkEventPosition(GetEventPlayer(__this));
-		if (lastPosition.has_value() && position.x != lastPosition.value().x && position.y != lastPosition.value().y)
+		std::optional<Vector2> lastPosition = GetLastWalkEventPosition(__this->fields.PlayerId);
+		if (lastPosition.has_value() && position.x != lastPosition->x && position.y != lastPosition->y)
 			State.events.push_back(new WalkEvent(GetEventPlayer(__this), position));
 	}
 	PlayerControl_FixedUpdate(__this, method);

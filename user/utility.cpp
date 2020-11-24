@@ -261,10 +261,10 @@ EVENT_PLAYER GetEventPlayer(PlayerControl* player)
 	return *GetEventPlayer(player->fields._cachedData);
 }
 
-std::optional<Vector2> GetLastWalkEventPosition(EVENT_PLAYER player) {
+std::optional<Vector2> GetLastWalkEventPosition(uint8_t playerId) {
 	if (IsInGame()) {
 		for (int i = State.events.size() - 1; i >= 0; i--) {
-			if (State.events[i]->getSource().playerId == player.playerId
+			if (State.events[i]->getSource().playerId == playerId
 				&& State.events[i]->getType() == EVENT_WALK) {
 				return ((WalkEvent*)State.events[i])->position;
 			}
