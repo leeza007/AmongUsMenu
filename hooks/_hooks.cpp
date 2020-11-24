@@ -3,6 +3,7 @@
 #include <stb_image.h>
 #include <fcntl.h>
 #include "theme.hpp"
+#include "imhotkeys.h"
 
 using namespace app;
 
@@ -75,16 +76,18 @@ LRESULT __stdcall WndProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 	if (!State.ImGuiInitialized)
 		return CallWindowProc(oWndProc, hWnd, uMsg, wParam, lParam);
 
+	ImHotkeys::WndProc(uMsg, wParam);
+
 	if (ImGui_ImplWin32_WndProcHandler(hWnd, uMsg, wParam, lParam))
 		return true;
 
 	if (!ImGui::IsPopupOpen("", ImGuiPopupFlags_AnyPopup)) {
-		auto hotkey = ImHotKey::GetHotKey(State.Hotkeys.data(), State.Hotkeys.size());
-		if (hotkey != -1) {
-			if (hotkey == 0) State.ShowMenu = !State.ShowMenu;
-			if (hotkey == 1) State.ShowRadar = !State.ShowRadar;
-			if (hotkey == 2) State.ShowConsole = !State.ShowConsole;
-			if (hotkey == 3 && IsInGame()) RepairSabotage(*Game::pLocalPlayer);
+		auto shortcut = ImHotkeys::GetShortcut(&State.Shortcuts);
+		if (shortcut != -1) {
+			if (shortcut == 0) State.ShowMenu = !State.ShowMenu;
+			if (shortcut == 1) State.ShowRadar = !State.ShowRadar;
+			if (shortcut == 2) State.ShowConsole = !State.ShowConsole;
+			if (shortcut == 3 && IsInGame()) RepairSabotage(*Game::pLocalPlayer);
 		}
 	}
 

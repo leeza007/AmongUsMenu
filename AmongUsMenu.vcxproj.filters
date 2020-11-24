@@ -228,9 +228,6 @@
     <ClInclude Include="framework\x_input.h">
       <Filter>framework</Filter>
     </ClInclude>
-    <ClInclude Include="includes\imgui\imHotKey.h">
-      <Filter>includes\imgui</Filter>
-    </ClInclude>
     <ClInclude Include="user\version.h">
       <Filter>user</Filter>
     </ClInclude>
@@ -266,6 +263,9 @@
     </ClInclude>
     <ClInclude Include="events\_events.h">
       <Filter>events</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\imhotkeys.h">
+      <Filter>includes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

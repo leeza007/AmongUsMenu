@@ -43,12 +43,12 @@ namespace GameTab {
 			ImGui::NewLine();
 			ImGui::NewLine();
 			ImGui::Separator();
-			if (ImGui::Button("Edit Hotkeys")) {
+			/*if (ImGui::Button("Edit Hotkeys")) {
 				ImGui::OpenPopup("Hotkeys Editor");
-			}
+			}*/
 			ImGui::SameLine();
 			ImGui::Checkbox("Console", &State.ShowConsole);
-			ImHotKey::Edit(State.Hotkeys.data(), State.Hotkeys.size(), "Hotkeys Editor");
+			//ImHotKey::Edit(State.Hotkeys.data(), State.Hotkeys.size(), "Hotkeys Editor");
 
 			ImGui::EndTabItem();
 		}

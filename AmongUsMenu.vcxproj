@@ -96,7 +96,7 @@
     <ClInclude Include="gui\tabs\tasks_tab.h" />
     <ClInclude Include="hooks\_hooks.hpp" />
     <ClInclude Include="includes\detours\detours.h" />
-    <ClInclude Include="includes\imgui\imHotKey.h" />
+    <ClInclude Include="includes\imhotkeys.h" />
     <ClInclude Include="rpc\_rpc.h" />
     <ClInclude Include="user\utility.h" />
     <ClInclude Include="framework\il2cpp-appdata.h" />

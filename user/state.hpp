@@ -12,7 +12,8 @@
 #include "_events.h"
 #include "_rpc.h"
 #include "json.hpp"
-#include "imgui/imHotKey.h"
+#include "imhotkeys.h"
+#include "utility.h"
 
 using namespace app;
 using json = nlohmann::ordered_json;
@@ -22,11 +23,12 @@ private:
 	inline bool Exists(const std::string& name);
 
 public:
-	std::vector<ImHotKey::HotKey> Hotkeys = {
-		{"Toggle Menu", "Toggles the visibility of AmongUsMenu", 0xFFFFFF53},
-		{"Toggle Rader", "Toggles the visibility of AmongUsMenu's Rader", 0xFFFFFF52},
-		{"Toggle Console", "Toggles the visibility of AmongUsMenu's Console", 0xFFFFFF47},
-		{"Repair Sabotage", "Repairs currently ongoing sabotage", 0xFFFFFF4F}
+
+	std::vector<ImHotkeys::HotKey> Shortcuts = {
+		{"Toggle Menu", { 0xFF, 0xFF, 0xFF, VK_DELETE } },
+		{"Toggle Radar", { 0xFF, 0xFF, 0xFF, VK_INSERT } },
+		{"Toggle Console", { 0xFF, 0xFF, 0xFF, VK_HOME } },
+		{"Repair Sabotage", { 0xFF, 0xFF, 0xFF, VK_END } }
 	};
 
 	bool ImGuiInitialized = false;
@@ -68,8 +70,8 @@ public:
 
 	std::map<uint8_t, bool> voteMonitor;
 
-    void Load();
-    void Save();
+	void Load();
+	void Save();
 };
 
 extern Settings State;
