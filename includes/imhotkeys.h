@@ -17,19 +17,19 @@ namespace ImHotkeys
 		std::function<void()> Function;
 	};
 
-	static std::bitset<0xFF> State;
+	static std::bitset<0xFF> KeyState;
 
 	static void WndProc(UINT uMsg, WPARAM wParam) {
 		if (uMsg == WM_KEYDOWN)
-			State[(uint8_t)wParam] = true;
+			ImHotkeys::KeyState[uint8_t(wParam)] = true;
 
 		if (uMsg == WM_KEYUP)
-			State[(uint8_t)wParam] = false;
+			ImHotkeys::KeyState[uint8_t(wParam)] = false;
 	}
 
 	static bool CheckKey(uint8_t key) {
 		if (key == 0xFF) return true;
-		return State[key];
+		return ImHotkeys::KeyState[key];
 	}
 
 	static bool CheckKeyCombo(KeyCombo keyCombo) {
