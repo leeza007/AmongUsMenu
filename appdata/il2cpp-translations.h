@@ -69,7 +69,7 @@ const std::vector<std::pair<std::string, std::string>> METHOD_TRANSLATIONS = {
 	{ "get_AmBanned", "FGKPOKFBCHN" },
 	{ "get_BanPoints", "OPHIIKILKJM" },
 	{ "Deserialize", "GOHNICOHFAE" },
-	{ "EnterVent", "JNODAFPJACC" },
-	{ "ExitVent", "HPADFDKDDHJ" },
-	{ "ReportDeadBody", "KFICGDAJILB" }
+	{ "EnterVent", "CMMDEMNKJDF" },
+	{ "ExitVent", "MINPENJBOED" },
+	{ "ReportDeadBody", "JCFAKCAJIJK" }
 };
