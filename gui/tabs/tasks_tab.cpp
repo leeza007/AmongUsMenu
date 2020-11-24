@@ -8,7 +8,7 @@ namespace TasksTab {
 
 				for (auto task : tasks) {
 					if (ImGui::Button(("Complete##Button" + std::to_string(task->fields._._Id_k__BackingField)).c_str()) && !NormalPlayerTask_get_IsComplete(task, NULL)) {
-						CompleteTask(task);
+						State.rpcQueue.push(new RpcCompleteTask(task->fields._._Id_k__BackingField));
 					}
 
 					ImGui::SameLine();

@@ -1,4 +1,3 @@
-#include "il2cpp-appdata.h"
 #include "_rpc.h"
 #include "utility.h"
 #include "state.hpp"

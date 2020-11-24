@@ -1,2 +1,2 @@
 #pragma once
-#define GAME_VERSION "2020.10.22"
+#define GAME_VERSION "2020.11.17"
