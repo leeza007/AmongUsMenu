@@ -23,28 +23,18 @@ enum VENT_ACTION {
 struct EVENT_PLAYER {
 	uint8_t playerId;
 	uint8_t colorId;
-	char* playerName;
+	std::string playerName;
 
 	EVENT_PLAYER() {
 		playerId = 0;
 		colorId = 0;
-		playerName = nullptr;
+		playerName = "";
 	}
 
 	EVENT_PLAYER(GameData_PlayerInfo* playerInfo) {
 		playerId = playerInfo->fields.PlayerId;
 		colorId = playerInfo->fields.ColorId;
-		playerName = _strdup(convert_from_string(playerInfo->fields.PlayerName).c_str());
-	}
-
-	EVENT_PLAYER(const EVENT_PLAYER& eventPlayer) {
-		playerId = eventPlayer.playerId;
-		colorId = eventPlayer.colorId;
-		playerName = _strdup(eventPlayer.playerName);
-	}
-
-	~EVENT_PLAYER() {
-		if(playerName) free(playerName);
+		playerName = convert_from_string(playerInfo->fields.PlayerName);
 	}
 };
 

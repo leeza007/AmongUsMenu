@@ -9,7 +9,7 @@ TaskCompletedEvent::TaskCompletedEvent(EVENT_PLAYER source, std::optional<TaskTy
 }
 
 void TaskCompletedEvent::Output() {
-	ImGui::TextColored(AmongUsColorToImVec4(GetPlayerColor(source.colorId)), source.playerName);
+	ImGui::TextColored(AmongUsColorToImVec4(GetPlayerColor(source.colorId)), source.playerName.c_str());
 	ImGui::SameLine();
 	ImGui::Text("> %s (%s)", (taskType.has_value()) ? TranslateTaskTypes(*taskType) : "UNKOWN" , TranslateSystemTypes(systemType));
 }
