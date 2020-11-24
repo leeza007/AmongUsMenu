@@ -39,7 +39,6 @@ CorrectedColor32 GetPlayerColor(uint8_t colorId);
 std::string getModulePath();
 std::string getGameVersion();
 SystemTypes__Enum GetSystemTypes(Vector2 vector);
-const char* strcat(std::initializer_list<const char*> strings);
 std::optional<EVENT_PLAYER> GetEventPlayer(GameData_PlayerInfo* playerInfo);
 EVENT_PLAYER GetEventPlayer(PlayerControl* player);
 std::optional<Vector2> GetLastWalkEventPosition(uint8_t playerId);

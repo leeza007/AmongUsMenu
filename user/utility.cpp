@@ -239,13 +239,6 @@ SystemTypes__Enum GetSystemTypes(Vector2 vector) {
 	return SystemTypes__Enum_Outside;
 }
 
-const char* strcat(std::initializer_list<const char*> strings) {
-	std::string result;
-	for (auto string : strings)
-		result += string;
-	return _strdup(result.c_str());
-}
-
 std::optional<EVENT_PLAYER> GetEventPlayer(GameData_PlayerInfo* playerInfo)
 {
 	if (!playerInfo) return std::nullopt;

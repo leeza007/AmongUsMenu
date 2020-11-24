@@ -1,12 +1,16 @@
 #include "gui-helpers.hpp"
 
 bool CustomListBoxInt(const char* label, int* value, const std::vector<const char*> list, float width, ImGuiComboFlags flags) {
+	auto comboLabel = "##" + std::string(label);
+	auto leftArrow = "##" + std::string(label) + "Left";
+	auto rightArrow = "##" + std::string(label) + "Right";
+
 	ImGuiStyle& style = ImGui::GetStyle();
 	float w = ImGui::CalcItemWidth();
 	float spacing = style.ItemInnerSpacing.x;
 	float button_sz = ImGui::GetFrameHeight();
 	ImGui::PushItemWidth(width);
-	const bool response = ImGui::BeginCombo(strcat({ "##", label }), list.at(*value), ImGuiComboFlags_NoArrowButton | flags);
+	const bool response = ImGui::BeginCombo(comboLabel.c_str(), list.at(*value), ImGuiComboFlags_NoArrowButton | flags);
 	if (response) {
 		for (size_t i = 0; i < list.size(); i++) {
 			bool is_selected = (*value == i);
@@ -21,14 +25,14 @@ bool CustomListBoxInt(const char* label, int* value, const std::vector<const cha
 	ImGui::PopItemWidth();
 	ImGui::SameLine(0, spacing);
 
-	const bool LeftResponse = ImGui::ArrowButton(strcat({ "##", label, "Left" }), ImGuiDir_Left);
+	const bool LeftResponse = ImGui::ArrowButton(leftArrow.c_str(), ImGuiDir_Left);
 	if (LeftResponse) {
 		*value -= 1;
 		if (*value < 0) *value = (list.size() - 1);
 		return LeftResponse;
 	}
 	ImGui::SameLine(0, spacing);
-	const bool RightResponse = ImGui::ArrowButton(strcat({ "##", label, "Right" }), ImGuiDir_Right);
+	const bool RightResponse = ImGui::ArrowButton(rightArrow.c_str(), ImGuiDir_Right);
 	if (RightResponse) {
 		*value += 1;
 		if (*value > (int)(list.size() - 1)) *value = 0;
