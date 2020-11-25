@@ -37,7 +37,7 @@ namespace PlayersTab {
 				ImGui::EndChild();
 				ImGui::SameLine();
 				ImGui::BeginChild("players#actions", ImVec2(200, 0), true);
-				if (IsInMultiplayerGame()) {
+				if (IsInMultiplayerGame() && !IsHost()) {
 					if (!GetPlayerData(*Game::pLocalPlayer)->fields.IsDead) {
 						if (ImGui::Button("Call Meeting")) {
 							PlayerControl_CmdReportDeadBody(*Game::pLocalPlayer, NULL, NULL);
