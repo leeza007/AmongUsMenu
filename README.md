@@ -33,8 +33,10 @@ Will automatically be loaded by the Game itself if the dll is in the game direct
 </p>
 
 ## Credits
-* [void*](https://github.com/v0idp)
-* [std-nullptr](https://github.com/std-nullptr)
+* [void*](https://github.com/v0idp) (Creator)
+* [std-nullptr](https://github.com/std-nullptr) (Contributor & Il2cpp Madman)
+* [OsOmE1](https://github.com/OsOmE1) (Contributor)
+* [RealMVC](https://github.com/RealMVC) (Contributor)
 
 ## Contributing
 
@@ -43,4 +45,3 @@ Will automatically be loaded by the Game itself if the dll is in the game direct
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)
 5. Create a new Pull Request
-
