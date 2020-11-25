@@ -70,6 +70,8 @@ public:
 
 	std::map<uint8_t, bool> voteMonitor;
 
+	std::vector<PlayerControl*> impostors = { nullptr, nullptr, nullptr };
+
 	void Load();
 	void Save();
 };

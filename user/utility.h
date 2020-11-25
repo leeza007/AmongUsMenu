@@ -20,6 +20,8 @@ struct CorrectedColor32 {
 int randi(int lo, int hi);
 ImVec4 AmongUsColorToImVec4(Color color);
 ImVec4 AmongUsColorToImVec4(CorrectedColor32 color);
+bool IsInLobby();
+bool IsHost();
 bool IsInGame();
 bool IsInMultiplayerGame();
 GameData_PlayerInfo* GetPlayerData(PlayerControl* player);

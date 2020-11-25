@@ -22,6 +22,7 @@ namespace Menu {
 		TasksTab::Render();
 		SabotageTab::Render();
 		DoorsTab::Render();
+		HostTab::Render();
 
 		ImGui::EndTabBar();
 		ImGui::End();

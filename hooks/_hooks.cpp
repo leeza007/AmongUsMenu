@@ -186,6 +186,7 @@ void DetourInitilization() {
 	if (DetourAttach(&(PVOID&)PlayerControl_MurderPlayer, dPlayerControl_MurderPlayer) != 0) return;
 	if (DetourAttach(&(PVOID&)PlayerControl_CompleteTask, dPlayerControl_CompleteTask) != 0) return;
 	if (DetourAttach(&(PVOID&)PlayerControl_ReportDeadBody, dPlayerControl_ReportDeadBody) != 0) return;
+	if (DetourAttach(&(PVOID&)PlayerControl_RpcSetInfected, dPlayerControl_RpcSetInfected) != 0) return;
 	if (DetourAttach(&(PVOID&)MeetingHud_Awake, dMeetingHud_Awake) != 0) return;
 	if (DetourAttach(&(PVOID&)MeetingHud_Close, dMeetingHud_Close) != 0) return;
 

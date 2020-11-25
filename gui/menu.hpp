@@ -14,6 +14,7 @@
 #include "tabs/tasks_tab.h"
 #include "tabs/sabotage_tab.h"
 #include "tabs/doors_tab.h"
+#include "tabs/host_tab.h"
 
 namespace Menu {
 	void Init();

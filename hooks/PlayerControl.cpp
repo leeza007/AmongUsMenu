@@ -58,3 +58,12 @@ void dPlayerControl_ReportDeadBody(PlayerControl*__this, GameData_PlayerInfo* ta
 	State.events.push_back(new ReportDeadBodyEvent(GetEventPlayer(__this), GetEventPlayer(target), PlayerControl_GetTruePosition(__this, NULL)));
 	PlayerControl_ReportDeadBody(__this, target, method);
 }
+
+void dPlayerControl_RpcSetInfected(PlayerControl* __this, GameData_PlayerInfo__Array* infected, MethodInfo* method) {
+	for (int i = 0; i < (*Game::pGameOptionsData)->fields.NumImpostors; i++) {
+		if (State.impostors[i] != nullptr) {
+			infected->vector[i] = GetPlayerData(State.impostors[i]);
+		}
+	}
+	PlayerControl_RpcSetInfected(__this, infected, method);
+}

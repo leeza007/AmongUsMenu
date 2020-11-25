@@ -29,6 +29,7 @@
     <ClCompile Include="gui\gui-helpers.cpp" />
     <ClCompile Include="gui\tabs\doors_tab.cpp" />
     <ClCompile Include="gui\tabs\game_tab.cpp" />
+    <ClCompile Include="gui\tabs\host_tab.cpp" />
     <ClCompile Include="gui\tabs\players_tab.cpp" />
     <ClCompile Include="gui\tabs\radar_tab.cpp" />
     <ClCompile Include="gui\tabs\sabotage_tab.cpp" />
@@ -90,6 +91,7 @@
     <ClInclude Include="gui\gui-helpers.hpp" />
     <ClInclude Include="gui\tabs\doors_tab.h" />
     <ClInclude Include="gui\tabs\game_tab.h" />
+    <ClInclude Include="gui\tabs\host_tab.h" />
     <ClInclude Include="gui\tabs\players_tab.h" />
     <ClInclude Include="gui\tabs\radar_tab.h" />
     <ClInclude Include="gui\tabs\sabotage_tab.h" />

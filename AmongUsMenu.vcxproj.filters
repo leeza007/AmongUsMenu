@@ -139,6 +139,9 @@
     <ClCompile Include="events\WalkEvent.cpp">
       <Filter>events</Filter>
     </ClCompile>
+    <ClCompile Include="gui\tabs\host_tab.cpp">
+      <Filter>gui\tabs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="user\main.h">
@@ -266,6 +269,9 @@
     </ClInclude>
     <ClInclude Include="includes\imhotkeys.h">
       <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\tabs\host_tab.h">
+      <Filter>gui\tabs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

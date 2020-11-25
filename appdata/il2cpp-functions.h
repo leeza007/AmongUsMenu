@@ -52,6 +52,7 @@ DO_APP_FUNC(void, PlayerControl_RpcSyncSettings, (PlayerControl* __this, GameOpt
 DO_APP_FUNC(void, PlayerControl_CmdReportDeadBody, (PlayerControl* __this, GameData_PlayerInfo* target, MethodInfo* method), "Assembly-CSharp, System.Void PlayerControl::CmdReportDeadBody(GameData.PlayerInfo)");
 DO_APP_FUNC(void, PlayerControl_MurderPlayer, (PlayerControl* __this, PlayerControl* target, MethodInfo* method), "Assembly-CSharp, System.Void PlayerControl::MurderPlayer(PlayerControl)");
 DO_APP_FUNC(void, PlayerControl_ReportDeadBody, (PlayerControl*__this, GameData_PlayerInfo* target, MethodInfo *method), "Assembly-CSharp, System.Void PlayerControl::ReportDeadBody(GameData.PlayerInfo)");
+DO_APP_FUNC(void, PlayerControl_RpcSetInfected, (PlayerControl* __this, GameData_PlayerInfo__Array* infected, MethodInfo* method), "Assembly-CSharp, System.Void PlayerControl::RpcSetInfected(GameData.PlayerInfo[])");
 
 DO_APP_FUNC(float, ShipStatus_CalculateLightRadius, (ShipStatus* __this, GameData_PlayerInfo* player, MethodInfo* method), "Assembly-CSharp, System.Single ShipStatus::CalculateLightRadius(GameData.PlayerInfo)");
 DO_APP_FUNC(void, ShipStatus_OnEnable, (ShipStatus* __this, MethodInfo* method), "Assembly-CSharp, System.Void ShipStatus::OnEnable()");
@@ -73,3 +74,4 @@ DO_APP_FUNC(void, ChatController_AddChat, (ChatController* __this, PlayerControl
 DO_APP_FUNC(void, ChatController_SetVisible, (ChatController* __this, bool visible, MethodInfo* method), "Assembly-CSharp, System.Void ChatController::SetVisible(System.Boolean)");
 DO_APP_FUNC(void, ChatBubble_SetName, (ChatBubble* __this, String* playerName, bool isDead, bool voted, Color color, MethodInfo* method), "Assembly-CSharp, System.Void ChatBubble::SetName(System.String, System.Boolean, System.Boolean, UnityEngine.Color)");
 
+DO_APP_FUNC(bool, InnerNetClient_get_AmHost, (InnerNetClient* __this, MethodInfo* method), "Assembly-CSharp, System.Boolean InnerNet.InnerNetClient::get_AmHost()");
