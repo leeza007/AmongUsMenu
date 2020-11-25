@@ -57,12 +57,11 @@ namespace HostTab {
 				ImGui::EndChild();
 				ImGui::SameLine();
 				ImGui::BeginChild("host#actions", ImVec2(200, 0), true);
-				/*if (ImGui::Button("Force Start Game")) {
-					AmongUsClient_StartGame((*Game::pAmongUsClient), NULL);
-				}*/
-				int Map = (*Game::pGameOptionsData)->fields.MapId;
-				if (CustomListBoxInt("Map", &Map, MAP_NAMES, 100)) {
-					if (!IsInGame()) (*Game::pGameOptionsData)->fields.MapId = Map;
+				if (CustomListBoxInt("Impostors", &State.impostors_amount, IMPOSTOR_AMOUNTS, 75)) {
+					if (!IsInGame()) (*Game::pGameOptionsData)->fields.NumImpostors = (State.impostors_amount + 1);
+				}
+				if (CustomListBoxInt("Map", &State.map, MAP_NAMES, 75)) {
+					if (!IsInGame()) (*Game::pGameOptionsData)->fields.MapId = State.map;
 				}
 				ImGui::EndChild();
 				ImGui::EndTabItem();

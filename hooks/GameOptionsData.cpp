@@ -11,6 +11,8 @@ GameOptionsData* dGameOptionsData_Deserialize(BinaryReader* reader, MethodInfo* 
 	State.KillDistance = gameOptions->fields.KillDistance;
 	State.PrevTaskBarUpdates = gameOptions->fields.TaskBarUpdates;
 	State.TaskBarUpdates = gameOptions->fields.TaskBarUpdates;
+	State.map = gameOptions->fields.MapId;
+	State.impostors_amount = gameOptions->fields.NumImpostors;
 
 	return gameOptions;
 }
@@ -24,6 +26,8 @@ GameOptionsData* dGameOptionsData_Deserialize_1(MessageReader* reader, MethodInf
 	State.KillDistance = gameOptions->fields.KillDistance;
 	State.PrevTaskBarUpdates = gameOptions->fields.TaskBarUpdates;
 	State.TaskBarUpdates = gameOptions->fields.TaskBarUpdates;
+	State.map = gameOptions->fields.MapId;
+	State.impostors_amount = gameOptions->fields.NumImpostors;
 
 	return gameOptions;
 }

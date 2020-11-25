@@ -25,6 +25,7 @@ Will automatically be loaded by the Game itself if the dll is in the game direct
 ### Default Hotkeys
 - Show Menu - DELETE
 - Show Radar - INSERT
+- Show Console - HOME
 - Repair Sabotage - END
 
 ## Screenshot

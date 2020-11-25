@@ -71,6 +71,8 @@ public:
 	std::map<uint8_t, bool> voteMonitor;
 
 	std::vector<PlayerControl*> impostors = { nullptr, nullptr, nullptr };
+	int map = -1;
+	int impostors_amount = 0;
 
 	void Load();
 	void Save();
