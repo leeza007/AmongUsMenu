@@ -37,34 +37,23 @@ namespace PlayersTab {
 				ImGui::EndChild();
 				ImGui::SameLine();
 				ImGui::BeginChild("players#actions", ImVec2(200, 0), true);
-				if (IsInMultiplayerGame() && !GetPlayerData(*Game::pLocalPlayer)->fields.IsDead && ImGui::Button("Call Meeting")) {
-					PlayerControl_CmdReportDeadBody(*Game::pLocalPlayer, NULL, NULL);
+				if (IsInMultiplayerGame()) {
+					if (!GetPlayerData(*Game::pLocalPlayer)->fields.IsDead) {
+						if (ImGui::Button("Call Meeting")) {
+							PlayerControl_CmdReportDeadBody(*Game::pLocalPlayer, NULL, NULL);
+						}
+						ImGui::NewLine();
+						if (State.selectedPlayerId > -1 && State.selectedPlayer != *Game::pLocalPlayer && ImGui::Button("Report Body")) {
+							PlayerControl_CmdReportDeadBody(*Game::pLocalPlayer, GetPlayerData(State.selectedPlayer), NULL);
+						}
+					}
 				}
+				
 				if (State.selectedPlayerId > -1 && State.selectedPlayer != *Game::pLocalPlayer) {
 					if (ImGui::Button("Teleport To")) {
 						State.rpcQueue.push(new RpcSnapTo(PlayerControl_GetTruePosition(State.selectedPlayer, NULL)));
 					}
 				}
-				if (IsInMultiplayerGame() && (GetPlayerData(*Game::pLocalPlayer))->fields.IsDead == false && State.selectedPlayerId > -1 && ImGui::Button("Report Body")) {
-					PlayerControl_CmdReportDeadBody(*Game::pLocalPlayer, GetPlayerData(State.selectedPlayer), NULL);
-				}
-				// Crashes the game when used, trying to find a workaround.
-				//if ((GetPlayerData(*Game::pLocalPlayer))->fields.IsImpostor && (*Game::pLocalPlayer)->fields.killTimer <= 0) {
-				//	if (State.selectedPlayerId > -1) {
-				//		if (ImGui::Button("Kill")) {
-				//			State.rpcQueue.push(new RpcSnapTo(PlayerControl_GetTruePosition(State.selectedPlayer, NULL)));
-				//			PlayerControl_MurderPlayer(*Game::pLocalPlayer, State.selectedPlayer, NULL);
-				//		}
-				//	}
-				//	if (State.selectedPlayerId > -1) {
-				//		if (ImGui::Button("Kill & Back")) {
-				//			auto prevPosition = PlayerControl_GetTruePosition(*Game::pLocalPlayer, NULL);
-				//			State.rpcQueue.push(new RpcSnapTo(PlayerControl_GetTruePosition(State.selectedPlayer, NULL)));
-				//			PlayerControl_MurderPlayer(*Game::pLocalPlayer, State.selectedPlayer, NULL);
-				//			State.rpcQueue.push(new RpcSnapTo(prevPosition));
-				//		}
-				//	}
-				//}
 				ImGui::EndChild();
 				ImGui::EndTabItem();
 			}

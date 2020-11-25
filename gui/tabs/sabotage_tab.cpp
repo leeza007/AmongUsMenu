@@ -4,6 +4,10 @@ namespace SabotageTab {
 	void Render() {
 		if (IsInGame()) {
 			if (ImGui::BeginTabItem("Sabotage")) {
+				if (ImGui::Button("Repair Sabotage")) {
+					RepairSabotage(*Game::pLocalPlayer);
+				}
+				ImGui::NewLine();
 				if (ImGui::Button("Sabotage Lights")) {
 					State.rpcQueue.push(new RpcRepairSystem(SystemTypes__Enum_Sabotage, SystemTypes__Enum_Electrical));
 				}
@@ -25,9 +29,6 @@ namespace SabotageTab {
 				}
 				if (ImGui::Button("Sabotage Comms")) {
 					State.rpcQueue.push(new RpcRepairSystem(SystemTypes__Enum_Sabotage, SystemTypes__Enum_Comms));
-				}
-				if (ImGui::Button("Repair Sabotage")) {
-					RepairSabotage(*Game::pLocalPlayer);
 				}
 				ImGui::EndTabItem();
 			}
