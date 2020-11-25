@@ -19,6 +19,13 @@ namespace TasksTab {
 						, TranslateTaskTypes(task->fields._.TaskType));
 				}
 
+				if (ImGui::Button("Complete All Tasks")) {
+					for (auto task : tasks) {
+						if(task->fields.taskStep != task->fields.MaxStep)
+						State.rpcQueue.push(new RpcCompleteTask(task->fields._._Id_k__BackingField));
+					}
+				}
+
 				ImGui::EndTabItem();
 			}
 		}
