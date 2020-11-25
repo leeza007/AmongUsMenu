@@ -16,6 +16,13 @@ namespace DoorsTab {
 
 				ImGui::SameLine();
 				ImGui::BeginChild("doors#options", ImVec2(200, 0));
+				if (ImGui::Button("Close All Doors"))
+				{
+					for(auto door : State.mapDoors)
+					{
+						State.rpcQueue.push(new RpcCloseDoorsOfType(door, false));
+					}
+				}
 				if (State.selectedDoor != SystemTypes__Enum_Hallway) {
 					if (ImGui::Button("Close Door")) {
 						State.rpcQueue.push(new RpcCloseDoorsOfType(State.selectedDoor, false));

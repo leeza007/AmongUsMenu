@@ -45,6 +45,26 @@ namespace PlayersTab {
 						State.rpcQueue.push(new RpcSnapTo(PlayerControl_GetTruePosition(State.selectedPlayer, NULL)));
 					}
 				}
+				if (IsInMultiplayerGame() && (GetPlayerData(*Game::pLocalPlayer))->fields.IsDead == false && State.selectedPlayerId > -1 && ImGui::Button("Report Body")) {
+					PlayerControl_CmdReportDeadBody(*Game::pLocalPlayer, GetPlayerData(State.selectedPlayer), NULL);
+				}
+				// Crashes the game when used, trying to find a workaround.
+				//if ((GetPlayerData(*Game::pLocalPlayer))->fields.IsImpostor && (*Game::pLocalPlayer)->fields.killTimer <= 0) {
+				//	if (State.selectedPlayerId > -1) {
+				//		if (ImGui::Button("Kill")) {
+				//			State.rpcQueue.push(new RpcSnapTo(PlayerControl_GetTruePosition(State.selectedPlayer, NULL)));
+				//			PlayerControl_MurderPlayer(*Game::pLocalPlayer, State.selectedPlayer, NULL);
+				//		}
+				//	}
+				//	if (State.selectedPlayerId > -1) {
+				//		if (ImGui::Button("Kill & Back")) {
+				//			auto prevPosition = PlayerControl_GetTruePosition(*Game::pLocalPlayer, NULL);
+				//			State.rpcQueue.push(new RpcSnapTo(PlayerControl_GetTruePosition(State.selectedPlayer, NULL)));
+				//			PlayerControl_MurderPlayer(*Game::pLocalPlayer, State.selectedPlayer, NULL);
+				//			State.rpcQueue.push(new RpcSnapTo(prevPosition));
+				//		}
+				//	}
+				//}
 				ImGui::EndChild();
 				ImGui::EndTabItem();
 			}
