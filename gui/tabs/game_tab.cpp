@@ -3,8 +3,6 @@
 namespace GameTab {
 	void Render() {
 		if (ImGui::BeginTabItem("Game")) {
-			ImGui::Checkbox("Max Vision", &State.MaxVision);
-			ImGui::Checkbox("Wallhack", &State.Wallhack);
 			if (SteppedSliderFloat("Player Speed", &State.PlayerSpeed, 0.5f, 3.f, 0.25f, "%.2fx", ImGuiSliderFlags_Logarithmic | ImGuiSliderFlags_NoInput)) {
 				if (!IsInGame()) State.PlayerSpeed = State.PrevPlayerSpeed;
 				else {
@@ -26,24 +24,7 @@ namespace GameTab {
 					State.PrevTaskBarUpdates = State.TaskBarUpdates;
 				}
 			}
-			if (ImGui::Checkbox("No Clip", &State.NoClip)) {
-				if (!IsInGame()) State.NoClip = false;
-				else {
-					if (!(GetPlayerData(*Game::pLocalPlayer)->fields.IsDead)) {
-						if (State.NoClip)
-							app::GameObject_set_layer(app::Component_get_gameObject((Component*)(*Game::pLocalPlayer), NULL), app::LayerMask_NameToLayer(convert_to_string("Ghost"), NULL), NULL);
-						else
-							app::GameObject_set_layer(app::Component_get_gameObject((Component*)(*Game::pLocalPlayer), NULL), app::LayerMask_NameToLayer(convert_to_string("Players"), NULL), NULL);
-					}
-				}
-			}
-			ImGui::Checkbox("Reveal Impostors", &State.RevealImpostors);
-			ImGui::Checkbox("Unlock Vents", &State.UnlockVents);
-			ImGui::Checkbox("Always show Chat Button", &State.ChatAlwaysActive);
-			ImGui::Checkbox("Read Messages by Ghosts", &State.ReadGhostMessages);
 			ImGui::NewLine();
-			ImGui::NewLine();
-			ImGui::Separator();
 			/*if (ImGui::Button("Edit Hotkeys")) {
 				ImGui::OpenPopup("Hotkeys Editor");
 			}
