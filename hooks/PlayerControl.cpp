@@ -33,12 +33,11 @@ void dPlayerControl_FixedUpdate(PlayerControl* __this, MethodInfo* method) {
 			Camera__Array* allCameras = (Camera__Array*)il2cpp_array_new((Il2CppClass*)app::Camera__TypeInfo, 32);
 			Camera_GetAllCameras(allCameras, NULL);
 			for (Camera* cam : allCameras->vector) {
-				if (cam) {
-					Transform* camTransform = Component_get_transform((Component*)cam, NULL);
-					Vector3 camPosition = Transform_get_position(camTransform, NULL);
-					camPosition.z = 100;
-					Transform_set_position(camTransform, camPosition, NULL);
-				}
+				if (!cam) break;
+				Transform* camTransform = Component_get_transform((Component*)cam, NULL);
+				Vector3 camPosition = Transform_get_position(camTransform, NULL);
+				camPosition.z = 100;
+				Transform_set_position(camTransform, camPosition, NULL);
 			}
 		}
 
