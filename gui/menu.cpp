@@ -17,6 +17,7 @@ namespace Menu {
 		ImGui::BeginTabBar("AmongUs#TopBar", ImGuiTabBarFlags_NoTabListScrollingButtons);
 
 		GameTab::Render();
+		SelfTab::Render();
 		RadarTab::Render();
 		PlayersTab::Render();
 		TasksTab::Render();

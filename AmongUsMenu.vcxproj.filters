@@ -142,6 +142,9 @@
     <ClCompile Include="gui\tabs\host_tab.cpp">
       <Filter>gui\tabs</Filter>
     </ClCompile>
+    <ClCompile Include="gui\tabs\self_tab.cpp">
+      <Filter>gui\tabs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="user\main.h">
@@ -271,6 +274,9 @@
       <Filter>includes</Filter>
     </ClInclude>
     <ClInclude Include="gui\tabs\host_tab.h">
+      <Filter>gui\tabs</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\tabs\self_tab.h">
       <Filter>gui\tabs</Filter>
     </ClInclude>
   </ItemGroup>
