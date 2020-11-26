@@ -57,6 +57,7 @@
     <ClCompile Include="rpc\RpcRepairSystem.cpp" />
     <ClCompile Include="rpc\RpcSnapTo.cpp" />
     <ClCompile Include="events\TaskCompletedEvent.cpp" />
+    <ClCompile Include="gui\tabs\self_tab.cpp" />
     <ClCompile Include="user\utility.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug_Xinput|Win32'">NotUsing</PrecompiledHeader>
@@ -100,6 +101,7 @@
     <ClInclude Include="includes\detours\detours.h" />
     <ClInclude Include="includes\imhotkeys.h" />
     <ClInclude Include="rpc\_rpc.h" />
+    <ClInclude Include="gui\tabs\self_tab.h" />
     <ClInclude Include="user\utility.h" />
     <ClInclude Include="framework\il2cpp-appdata.h" />
     <ClInclude Include="appdata\il2cpp-types.h" />
