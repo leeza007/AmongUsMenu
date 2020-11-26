@@ -15,6 +15,7 @@ namespace HostTab {
 					PlayerControl* playerCtrl = GetPlayerControlById(playerData->fields.PlayerId);
 
 					bool impostor = std::find(State.impostors.begin(), State.impostors.end(), playerCtrl) != State.impostors.end();
+					ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(0.13f, 0.14f, 0.17f, 1.00f));
 					if (ImGui::Checkbox(std::string("##" + playerName + "_CheckBox").c_str(), &impostor)) {
 						if (!(std::find(State.impostors.begin(), State.impostors.end(), playerCtrl) != State.impostors.end())) {
 							bool set = false;
@@ -47,6 +48,7 @@ namespace HostTab {
 						}
 
 					}
+					ImGui::PopStyleColor();
 					ImGui::SameLine();
 					ImGui::Dummy(ImVec2(0, 0));
 					ImGui::SameLine();
