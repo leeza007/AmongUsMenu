@@ -50,7 +50,7 @@ namespace PlayersTab {
 				}
 				
 				if (State.selectedPlayerId > -1 && State.selectedPlayer != *Game::pLocalPlayer) {
-					if (ImGui::Button("Teleport To")) {
+					if (ImGui::Button("Teleport To") && !(*Game::pLocalPlayer)->fields.inVent) {
 						State.rpcQueue.push(new RpcSnapTo(PlayerControl_GetTruePosition(State.selectedPlayer, NULL)));
 					}
 				}
