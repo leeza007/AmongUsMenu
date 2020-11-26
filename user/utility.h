@@ -44,3 +44,4 @@ SystemTypes__Enum GetSystemTypes(Vector2 vector);
 std::optional<EVENT_PLAYER> GetEventPlayer(GameData_PlayerInfo* playerInfo);
 EVENT_PLAYER GetEventPlayer(PlayerControl* player);
 std::optional<Vector2> GetLastWalkEventPosition(uint8_t playerId);
+std::vector<Camera*> GetAllCameras();

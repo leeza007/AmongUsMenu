@@ -29,7 +29,7 @@ bool IsInLobby() {
 }
 
 bool IsHost() {
-	return InnerNetClient_get_AmHost((InnerNetClient*)(*Game::pAmongUsClient), NULL);
+	return app::InnerNetClient_get_AmHost((InnerNetClient*)(*Game::pAmongUsClient), NULL);
 }
 
 bool IsInGame() {
@@ -234,7 +234,7 @@ std::string getModulePath() {
 }
 
 std::string getGameVersion() {
-	return convert_from_string(Application_get_version(NULL));
+	return convert_from_string(app::Application_get_version(NULL));
 }
 
 SystemTypes__Enum GetSystemTypes(Vector2 vector) {
@@ -243,7 +243,7 @@ SystemTypes__Enum GetSystemTypes(Vector2 vector) {
 		auto allRooms = shipStatus->fields._AllRooms_k__BackingField;
 
 		for (size_t i = 0; i < allRooms->max_length; i++)
-			if (Collider2D_OverlapPoint(allRooms->vector[i]->fields.roomArea, vector, NULL)) return allRooms->vector[i]->fields.RoomId;
+			if (app::Collider2D_OverlapPoint(allRooms->vector[i]->fields.roomArea, vector, NULL)) return allRooms->vector[i]->fields.RoomId;
 	}
 	return SystemTypes__Enum_Outside;
 }
@@ -269,4 +269,17 @@ std::optional<Vector2> GetLastWalkEventPosition(uint8_t playerId) {
 		}
 	}
 	return std::nullopt;
+}
+
+std::vector<Camera*> GetAllCameras() {
+	auto cameras = std::vector<Camera*>();
+
+	int cameraCount = app::Camera_get_allCamerasCount(NULL);
+	Camera__Array* cameraArray = (Camera__Array*)il2cpp_array_new((Il2CppClass*)app::Camera__TypeInfo, cameraCount);
+	int returnedCount = app::Camera_GetAllCameras(cameraArray, NULL);
+
+	for (size_t i = 0; i < returnedCount; i++)
+		cameras.push_back(cameraArray->vector[i]);
+
+	return cameras;
 }

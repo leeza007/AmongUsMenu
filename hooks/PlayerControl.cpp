@@ -29,16 +29,12 @@ void dPlayerControl_FixedUpdate(PlayerControl* __this, MethodInfo* method) {
 		else
 			nameText->fields.Color = Palette__TypeInfo->static_fields->White;
 
-		if (State.Wallhack) {
-			Camera__Array* allCameras = (Camera__Array*)il2cpp_array_new((Il2CppClass*)app::Camera__TypeInfo, 32);
-			Camera_GetAllCameras(allCameras, NULL);
-			for (Camera* cam : allCameras->vector) {
-				if (!cam) break;
-				Transform* camTransform = Component_get_transform((Component*)cam, NULL);
-				Vector3 camPosition = Transform_get_position(camTransform, NULL);
-				camPosition.z = 100;
-				Transform_set_position(camTransform, camPosition, NULL);
-			}
+		if (State.Wallhack && __this == *Game::pLocalPlayer) {
+			auto mainCamera = Camera_get_main(NULL);
+
+			Transform* cameraTransform = Component_get_transform((Component*)mainCamera, NULL);
+			Vector3 cameraVector3 = Transform_get_position(cameraTransform, NULL);
+			Transform_set_position(cameraTransform, { cameraVector3.x, cameraVector3.y, 100}, NULL);
 		}
 
 		// TODO: Improve performance
