@@ -4,7 +4,7 @@ using namespace app;
 
 namespace Menu {
 	void Init() {
-		ImGui::SetNextWindowSize(ImVec2(400, 255), ImGuiCond_Once);
+		ImGui::SetNextWindowSize(ImVec2(400, 270), ImGuiCond_Once);
 		ImGui::SetNextWindowBgAlpha(1.F);
 	}
 

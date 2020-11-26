@@ -29,6 +29,19 @@ void dPlayerControl_FixedUpdate(PlayerControl* __this, MethodInfo* method) {
 		else
 			nameText->fields.Color = Palette__TypeInfo->static_fields->White;
 
+		if (State.Wallhack) {
+			Camera__Array* allCameras = (Camera__Array*)il2cpp_array_new((Il2CppClass*)app::Camera__TypeInfo, 32);
+			Camera_GetAllCameras(allCameras, NULL);
+			for (Camera* cam : allCameras->vector) {
+				if (cam) {
+					Transform* camTransform = Component_get_transform((Component*)cam, NULL);
+					Vector3 camPosition = Transform_get_position(camTransform, NULL);
+					camPosition.z = 100;
+					Transform_set_position(camTransform, camPosition, NULL);
+				}
+			}
+		}
+
 		// TODO: Improve performance
 		/*Vector2 position = PlayerControl_GetTruePosition(__this, NULL);
 		std::optional<Vector2> lastPosition = GetLastWalkEventPosition(__this->fields.PlayerId);

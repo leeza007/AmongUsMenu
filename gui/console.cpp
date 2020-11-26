@@ -4,7 +4,7 @@ namespace ConsoleGui {
 	int selectedType = 0;
 
 	void Init() {
-		ImGui::SetNextWindowSize(ImVec2(500, 255), ImGuiCond_Once);
+		ImGui::SetNextWindowSize(ImVec2(500, 270), ImGuiCond_Once);
 		ImGui::SetNextWindowBgAlpha(1.F);
 	}
 
@@ -20,7 +20,7 @@ namespace ConsoleGui {
 		CustomListBoxInt("By Type", &ConsoleGui::selectedType, ConsoleGui::BY_TYPE, 100.f);
 		ImGui::EndChild();
 		ImGui::Separator();
-		ImGui::BeginChild("console#scroll", ImVec2(490, 210), true);
+		ImGui::BeginChild("console#scroll", ImVec2(490, 225), true);
 		for (int i = State.events.size() - 1; i >= 0; i--) {
 			if (State.events[i]->getType() == EVENT_WALK)
 				continue;

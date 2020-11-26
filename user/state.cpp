@@ -37,6 +37,8 @@ void Settings::Load() {
 
 	if (j_object.contains("MaxVision"))
 		Settings::MaxVision = j_object["MaxVision"].get<bool>();
+	if (j_object.contains("Wallhack"))
+		Settings::Wallhack = j_object["Wallhack"].get<bool>();
 	if (j_object.contains("UnlockVents"))
 		Settings::UnlockVents = j_object["UnlockVents"].get<bool>();
 	if (j_object.contains("RevealImpostors"))
@@ -66,6 +68,7 @@ void Settings::Save() {
 		{"RepairSabotage_Hotkey", Settings::Shortcuts[3].Combo.Keys},
 
 		{"MaxVision", Settings::MaxVision},
+		{"Wallhack", Settings::Wallhack},
 		{"UnlockVents", Settings::UnlockVents},
 		{"RevealImpostors", Settings::RevealImpostors},
 		{"ChatAlwaysActive", Settings::ChatAlwaysActive},

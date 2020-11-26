@@ -74,6 +74,8 @@ public:
 	int map = -1;
 	int impostors_amount = 0;
 
+	bool Wallhack = false;
+
 	void Load();
 	void Save();
 };
